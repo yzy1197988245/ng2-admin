@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <ba-card title="创建课题">
+      <form class="form-horizontal" [formGroup]="formGroup">
+
+        <div class="form-group row">
+          <label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>
+          <div class="col-md-10">
+            <input formControlName="title" type="text" class="form-control" id="ktmc">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="instructor" class="col-md-2 form-control-label">指导老师:</label>
+          <div class="col-md-10">
+            <table>
+              <tbody>
+              <tr>
+                <td><button class="btn btn-default" id="instructor" (click)="teachersModal.show()">选择指导老师</button></td>
+                <td style="padding-left: 10px">
+                  <span *ngIf="selectedTeacher == null">未选择</span>
+                  <span *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 form-control-label">组员:</label>
+          <div class="col-md-10">
+            <table>
+              <tbody>
+              <tr>
+                <td>
+                  <button class="btn btn-default" (click)="studentsModal.show()">编辑组员</button>
+                </td>
+                <td *ngFor="let student of selectedStudents" style="padding-left: 10px">
+                  {{student.name}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="ktnr" class="col-md-2 form-control-label">课题内容:</label>
+          <div class="col-md-10">
+            <ckeditor formControlName="description" id="ktnr" [config]="editorConfig"></ckeditor>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>
+          <div class="col-md-10">
+            <table width="100%">
+              <tbody>
+              <tr>
+                <td><input type="file" class="form-control" id="ckzl"></td>
+                <td>
+                  <button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>
+                  <span>未上传</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-info btn-lg" [disabled]="!canCommit()" (click)="commit()">提交</button>
+        </div>
+
+      </form>
+    </ba-card>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #teachersModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="teachersModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+        <teacher-selector (teacherSelected)="teachersModal.hide() ;teacherSelected($event)"></teacher-selector>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #studentsModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+        <student-selector (studentsSelected)="studentsModal.hide(); studentsSelected($event)"></student-selector>
+      </div>
+    </div>
+  </div>
+</div>

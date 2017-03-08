@@ -19,11 +19,17 @@ import 'style-loader!./theme/initial.scss';
       <div class="additional-bg"></div>
       <router-outlet></router-outlet>
     </main>
+    <simple-notifications [options]="notificationsConfig"></simple-notifications>
   `
 })
 export class App {
 
   isMenuCollapsed: boolean = false;
+
+  notificationsConfig = {
+    timeout: 2000,
+    position: ['top', 'right']
+  };
 
   constructor(private _state: GlobalState,
               private _imageLoader: BaImageLoaderService,

@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div class="row" *ngIf="menuItem.data" (click)="itemClicked(menuItem)">
+      <h5 class="menuItem" [ngClass]="{'selected': selected}" role="button">{{menuItem.id}} {{menuItem.data.menu.title}}</h5>
+    </div>
+    <div class="row" *ngIf="menuItem.children != null && menuItem.children.length != 0">
+      <menu-item *ngFor="let temp of menuItem.children" [menuItem]="temp" (itemSelected)="itemClicked($event)" [selected]="temp.enable"></menu-item>
+    </div>
+  </div>
+</div>

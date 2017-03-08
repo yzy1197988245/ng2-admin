@@ -1,0 +1,37 @@
+<ba-card>
+  <div class="row">
+    <table class="list">
+      <tbody>
+      <tr>
+        <td colspan="2" align="center">
+          <form [formGroup]="paramsForm">
+            <input formControlName="name" type="text">
+            <select>
+              <option *ngFor="let professionalTitle of professionalTitles" value="{{professionalTitle.id}}">
+                {{professionalTitle.name}}
+              </option>
+            </select>
+            <button class="btn btn-info">搜索</button>
+          </form>
+        </td>
+      </tr>
+      <tr role="button" *ngFor="let teacher of teachers" class="list-item" (click)="teacherClicked(teacher)">
+        <td width="50%" align="center">
+          {{ teacher.name }}
+        </td>
+        <td width="50%" align="center">
+          {{ teacher.professional_title_id | codeName: professionalTitles }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row text-center">
+
+  </div>
+</ba-card>
+
+
+
+
+

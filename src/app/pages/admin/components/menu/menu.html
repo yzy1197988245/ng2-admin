@@ -1,0 +1,103 @@
+<content-top title="菜单"></content-top>
+
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <ba-card title="操作">
+      <button class="btn btn-primary" (click)="createMenu()">添加菜单</button>
+    </ba-card>
+  </div>
+  <div class="col-md-10">
+    <ba-card>
+      <div *ngIf="menuTree != null">
+        <menu-item *ngFor="let menuItem of menuTree" [menuItem]="menuItem" (itemSelected)="getMenuDetail($event)"></menu-item>
+      </div>
+    </ba-card>
+  </div>
+</div>
+
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Large modal</h4>
+      </div>
+      <div class="modal-body">
+        <ba-card class="card">
+          <form [formGroup]="menuForm" class="form-horizontal">
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('title'), 'has-success': valid('title')}">
+              <label for="title" class="col-md-2 form-control-label">标题</label>
+              <div class="col-md-10">
+                <input formControlName="title" id="title" class="form-control" type="text" required>
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('icon'), 'has-success': valid('icon')}">
+              <label for="icon" class="col-md-2 form-control-label">图标</label>
+              <div class="col-md-10">
+                <input formControlName="icon" id="icon" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('order'), 'has-success': valid('order')}">
+              <label for="order" class="col-md-2 form-control-label">排序</label>
+              <div class="col-md-10">
+                <input formControlName="order" id="order" class="form-control" type="number" required>
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('path'), 'has-success': valid('path')}">
+              <label for="path" class="col-md-2 form-control-label">路径</label>
+              <div class="col-md-10">
+                <input formControlName="path" id="path" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('parent_id'), 'has-success': valid('parent_id')}">
+              <label for="parent_id" class="col-md-2 form-control-label">父菜单</label>
+              <div class="col-md-10">
+                <input formControlName="parent_id" id="parent_id" class="form-control" type="number" required>
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('start_time'), 'has-success': valid('start_time')}">
+              <label for="start_time" class="col-md-2 form-control-label">起始时间</label>
+              <div class="col-md-10">
+                <input formControlName="start_time" id="start_time" class="form-control" type="datetime" required>
+              </div>
+            </div>
+
+            <div class="form-group row" [ngClass]="{'has-error': !valid('end_time'), 'has-success': valid('end_time')}">
+              <label for="end_time" class="col-md-2 form-control-label">结束时间</label>
+              <div class="col-md-10">
+                <input formControlName="end_time" id="end_time" class="form-control" type="datetime" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="long_time" class="col-md-2 form-control-label">是否长期开启</label>
+              <div class="col-md-10">
+                <input formControlName="long_time" id="long_time" class="form-control" type="checkbox">
+              </div>
+            </div>
+
+            <div class="text-center">
+              <input class="btn btn-lg btn-info" (click)="onSubmit()" type="submit" value="提交" [disabled]="!menuForm.valid">
+              <button class="btn btn-lg btn-danger" (click)="delete()" *ngIf="menuDetail != null">删除</button>
+            </div>
+
+          </form>
+        </ba-card>
+      </div>
+    </div>
+  </div>
+</div>

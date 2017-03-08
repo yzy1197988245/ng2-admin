@@ -1,0 +1,34 @@
+.selected-items {
+  width: 100%;
+
+  .item {
+    width: 25%;
+    color: black;
+    .del-button {
+      margin-left: 10px;
+      color: red;
+    }
+  }
+}
+
+.list {
+
+  width: 100%;
+
+  //color: #000000;
+
+  .list-item {
+    height: 45px;
+    border-bottom: 1px solid black;
+  }
+
+  .list-item:hover {
+    background-color: lightblue;
+    color: #000000;
+  }
+
+  .list-item-selected {
+    background: lightskyblue;
+    color: #000000;
+  }
+}

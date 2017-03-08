@@ -17,11 +17,22 @@ import { AppState, InternalStateType } from './app.service';
 import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
+import {AuthGuard} from "./app.auth-guard";
+import {AuthService} from "./app.auth-service";
+import {CookieService} from "angular2-cookie/services/cookies.service";
+import {ConfigProvider} from "./app.config-provider";
+import {SimpleNotificationsModule} from "angular2-notifications";
+import {Config} from "./app.config";
+import {PaginationModule} from "ng2-bootstrap";
 
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
-  GlobalState
+  GlobalState,
+  AuthGuard,
+  AuthService,
+  CookieService,
+  Config
 ];
 
 export type StoreType = {
@@ -46,7 +57,9 @@ export type StoreType = {
     ReactiveFormsModule,
     NgaModule.forRoot(),
     PagesModule,
-    routing
+    routing,
+    SimpleNotificationsModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

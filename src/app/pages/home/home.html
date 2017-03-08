@@ -1,0 +1,8 @@
+<content-top title="任务列表"></content-top>
+<div class="col-sm-9 offset-sm-1">
+    <div class="col-sm-4" *ngFor="let task of tasks" (click)="navigateTo(task)">
+        <ba-card [title]="task.title" role="button">
+            <p>{{task.description}}</p>
+        </ba-card>
+    </div>
+</div>

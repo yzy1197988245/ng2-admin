@@ -1,0 +1,47 @@
+<ba-card>
+  <div class="row">
+    <table class="selected-items">
+      <tbody>
+      <tr>
+        <td *ngFor="let student of selectedStudents" class="item">
+          <h5>{{student.name}}<i class="ion-android-cancel del-button" role="button" (click)="unSelectStudent(student)"></i></h5>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <table class="list">
+      <tbody>
+      <tr>
+        <td colspan="3" align="center">
+          <form [formGroup]="paramsForm">
+            <input formControlName="name" type="text" placeholder="请输入姓名">
+            <input formControlName="studentNumber" type="text" placeholder="请输入学号">
+            <button class="btn btn-info">搜索</button>
+          </form>
+        </td>
+      </tr>
+      <tr role="button" *ngFor="let student of studentList" class="list-item" (click)="studentClicked(student)">
+        <td width="50%" align="center">
+          {{ student.student_number }}
+        </td>
+        <td width="40%" align="center">
+          {{ student.name }}
+        </td>
+        <td width="10%" align="center">
+          <i class="ion-android-done" *ngIf="isSelected(student)"></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row text-center">
+
+  </div>
+</ba-card>
+<div class="row text-right">
+  <button class="btn btn-success" style="margin-right: 20px" (click)="commit()">确定</button>
+</div>

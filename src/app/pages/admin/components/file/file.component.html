@@ -1,0 +1,31 @@
+<content-top title="文件管理"></content-top>
+
+<button class="btn btn-info" (click)="uploadFileModal.show()">上传文件</button>
+
+<div class="modal fade" bsModal #uploadFileModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="uploadFileModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">上传文件</h4>
+      </div>
+      <div class="modal-body">
+
+        <form class="form-horizontal">
+          <div class="form-group row">
+            <label for="file" class="col-md-2 form-control-label">文件</label>
+            <div class="col-md-10">
+              <input #fileInput id="file" class="form-control" type="file" required>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary confirm-btn" (click)="uploadFile(fileInput.files);uploadFileModal.hide()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

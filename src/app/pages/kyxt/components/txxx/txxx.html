@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <ba-card title="学生信息">
+      <form class="form-horizontal" [formGroup]="formGroup">
+
+        <div class="form-group row">
+          <label class="col-md-2 form-control-label">意向导师:</label>
+          <div class="col-md-10">
+            <table>
+              <tbody>
+              <tr>
+                <td>
+                  <button class="btn btn-default" (click)="teachersModal.show()">选择意向导师</button>
+                </td>
+                <td align="center" style="padding-left: 10px">
+                  <span *ngIf="selectedTeacher == null">未选择</span>
+                  <span *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 form-control-label">意向方向:</label>
+          <div class="col-md-10">
+            <ng-select  [multiple]="true"
+                        [items]="interestNames"
+                        [active]="selectedInterests"
+                        (data)="interestChanged($event)"
+                        placeholder="选择意向方向"></ng-select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="description" class="col-md-2 form-control-label">自我阐述:</label>
+          <div class="col-md-10">
+            <ckeditor formControlName="description" id="description" [config]="editorConfig" class="form-control"></ckeditor>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn btn-lg btn-info" [disabled]="!canCommit()" (click)="commit()">提交</button>
+        </div>
+
+      </form>
+
+    </ba-card>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #teachersModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="teachersModal.hide()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+          <teacher-selector (teacherSelected)="teachersModal.hide() ;teacherSelected($event)"></teacher-selector>
+      </div>
+    </div>
+  </div>
+</div>

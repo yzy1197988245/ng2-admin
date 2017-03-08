@@ -1,0 +1,55 @@
+<content-top title="权限"></content-top>
+
+<div class="row">
+  <div class="col-md-3">
+    <ba-card>
+      <table style="width: 100%">
+        <tbody>
+        <tr *ngFor="let role of roles" class="power-item" role="button">
+          <td (click)="selectRole(role)" class="text">{{role.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="row text-center power-add-button">
+        <button class="btn btn-info" (click)="staticModal.show()">添加角色</button>
+      </div>
+    </ba-card>
+  </div>
+
+  <div class="col-md-9">
+    <ba-card>
+      <h4 *ngIf="selectedRole == null">请选择角色</h4>
+      <div *ngIf="menuTree != null && selectedRole != null">
+        <menu-item *ngFor="let menuItem of menuTree" [menuItem]="menuItem" (itemSelected)="addPower($event)" [selected]="menuItem.enable"></menu-item>
+      </div>
+    </ba-card>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">添加角色</h4>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="newRoleForm" class="form-horizontal">
+          <div class="form-group row">
+            <label for="roleName" class="col-md-2 form-control-label">角色标题</label>
+            <div class="col-md-10">
+              <input formControlName="name" id="roleName" class="form-control" type="text" required>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary confirm-btn" (click)="createRole();staticModal.hide()" [disabled]="!newRoleForm.valid">确定</button>
+      </div>
+    </div>
+  </div>
+</div>

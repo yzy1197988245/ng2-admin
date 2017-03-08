@@ -1,0 +1,91 @@
+<div class="border">
+  <div class="list">
+    <table width="100%">
+      <tbody>
+      <tr *ngFor="let project of projectList"
+          class="list-item" role="button"
+          [ngClass]="{'list-item-selected': isSelected(project)}"
+          (click)="selectProject(project)">
+        <td class="text-center" width="80%">{{project.title}}</td>
+        <td width="5%"><i class="ion-checkmark" *ngIf="isSelected2(project)"></i></td>
+        <td width="5%"><i class="ion-ios-flame-outline" *ngIf="project.count > 5"></i></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="selected-list">
+    <h4 class="text-center">已选题目</h4>
+    <table width="100%">
+      <tbody>
+      <tr *ngFor="let project of selectedProjects"
+          class="list-item" role="button"
+          [ngClass]="{'list-item-selected': isSelected(project)}"
+          (click)="selectProject(project)">
+
+        <td class="text-center">{{project.title}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info">
+    <span class="tips" *ngIf="selectedProject == null">请从左侧选择题目!</span>
+    <div *ngIf="selectedProject != null">
+      <ba-card [title]="selectedProject.title" >
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="detail" *ngIf="projectDetail != null">
+              <tr>
+                <td class="center" width="20%">项目名称</td>
+                <td>{{projectDetail.title}}</td>
+              </tr>
+              <tr>
+                <td class="center">创建人</td>
+                <td>{{projectDetail.creator}}</td>
+              </tr>
+              <tr>
+                <td class="center">项目类型</td>
+                <td>{{projectDetail.type}}</td>
+              </tr>
+              <tr>
+                <td class="center">指导教师</td>
+                <td>{{projectDetail.instructor}}</td>
+              </tr>
+              <tr>
+                <td class="center">项目说明</td>
+                <td [innerHtml]="projectDetail.description"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </ba-card>
+      <div class="text-center">
+        <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
+        <button class="btn btn-danger" *ngIf="isSelected2(selectedProject)" (click)="studentDeselectProject()">退选</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="staticModal.hide()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择志愿级别</h4>
+      </div>
+      <div class="modal-body">
+        <table class="modal-list">
+          <tbody>
+          <tr><td role="button" class="item" (click)="studentSelectProject(1); staticModal.hide()">第一志愿</td></tr>
+          <tr><td role="button" class="item" (click)="studentSelectProject(2); staticModal.hide()">第二志愿</td></tr>
+          <tr><td role="button" class="item" (click)="studentSelectProject(3); staticModal.hide()">第三志愿</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
