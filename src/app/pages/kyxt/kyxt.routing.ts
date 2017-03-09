@@ -41,12 +41,12 @@ const routes:Routes = [{
             path: 'xsxx',
             component: XsxxComponent
         },
-        // {
-        //     path: 'admin',
-        //     children: [
-        //         {path: '', loadChildren: './components/admin/admin.module'}
-        //     ]
-        // },
+        {
+            path: 'admin',
+            children: [
+                {path: '', loadChildren: './components/admin/admin.module#AdminModule'}
+            ]
+        },
         {
             path: 'tjxx',
             component: TjxxComponent
