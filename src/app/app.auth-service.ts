@@ -4,11 +4,11 @@
 
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {CookieService} from "angular2-cookie/services/cookies.service";
 import {isNullOrUndefined} from "util";
 import {Http} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
+import {SessionStorageService} from "ng2-webstorage";
 
 @Injectable()
 export class AuthService {
@@ -20,11 +20,11 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private cookieService: CookieService,
+    private sessionStorage: SessionStorageService,
     private http: Http,
   ){
-    this.userId = cookieService.get('userId');
-    this.userType = cookieService.get('userType');
+    this.userId = sessionStorage.retrieve('userId');
+    this.userType = sessionStorage.retrieve('userType');
     this.isLoggedIn = !isNullOrUndefined(this.userId);
   }
 
@@ -42,12 +42,12 @@ export class AuthService {
 
   public login(data: any): void {
     this.userType = data.userType;
-    this.cookieService.put('userType', this.userType);
+    this.sessionStorage.store('userType', this.userType);
     this.loginHttp(data).then( result => {
       if (result.code == '200') {
         this.isLoggedIn = true;
         this.userId = result.data.id;
-        this.cookieService.put('userId', this.userId);
+        this.sessionStorage.store('userId', this.userId);
         if (!isNullOrUndefined(this.redirectUrl))
           this.router.navigate([this.redirectUrl]);
         else
@@ -62,7 +62,7 @@ export class AuthService {
 
   public logout(): void {
     this.isLoggedIn = false;
-    this.cookieService.remove("userId");
+    this.sessionStorage.clear("userId");
     this.redirectUrl = null;
     this.router.navigate(['/login']);
   }

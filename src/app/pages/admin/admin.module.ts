@@ -10,7 +10,7 @@ import {AdminComponent} from "./admin.component";
 import {UserComponent} from "./components/user/user.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {routing} from "./admin.routing";
-import {DatepickerModule, TimepickerModule, ModalModule} from "ng2-bootstrap";
+import {ModalModule} from "ng2-bootstrap";
 import {AdminService} from "./admin.service";
 import {MenuItem} from "./components/menu/menu-item/menu-item.component";
 import {PowerComponent} from "./components/power/power.component";
@@ -26,9 +26,7 @@ import {MyCommonModule} from "../../common/common.module";
     ReactiveFormsModule,
     NgaModule,
     routing,
-    DatepickerModule,
-    TimepickerModule,
-    ModalModule
+    ModalModule.forRoot()
   ],
   declarations: [
     AdminComponent,
