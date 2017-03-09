@@ -3,10 +3,13 @@
  */
 
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, Validators, AbstractControl} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {KyxtService} from "../../kyxt.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
+
+import '../../editor.loader'
+import 'ckeditor'
 
 @Component({
   templateUrl: 'cjkt.html'

@@ -8,7 +8,8 @@ import {KyxtService} from "../../kyxt.service";
 import {isNullOrUndefined} from "util";
 import {NotificationsService} from "angular2-notifications";
 
-window['CKEDITOR_BASEPATH'] = '//cdn.ckeditor.com/4.6.0/standard/';
+import '../../editor.loader';
+import 'ckeditor';
 
 @Component({
   templateUrl: 'zntm.html'

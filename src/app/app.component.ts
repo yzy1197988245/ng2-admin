@@ -27,7 +27,7 @@ export class App {
   isMenuCollapsed: boolean = false;
 
   notificationsConfig = {
-    timeout: 2000,
+    timeOut: 2000,
     position: ['top', 'right']
   };
 

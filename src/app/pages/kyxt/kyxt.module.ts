@@ -30,7 +30,7 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
     routing,
     NgaModule,
     CKEditorModule,
-    ModalModule,
+    ModalModule.forRoot(),
     SelectModule
   ],
   declarations: [

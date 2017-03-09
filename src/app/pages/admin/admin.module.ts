@@ -4,7 +4,6 @@
 
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {MyCommonModule} from "../../../../../ng2-admin/src/app/common/common.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgaModule} from "../../theme/nga.module";
 import {AdminComponent} from "./admin.component";
@@ -17,6 +16,7 @@ import {MenuItem} from "./components/menu/menu-item/menu-item.component";
 import {PowerComponent} from "./components/power/power.component";
 import {StudentComponent} from "./components/student/student.component";
 import {FileComponent} from "./components/file/file.component";
+import {MyCommonModule} from "../../common/common.module";
 
 @NgModule({
   imports: [

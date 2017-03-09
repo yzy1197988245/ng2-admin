@@ -1,2 +1,24 @@
 @import "~normalize.css";
 @import "theme/theme";
+
+.modal {
+
+  padding-top: 10px;
+
+  .modal-content {
+    background-color: grey;
+    color: #000000;
+
+    .modal-header {
+      border: none;
+    }
+
+    .modal-footer {
+      border: none;
+    }
+
+    .close {
+      outline: none;
+    }
+  }
+}
