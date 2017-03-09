@@ -3,33 +3,19 @@
  */
 
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {FormGroup, FormBuilder} from "@angular/forms";
 import {AdminService} from "../../admin.service";
 import {ModalDirective} from "ng2-bootstrap";
 
-export class Menu {
-
-  public id: number;
-  public title: string = '';
-  public icon: string = '';
-  public order: number = 0;
-  public path: string = '';
-  public parent_id: number = 0;
-  public start_time: string = '2017-01-01 00:00:00';
-  public end_time: string = '2017-01-01 00:00:00';
-  public long_time: boolean = true;
-  public enable: boolean;
-}
-
 @Component({
-  template: require('./menu.html'),
-  styles: [require('./modals.scss')]
+  templateUrl: './menu.html',
+  styleUrls: ['./modals.scss']
 })
 export class MenuComponent implements OnInit{
 
   menuForm: FormGroup;
-  menu = new Menu();
-  menuDetail: Menu;
+  menu: any;
+  menuDetail: any;
 
   @ViewChild('lgModal') public lgModal:ModalDirective;
 
@@ -46,15 +32,15 @@ export class MenuComponent implements OnInit{
 
   private buildForm():void {
     this.menuForm = this.fb.group({
-      id: [this.menu.id],
-      title: [this.menu.title],
-      icon: [this.menu.icon],
-      order: [this.menu.order],
-      path: [this.menu.path],
-      parent_id: [this.menu.parent_id],
-      start_time: [this.menu.start_time],
-      end_time: [this.menu.end_time],
-      long_time: [this.menu.long_time]
+      id: [1],
+      title: [''],
+      icon: [''],
+      order: [1],
+      path: [''],
+      parent_id: [1],
+      start_time: [''],
+      end_time: [''],
+      long_time: [1]
     });
   }
 
@@ -81,7 +67,7 @@ export class MenuComponent implements OnInit{
       this.service.getMenu().then(result => this.menuTree = result);
   }
 
-  public getMenuDetail(menu: Menu): void {
+  public getMenuDetail(menu: any): void {
     this.service.getMenuDetail(menu.id).then(result => {
       this.menuDetail = result;
       this.menuForm.reset(result);

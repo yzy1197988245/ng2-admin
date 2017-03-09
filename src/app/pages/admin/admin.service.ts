@@ -6,9 +6,8 @@ import {Injectable} from "@angular/core";
 import {Http, RequestOptions, Headers} from "@angular/http";
 import {MyResult} from "../pages.service";
 import 'rxjs/add/operator/toPromise';
-import {Config} from "../pages.config";
-import {Menu} from "./components/menu/menu.component";
 import {AuthService} from "../../app.auth-service";
+import {Config} from "../../app.config";
 
 @Injectable()
 export class AdminService {
@@ -29,7 +28,7 @@ export class AdminService {
 
   }
 
-  public createMenu(menu: Menu): Promise<MyResult> {
+  public createMenu(menu: any): Promise<MyResult> {
     return this.http.post(Config.SERVER_BASE_URL + 'menu/create', menu, this.requestOptions)
       .toPromise()
       .then(response => response.json() as MyResult)
@@ -47,10 +46,10 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  public getMenuDetail(id: number): Promise<Menu> {
+  public getMenuDetail(id: number): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'menu/detail?id=' + id, this.requestOptions)
       .toPromise()
-      .then(response => response.json() as Menu)
+      .then(response => response.json())
       .catch(this.handleError);
   }
 

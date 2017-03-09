@@ -5,8 +5,8 @@
 import {Component} from "@angular/core";
 import {AdminService} from "../../admin.service";
 @Component({
-  template: require('./student.html'),
-  styles: [require('./student.scss')]
+  templateUrl: './student.html',
+  styleUrls: ['./student.scss']
 })
 export class StudentComponent {
   public constructor(

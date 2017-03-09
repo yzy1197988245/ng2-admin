@@ -32,7 +32,8 @@ export const routes: Routes = [
       { path: 'forms', loadChildren: 'app/pages/forms/forms.module#FormsModule' },
       { path: 'tables', loadChildren: 'app/pages/tables/tables.module#TablesModule' },
       { path: 'maps', loadChildren: 'app/pages/maps/maps.module#MapsModule' },
-      { path: 'kyxt', loadChildren: 'app/pages/kyxt/kyxt.module#KyxtModule'}
+      { path: 'kyxt', loadChildren: 'app/pages/kyxt/kyxt.module#KyxtModule'},
+      { path: 'admin', loadChildren: 'app/pages/admin/admin.module#AdminModule'}
     ]
   }
 ];

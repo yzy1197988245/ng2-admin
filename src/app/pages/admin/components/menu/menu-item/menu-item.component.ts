@@ -4,20 +4,19 @@
 
 
 import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {Menu} from "../menu.component";
 
 @Component({
   selector: 'menu-item',
-  template: require('./menu-item.html'),
-  styles: [require('./menu-item.scss')]
+  templateUrl: './menu-item.html',
+  styleUrls: ['./menu-item.scss']
 })
 export class MenuItem {
-  @Input() menuItem: Menu;
+  @Input() menuItem: any;
   @Input() selected: boolean = false;
 
-  @Output() itemSelected = new EventEmitter<Menu>();
+  @Output() itemSelected = new EventEmitter<any>();
 
-  public itemClicked(menu: Menu):void {
+  public itemClicked(menu: any):void {
     this.itemSelected.emit(menu);
   }
 }

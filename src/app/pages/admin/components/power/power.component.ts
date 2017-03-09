@@ -5,10 +5,9 @@
 import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Menu} from "../menu/menu.component";
 @Component({
-  template: require('./power.html'),
-  styles: [require('./power.scss')]
+  templateUrl: './power.html',
+  styleUrls: ['./power.scss']
 })
 export class PowerComponent implements OnInit{
 
@@ -62,7 +61,7 @@ export class PowerComponent implements OnInit{
       })
   }
 
-  addPower(menu: Menu): void {
+  addPower(menu: any): void {
     if (menu.enable) {
       let data: any = {
         role_id: this.selectedRole.id,

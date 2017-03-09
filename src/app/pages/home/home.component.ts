@@ -6,8 +6,8 @@ import {Component, AfterViewInit} from "@angular/core";
 import {PagesService} from "../pages.service";
 import {Router} from "@angular/router";
 @Component({
-    template: require('./home.html'),
-    styles: [require('./home.scss')]
+    templateUrl: './home.html',
+    styleUrls: ['./home.scss']
 })
 export class HomeComponent implements AfterViewInit{
     tasks: Array<any>;

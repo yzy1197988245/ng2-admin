@@ -6,8 +6,8 @@ import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 @Component({
-  template: require('./file.component.html'),
-  styles: [require('./file.component.scss')]
+  templateUrl: './file.component.html',
+  styleUrls: ['./file.component.scss']
 })
 export class FileComponent implements OnInit{
 

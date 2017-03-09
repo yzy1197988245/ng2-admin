@@ -5,8 +5,8 @@
 import {Component, Input} from "@angular/core";
 @Component({
   selector: 'content-top',
-  template: require('./content-top.html'),
-  styles: [require('./content-top.scss')]
+  templateUrl: './content-top.html',
+  styleUrls: ['./content-top.scss']
 })
 export class ContentTopComponent {
   @Input()

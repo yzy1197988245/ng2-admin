@@ -8,8 +8,8 @@ import {AdminService} from "../../admin.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ModalDirective} from "ng2-bootstrap";
 @Component({
-  template: require('./user.html'),
-  styles: [require('./user.scss')]
+  templateUrl: './user.html',
+  styleUrls: ['./user.scss']
 })
 export class UserComponent implements OnInit{
 
