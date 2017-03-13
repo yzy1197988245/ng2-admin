@@ -27,16 +27,16 @@
     </table>
   </div>
   <div class="row text-center">
-    <!--<pagination [boundaryLinks]="true"-->
-                <!--[totalItems]="teacherTotalCount"-->
-                <!--[ngModel]="currentPage"-->
-                <!--class="pagination-sm"-->
-                <!--previousText="&lsaquo;"-->
-                <!--nextText="&rsaquo;"-->
-                <!--firstText="&laquo;"-->
-                <!--lastText="&raquo;"-->
-                <!--(pageChanged)="pageChanged($event)"-->
-    <!--&gt;</pagination>-->
+    <pagination [boundaryLinks]="true"
+                [totalItems]="teacherTotalCount"
+                [ngModel]="currentPage"
+                class="pagination-sm"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+                (pageChanged)="pageChanged($event)"
+    ></pagination>
   </div>
 </ba-card>
 

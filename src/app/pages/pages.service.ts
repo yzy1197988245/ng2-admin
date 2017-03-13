@@ -1,17 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Http} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
-import {AuthService} from "../app.auth-service";
 import {Config} from "../app.config";
 /**
  * Created by yzy on 2016/12/30.
  */
 
-export class MyResult {
-    public code?: string;
-    public message?: string;
-    public data?: any;
-}
 
 @Injectable()
 export class PagesService {

@@ -9,6 +9,7 @@ import {Http} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
 import {SessionStorageService} from "ng2-webstorage";
+import {GlobalState} from "./global.state";
 
 @Injectable()
 export class AuthService {
@@ -22,9 +23,14 @@ export class AuthService {
     private router: Router,
     private sessionStorage: SessionStorageService,
     private http: Http,
-  ){
-    this.userId = sessionStorage.retrieve('userId');
-    this.userType = sessionStorage.retrieve('userType');
+    private globalState: GlobalState
+  ) {
+    this.init();
+  }
+
+  private init(): void {
+    this.userId = this.sessionStorage.retrieve('userId');
+    this.userType = this.sessionStorage.retrieve('userType');
     this.isLoggedIn = !isNullOrUndefined(this.userId);
   }
 
@@ -41,13 +47,13 @@ export class AuthService {
   }
 
   public login(data: any): void {
-    this.userType = data.userType;
-    this.sessionStorage.store('userType', this.userType);
+    this.sessionStorage.store('userType', data.userType);
     this.loginHttp(data).then( result => {
       if (result.code == '200') {
         this.isLoggedIn = true;
-        this.userId = result.data.id;
-        this.sessionStorage.store('userId', this.userId);
+        this.sessionStorage.store('userId', result.data.id);
+        this.init();
+        this.globalState.notifyDataChanged('login', null);
         if (!isNullOrUndefined(this.redirectUrl))
           this.router.navigate([this.redirectUrl]);
         else
@@ -62,8 +68,10 @@ export class AuthService {
 
   public logout(): void {
     this.isLoggedIn = false;
-    this.sessionStorage.clear("userId");
-    this.redirectUrl = null;
+    this.sessionStorage.clear('userId');
+    this.sessionStorage.clear('userType');
+    this.init();
+    this.globalState.notifyDataChanged('logout', null);
     this.router.navigate(['/login']);
   }
 }

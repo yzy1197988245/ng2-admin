@@ -9,7 +9,7 @@ import {TeacherSelectorComponent} from "./components/teacher-selector/teacher-se
 import {CommonService} from "./common.service";
 import {CommonModule} from "@angular/common";
 import {NgaModule} from "../theme/nga.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {CodeNamePipe} from "./pipes/code-name.pipe";
 import {PaginationModule} from "ng2-bootstrap";
 
@@ -17,6 +17,7 @@ import {PaginationModule} from "ng2-bootstrap";
   imports: [
     CommonModule,
     NgaModule,
+    FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot()
   ],
