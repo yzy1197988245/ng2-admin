@@ -9,6 +9,9 @@ import {AdminService} from "../../admin.service";
   styleUrls: ['./student.scss']
 })
 export class StudentComponent {
+
+  students: Array<any>;
+
   public constructor(
     private service: AdminService
   ) {

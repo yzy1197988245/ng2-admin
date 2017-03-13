@@ -9,6 +9,7 @@ import {UserComponent} from "./components/user/user.component";
 import {PowerComponent} from "./components/power/power.component";
 import {StudentComponent} from "./components/student/student.component";
 import {FileComponent} from "./components/file/file.component";
+import {TeacherComponent} from "./components/teacher/teacher.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'file',
         component: FileComponent
+      },
+      {
+        path: 'teacher',
+        component: TeacherComponent
       }
     ]
   }

@@ -17,6 +17,8 @@ import {PowerComponent} from "./components/power/power.component";
 import {StudentComponent} from "./components/student/student.component";
 import {FileComponent} from "./components/file/file.component";
 import {MyCommonModule} from "../../common/common.module";
+import {TeacherComponent} from "./components/teacher/teacher.component";
+import {StudentForm} from "./components/student/student-form/student-form.component";
 
 @NgModule({
   imports: [
@@ -26,7 +28,7 @@ import {MyCommonModule} from "../../common/common.module";
     ReactiveFormsModule,
     NgaModule,
     routing,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
   declarations: [
     AdminComponent,
@@ -35,7 +37,9 @@ import {MyCommonModule} from "../../common/common.module";
     MenuItem,
     PowerComponent,
     StudentComponent,
-    FileComponent
+    FileComponent,
+    TeacherComponent,
+    StudentForm
   ],
   providers: [
     AdminService

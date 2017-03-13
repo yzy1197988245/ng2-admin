@@ -5,7 +5,6 @@
 import {Injectable} from "@angular/core";
 import {RequestOptions, Headers} from "@angular/http";
 import {AuthService} from "./app.auth-service";
-import {GlobalState} from "./global.state";
 
 @Injectable()
 export class Config {
@@ -23,7 +22,6 @@ export class Config {
 
   constructor(
     private authService: AuthService,
-    private state: GlobalState
   ) {
   }
 
@@ -36,6 +34,5 @@ export class Config {
     this._requestOptions.headers = new Headers();
     this._requestOptions.headers.set('userId', this.authService.userId);
     this._requestOptions.headers.set('userType', this.authService.userType);
-    console.log(this._requestOptions);
   }
 }
