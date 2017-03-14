@@ -157,4 +157,25 @@ export class AdminService {
       .then(response => response.json())
       .catch(this.handleError);
   }
+
+  public adminImportStudentFromFile(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminImportStudentFromFile', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminCreateStudent(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminCreateStudent', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminUpdateStudent(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminUpdateStudent', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 }

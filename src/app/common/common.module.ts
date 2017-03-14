@@ -12,6 +12,8 @@ import {NgaModule} from "../theme/nga.module";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {CodeNamePipe} from "./pipes/code-name.pipe";
 import {PaginationModule} from "ng2-bootstrap";
+import {SchoolSpecialtyPipe} from "./pipes/school-specialty.pipe";
+import {SpecialtyGradeClassPipe} from "./pipes/specialty-grade-class.pipe";
 
 @NgModule({
   imports: [
@@ -25,12 +27,17 @@ import {PaginationModule} from "ng2-bootstrap";
     ContentTopComponent,
     StudentSelectorComponent,
     TeacherSelectorComponent,
-    CodeNamePipe
+    CodeNamePipe,
+    SchoolSpecialtyPipe,
+    SpecialtyGradeClassPipe
   ],
   exports: [
     ContentTopComponent,
     StudentSelectorComponent,
-    TeacherSelectorComponent
+    TeacherSelectorComponent,
+    CodeNamePipe,
+    SchoolSpecialtyPipe,
+    SpecialtyGradeClassPipe
   ],
   providers: [
     CommonService

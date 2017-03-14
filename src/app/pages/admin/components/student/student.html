@@ -30,11 +30,11 @@
           <tr *ngFor="let student of students">
             <td>{{student.student_number}}</td>
             <td>{{student.name}}</td>
-            <td>{{student.sex_id}}</td>
-            <td>{{student.school_id}}</td>
-            <td>{{student.specialty_id}}</td>
+            <td>{{student.sex_id | codeName:dataService.sex}}</td>
+            <td>{{student.school_id | codeName:dataService.school}}</td>
+            <td>{{student.specialty_id | codeName:dataService.specialty}}</td>
             <td>{{student.grade_year}}</td>
-            <td>{{student.class_id}}</td>
+            <td>{{student.class_id | codeName:dataService.classInfo}}</td>
           </tr>
         </tbody>
       </table>
@@ -47,6 +47,7 @@
                     nextText="&rsaquo;"
                     firstText="&laquo;"
                     lastText="&raquo;"
+                    [maxSize]="maxSize"
                     (pageChanged)="pageChanged($event)"
         ></pagination>
       </div>
@@ -66,7 +67,6 @@
         <h4 class="modal-title">上传文件/批量导入</h4>
       </div>
       <div class="modal-body">
-
         <form class="form-horizontal">
           <div class="form-group row">
             <label for="file" class="col-md-2 form-control-label">文件</label>
@@ -75,7 +75,6 @@
             </div>
           </div>
         </form>
-
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary confirm-btn" (click)="uploadFile(fileInput.files);uploadFileModal.hide()">确定</button>
@@ -94,12 +93,7 @@
         <h4 class="modal-title">学生</h4>
       </div>
       <div class="modal-body">
-
-        <student-form></student-form>
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary confirm-btn" (click)="studentForm.hide()">确定</button>
+        <student-form (commit)="adminCreateStudent($event); studentForm.hide()"></student-form>
       </div>
     </div>
   </div>

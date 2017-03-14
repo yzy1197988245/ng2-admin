@@ -7,6 +7,7 @@ import { layoutPaths } from './theme/theme.constants';
 
 import 'style-loader!./app.scss';
 import 'style-loader!./theme/initial.scss';
+import {DataService} from "./app.data";
 
 /*
  * App Component
@@ -35,7 +36,9 @@ export class App {
               private _imageLoader: BaImageLoaderService,
               private _spinner: BaThemeSpinner,
               private viewContainerRef: ViewContainerRef,
-              private themeConfig: BaThemeConfig) {
+              private themeConfig: BaThemeConfig,
+              private dataService: DataService
+  ) {
 
     themeConfig.config();
 

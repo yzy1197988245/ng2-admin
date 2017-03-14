@@ -24,6 +24,7 @@ import {ConfigProvider} from "./app.config-provider";
 import {SimpleNotificationsModule} from "angular2-notifications";
 import {Config} from "./app.config";
 import {Ng2Webstorage} from "ng2-webstorage";
+import {DataService} from "./app.data";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -31,7 +32,8 @@ const APP_PROVIDERS = [
   GlobalState,
   AuthGuard,
   AuthService,
-  Config
+  Config,
+  DataService,
 ];
 
 export type StoreType = {
