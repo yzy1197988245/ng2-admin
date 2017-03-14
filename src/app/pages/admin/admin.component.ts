@@ -3,7 +3,10 @@
  */
 
 import {Component} from "@angular/core";
+
+import 'style-loader!./admin.scss';
+
 @Component({
-  template: '<router-outlet></router-outlet>'
+  template: '<router-outlet></router-outlet>',
 })
 export class AdminComponent {}

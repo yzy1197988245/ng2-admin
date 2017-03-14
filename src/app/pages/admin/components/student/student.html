@@ -2,7 +2,7 @@
   <div class="row">
     <ba-card title="操作">
       <button class="btn btn-default" (click)="uploadFileModal.show()">批量导入</button>
-      <button class="btn btn-default">添加学生</button>
+      <button class="btn btn-default" (click)="studentForm.show()">添加学生</button>
     </ba-card>
   </div>
 
@@ -14,7 +14,7 @@
 
   <div class="row">
     <ba-card title="学生信息">
-      <table class="student-table">
+      <table class="info-table">
         <thead>
           <tr>
             <th>学号</th>
@@ -54,11 +54,6 @@
     </ba-card>
   </div>
 
-  <div class="row">
-    <ba-card title="学生表单">
-      <student-form></student-form>
-    </ba-card>
-  </div>
 </div>
 
 <div class="modal fade" bsModal #uploadFileModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -84,6 +79,27 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary confirm-btn" (click)="uploadFile(fileInput.files);uploadFileModal.hide()">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #studentForm="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="studentForm.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">学生</h4>
+      </div>
+      <div class="modal-body">
+
+        <student-form></student-form>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary confirm-btn" (click)="studentForm.hide()">确定</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,15 @@
-<button class="btn btn-info" (click)="uploadFileModal.show()">上传文件</button>
+<div class="col-sm-10">
+  <div class="row">
+    <ba-card title="操作">
+      <button class="btn btn-default" (click)="uploadFileModal.show()">上传文件</button>
+    </ba-card>
+  </div>
+  <div class="row">
+    <ba-card title="文件信息">
+
+    </ba-card>
+  </div>
+</div>
 
 <div class="modal fade" bsModal #uploadFileModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
