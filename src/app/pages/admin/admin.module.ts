@@ -10,7 +10,7 @@ import {AdminComponent} from "./admin.component";
 import {UserComponent} from "./components/user/user.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {routing} from "./admin.routing";
-import {ModalModule} from "ng2-bootstrap";
+import {ModalModule, PaginationModule} from "ng2-bootstrap";
 import {AdminService} from "./admin.service";
 import {MenuItem} from "./components/menu/menu-item/menu-item.component";
 import {PowerComponent} from "./components/power/power.component";
@@ -29,6 +29,7 @@ import {StudentForm} from "./components/student/student-form/student-form.compon
     NgaModule,
     routing,
     ModalModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   declarations: [
     AdminComponent,

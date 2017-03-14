@@ -15,7 +15,8 @@ export class AdminService {
 
   constructor(
     private http: Http,
-    private authService: AuthService
+    private authService: AuthService,
+    private config: Config
   ) {
     this.requestOptions = new RequestOptions();
     this.requestOptions.headers = new Headers();
@@ -145,6 +146,13 @@ export class AdminService {
 
   public uploadFile(data: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'file/upload', data, this.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminGetStudentListWithParams(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminGetStudentListWithParams', params, this.config.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
