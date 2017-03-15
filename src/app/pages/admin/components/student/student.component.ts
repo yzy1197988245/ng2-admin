@@ -6,6 +6,7 @@ import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
 import {NotificationsService} from "angular2-notifications";
 import {DataService} from "../../../../app.data";
+import {FormGroup, AbstractControl, FormBuilder} from "@angular/forms";
 @Component({
   templateUrl: './student.html',
   styleUrls: ['./student.scss']
@@ -17,12 +18,45 @@ export class StudentComponent implements OnInit{
   currentPage: number = 1;
   maxSize = 10;
 
+  searchParamsForm: FormGroup;
+  schoolId: AbstractControl;
+  specialtyId: AbstractControl;
+  grade: AbstractControl;
+  classId: AbstractControl;
+
   constructor(
     private service: AdminService,
     private notificationsService: NotificationsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private formBuilder: FormBuilder
   ) {
+    this.searchParamsForm = formBuilder.group({
+      'studentNumber': [''],
+      'name': [''],
+      'schoolId': [0],
+      'specialtyId': [0],
+      'grade': [0],
+      'classId': [0],
+    });
+    this.schoolId = this.searchParamsForm.controls['schoolId'];
+    this.specialtyId = this.searchParamsForm.controls['specialtyId'];
+    this.grade = this.searchParamsForm.controls['grade'];
+    this.classId = this.searchParamsForm.controls['classId'];
+  }
 
+  schoolChanged(): void {
+    this.specialtyId.setValue(0);
+    this.grade.setValue(0);
+    this.classId.setValue(0);
+  }
+
+  specialtyChanged(): void {
+    this.grade.setValue(0);
+    this.classId.setValue(0);
+  }
+
+  gradeChanged(): void {
+    this.classId.setValue(0);
   }
 
   ngOnInit(): void {
@@ -30,9 +64,8 @@ export class StudentComponent implements OnInit{
   }
 
   getStudentList(): void {
-    let params = {
-      page: this.currentPage
-    };
+    let params = this.searchParamsForm.value;
+    params.page = this.currentPage;
     this.service.adminGetStudentListWithParams(params)
       .then(result => {
         this.students = result.data;

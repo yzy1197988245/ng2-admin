@@ -151,6 +151,13 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  public adminGetFileList(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'file/adminGetFileList', params, this.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   public adminGetStudentListWithParams(params: any = {}): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminGetStudentListWithParams', params, this.config.requestOptions)
       .toPromise()
