@@ -12,9 +12,9 @@
         <table width="100%">
           <tbody>
           <tr>
-            <td><input formControlName="studentNumber" type="number" class="form-control" placeholder="学号"></td>
+            <td><input formControlName="teacherNumber" type="number" class="form-control" placeholder="教师号"></td>
             <td><input formControlName="name" type="text" class="form-control" placeholder="姓名"></td>
-            <td><select [formControl]="schoolId" class="form-control" title="学院" (change)="schoolChanged()">
+            <td><select formControlName="schoolId" class="form-control" title="学院" (change)="schoolChanged()">
               <option value="0">请选择学院</option>
               <option *ngFor="let school of dataService.school" value="{{school.id}}" >{{school.name}}</option>
             </select></td>
@@ -25,53 +25,39 @@
                 {{specialty.name}}
               </option>
             </select></td>
-            <td><select [formControl]="grade" class="form-control" title="年级" (change)="gradeChanged()">
-              <option value="0">请选择年级</option>
-              <option value="2016">2016</option>
-              <option value="2015">2015</option>
-              <option value="2014">2014</option>
-              <option value="2013">2013</option>
+            <td><select formControlName="professionalTitleId" class="form-control" title="职称">
+              <option value="0">请选择职称</option>
+              <option *ngFor="let professionalTitle of dataService.professionalTitle" value="{{professionalTitle.id}}">{{professionalTitle.name}}</option>
             </select></td>
-            <td><select [formControl]="classId" class="form-control" title="班级">
-              <option value="0">请选择班级</option>
-              <option *ngFor="let classInfo of searchParamsForm.value.specialtyId | specialtyGradeClass:searchParamsForm.value.grade:dataService.classInfo"
-                      value="{{classInfo.id}}">
-                {{classInfo.name}}
-              </option>
-            </select></td>
-            <td><button class="btn btn-default" (click)="getStudentList()">搜索</button></td>
+            <td><button class="btn btn-default" (click)="getTeacherList()">搜索</button></td>
           </tr>
           </tbody>
         </table>
       </form>
-
-
     </ba-card>
   </div>
 
   <div class="row">
-    <ba-card title="学生信息">
+    <ba-card title="教师信息">
       <table class="info-table">
         <thead>
         <tr>
-          <th>学号</th>
+          <th>教师号</th>
           <th>姓名</th>
           <th>性别</th>
+          <th>职称</th>
           <th>学院</th>
           <th>专业</th>
-          <th>年级</th>
-          <th>班级</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let student of students">
-          <td>{{student.student_number}}</td>
-          <td>{{student.name}}</td>
-          <td>{{student.sex_id | codeName:dataService.sex}}</td>
-          <td>{{student.school_id | codeName:dataService.school}}</td>
-          <td>{{student.specialty_id | codeName:dataService.specialty}}</td>
-          <td>{{student.grade_year}}</td>
-          <td>{{student.class_id | codeName:dataService.classInfo}}</td>
+        <tr *ngFor="let teacher of teachers">
+          <td>{{teacher.teacher_number}}</td>
+          <td>{{teacher.name}}</td>
+          <td>{{teacher.sex_id | codeName:dataService.sex}}</td>
+          <td>{{teacher.professional_title_id | codeName:dataService.professionalTitle}}</td>
+          <td>{{teacher.school_id | codeName:dataService.school}}</td>
+          <td>{{teacher.specialty_id | codeName:dataService.specialty}}</td>
         </tr>
         </tbody>
       </table>
@@ -127,10 +113,10 @@
         <button class="close" aria-label="Close" (click)="teacherForm.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">学生</h4>
+        <h4 class="modal-title">教师</h4>
       </div>
       <div class="modal-body">
-        <!--<teacher-form (commit)="adminCreateStudent($event); teacherForm.hide()"></teacher-form>-->
+        <teacher-form (commit)="adminCreateTeacher($event); teacherForm.hide()"></teacher-form>
       </div>
     </div>
   </div>

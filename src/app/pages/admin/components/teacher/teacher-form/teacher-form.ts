@@ -13,12 +13,11 @@ import {DataService} from "../../../../../app.data";
 })
 export class TeacherForm {
 
-  @Input() studentId: number;
+  @Input() teacherId: number;
   @Output() commit = new EventEmitter<any>();
 
   private teacherForm: FormGroup;
 
-  private schoolId: AbstractControl;
   private specialtyId: AbstractControl;
 
   constructor(
@@ -26,13 +25,17 @@ export class TeacherForm {
     private formBuilder: FormBuilder
   ) {
     this.teacherForm = formBuilder.group({
-      'studentNumber': ['', Validators.required],
+      'teacherNumber': ['', Validators.required],
       'name': ['', Validators.required],
       'sexId': [0, Validators.required],
       'schoolId': [0, Validators.required],
       'specialtyId': [0, Validators.required],
+      'professionalTitleId': [0, Validators.required],
+      'phone': [null],
+      'email': [null],
+      'remarks': [null],
+      'available': [true]
     });
-    this.schoolId = this.teacherForm.controls['schoolId'];
     this.specialtyId = this.teacherForm.controls['specialtyId'];
   }
 
@@ -47,7 +50,7 @@ export class TeacherForm {
 
   canSubmit(): boolean {
     let value = this.teacherForm.value;
-    return this.teacherForm.valid && value.sexId!=0 && value.schoolId!=0 && value.specialtyId!=0 && value.classId!=0 && value.grade!=0;
+    return this.teacherForm.valid;
   }
 
   schoolChanged(): void {

@@ -158,13 +158,7 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  // public downloadFile(params: any = {}): Promise<any> {
-  //   return this.http.post(Config.SERVER_BASE_URL + 'file/download', params, this.requestOptions)
-  //     .toPromise()
-  //     .then(response => response.json())
-  //     .catch(this.handleError);
-  // }
-
+  //student
   public adminGetStudentListWithParams(params: any = {}): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminGetStudentListWithParams', params, this.config.requestOptions)
       .toPromise()
@@ -188,6 +182,35 @@ export class AdminService {
 
   public adminUpdateStudent(params: any = {}): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminUpdateStudent', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  //teacher
+  public adminGetTeacherListWithParams(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminGetTeacherListWithParams', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminImportTeacherFromFile(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminImportTeacherFromFile', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminCreateTeacher(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminCreateTeacher', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public adminUpdateTeacher(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminUpdateTeacher', params, this.config.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
