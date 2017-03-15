@@ -4,7 +4,8 @@
 
 import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Config} from "../../../../app.config";
+import {NotificationsService} from "angular2-notifications";
 @Component({
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.scss']
@@ -13,19 +14,36 @@ export class FileComponent implements OnInit{
 
   files: Array<any>;
 
+  totalCount = 0;
+  currentPage = 1;
+  maxSize = 10;
+
+  downloadSource: string;
+
   constructor(
-    private service: AdminService
-  ){}
+    private service: AdminService,
+    private notificationsService: NotificationsService
+  ){
+    this.downloadSource = Config.SERVER_BASE_URL + 'file/download';
+  }
 
   ngOnInit(): void {
     this.getFileList();
   }
 
   getFileList(): void {
-    this.service.getFileList()
+    let params = {
+      page: this.currentPage
+    };
+    this.service.adminGetFileList(params)
       .then(result => {
-        this.files = result;
+        this.files = result.data;
       })
+  }
+
+  pageChanged(data: any): void {
+    this.currentPage = data.page;
+    this.getFileList();
   }
 
   uploadFile(files: Array<any>): void {
@@ -35,7 +53,14 @@ export class FileComponent implements OnInit{
     }
     this.service.uploadFile(data)
       .then(result => {
-        console.log(result);
+        if (result.code == 200)
+          this.notificationsService.success('成功', result.message);
+        this.getFileList();
       })
+  }
+
+  downloadFile(form: any, file: any) {
+    form.action = this.downloadSource + '?fileId=' + file.id;
+    form.submit();
   }
 }

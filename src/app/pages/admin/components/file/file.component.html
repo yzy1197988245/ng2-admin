@@ -6,7 +6,26 @@
   </div>
   <div class="row">
     <ba-card title="文件信息">
-
+      <table class="info-table">
+        <tbody>
+        <tr *ngFor="let file of files" role="button" class="hover" (click)="downloadFile(downloadForm, file)"><td>
+          {{file.fileName}}
+        </td></tr>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <pagination [boundaryLinks]="true"
+                    [totalItems]="totalCount"
+                    [ngModel]="currentPage"
+                    class="pagination-sm"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;"
+                    firstText="&laquo;"
+                    lastText="&raquo;"
+                    [maxSize]="maxSize"
+                    (pageChanged)="pageChanged($event)"
+        ></pagination>
+      </div>
     </ba-card>
   </div>
 </div>
@@ -38,3 +57,7 @@
     </div>
   </div>
 </div>
+
+<form #downloadForm style="display: none" method="post">
+
+</form>
