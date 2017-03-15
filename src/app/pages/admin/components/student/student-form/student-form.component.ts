@@ -50,7 +50,16 @@ export class StudentForm {
   }
 
   reset(): void {
-    this.studentForm.reset();
+    this.studentForm.reset({
+      'studentNumber': '',
+      'name': '',
+      'sexId': 0,
+      'schoolId': 0,
+      'specialtyId': 0,
+      'grade': 0,
+      'classId': 0,
+      'year': ''
+    });
   }
 
   canSubmit(): boolean {

@@ -18,7 +18,7 @@
               <option value="0">请选择学院</option>
               <option *ngFor="let school of dataService.school" value="{{school.id}}" >{{school.name}}</option>
             </select></td>
-            <td><select [formControl]="specialtyId" class="form-control" title="专业" (change)="specialtyChanged()">
+            <td><select [formControl]="specialtyId" class="form-control" title="专业">
               <option value="0">请选择专业</option>
               <option *ngFor="let specialty of searchParamsForm.value.schoolId | schoolSpecialty:dataService.specialty"
                       value="{{specialty.id}}">

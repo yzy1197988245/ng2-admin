@@ -34,7 +34,7 @@ export class TeacherForm {
       'phone': [null],
       'email': [null],
       'remarks': [null],
-      'available': [true]
+      'available': [1]
     });
     this.specialtyId = this.teacherForm.controls['specialtyId'];
   }
@@ -45,7 +45,18 @@ export class TeacherForm {
   }
 
   reset(): void {
-    this.teacherForm.reset();
+    this.teacherForm.reset({
+      'teacherNumber': '',
+      'name': '',
+      'sexId': 0,
+      'schoolId': 0,
+      'specialtyId': 0,
+      'professionalTitleId': 0,
+      'phone': null,
+      'email': null,
+      'remarks': null,
+      'available': 1
+    });
   }
 
   canSubmit(): boolean {

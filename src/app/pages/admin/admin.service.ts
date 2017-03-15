@@ -28,6 +28,9 @@ export class AdminService {
 
   }
 
+  /**
+   * Menu
+   */
   public createMenu(menu: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'menu/create', menu, this.requestOptions)
       .toPromise()
@@ -60,6 +63,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  /**
+   * Role
+   */
   public getRoleList(): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'role/list', this.requestOptions)
       .toPromise()
@@ -88,6 +94,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  /**
+   * Power
+   */
   public addPower(data: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'role/addPower', data, this.requestOptions)
       .toPromise()
@@ -102,6 +111,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  /**
+   * User
+   */
   public getUserList(): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'user/list', this.requestOptions)
       .toPromise()
@@ -137,6 +149,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
+  /**
+   * File
+   */
   public getFileList(): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'file/list', this.requestOptions)
       .toPromise()
@@ -158,7 +173,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  //student
+  /**
+   * Student
+   */
   public adminGetStudentListWithParams(params: any = {}): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'student/admin/adminGetStudentListWithParams', params, this.config.requestOptions)
       .toPromise()
@@ -187,7 +204,9 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  //teacher
+  /**
+   * Teacher
+   */
   public adminGetTeacherListWithParams(params: any = {}): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminGetTeacherListWithParams', params, this.config.requestOptions)
       .toPromise()
