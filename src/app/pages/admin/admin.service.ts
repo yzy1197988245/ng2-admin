@@ -73,13 +73,6 @@ export class AdminService {
       .catch(this.handleError);
   }
 
-  public getRoleListWithUser(data: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'role/listWithUser', data, this.requestOptions)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
-  }
-
   public createRole(data: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'role/createOrUpdate', data, this.requestOptions)
       .toPromise()
@@ -114,36 +107,36 @@ export class AdminService {
   /**
    * User
    */
-  public getUserList(): Promise<any> {
-    return this.http.get(Config.SERVER_BASE_URL + 'user/list', this.requestOptions)
+  public adminGetUserListWithParams(params: any = {}): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'user/admin/adminGetUserListWithParams', this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  public createUser(data: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'user/create', data, this.requestOptions)
+  public adminCreateUser(data: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'user/admin/adminCreateUser', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  public deleteUser(data: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'user/delete', data, this.requestOptions)
+  public adminDeleteUser(data: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'user/admin/adminDeleteUser', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  public addRoleToUser(data: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'role/addRoleToUser', data, this.requestOptions)
+  public adminAddRoleToUser(data: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'role/admin/adminAddRoleToUser', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  public deleteUserRole(data: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'role/deleteUserRole', data, this.requestOptions)
+  public adminDeleteUserRole(data: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'role/admin/adminDeleteUserRole', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

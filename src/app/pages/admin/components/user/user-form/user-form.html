@@ -1,0 +1,63 @@
+<form class="form-horizontal" [formGroup]="userForm">
+  <div class="form-group row">
+    <label class="col-sm-2 form-control-label">用户号</label>
+    <div class="col-sm-10">
+      <input formControlName="userNumber" class="form-control" type="number" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 form-control-label">用户名</label>
+    <div class="col-sm-10">
+      <input formControlName="name" class="form-control" type="text" required>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 form-control-label">角色</label>
+    <div class="col-sm-10">
+      <select formControlName="roleId" class="form-control">
+        <option value="0">请选择角色</option>
+        <option *ngFor="let role of dataService.role" value="{{role.id}}">
+          {{role.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="form-control-label col-sm-2">学院</label>
+    <div class="col-sm-10">
+      <select formControlName="schoolId" class="form-control" title="学院" (change)="schoolChanged()">
+        <option value="0">请选择学院</option>
+        <option *ngFor="let school of dataService.school" value="{{school.id}}" >{{school.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 form-control-label">专业</label>
+    <div class="col-sm-10">
+      <select [formControl]="specialtyId" class="form-control" title="专业">
+        <option value="0">请选择专业</option>
+        <option *ngFor="let specialty of userForm.value.schoolId | schoolSpecialty:dataService.specialty"
+                value="{{specialty.id}}">
+          {{specialty.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 form-control-label">密码</label>
+    <div class="col-sm-10">
+      <input formControlName="password" class="form-control" type="password" required>
+    </div>
+  </div>
+
+</form>
+
+<div class="row text-center">
+  <button class="btn btn-success" [disabled]="!canSubmit()" (click)="submit()">提交</button>
+  <button class="btn btn-info" (click)="reset()">重置</button>
+</div>

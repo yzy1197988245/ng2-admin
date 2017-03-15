@@ -20,6 +20,7 @@ import {MyCommonModule} from "../../common/common.module";
 import {TeacherComponent} from "./components/teacher/teacher.component";
 import {StudentForm} from "./components/student/student-form/student-form.component";
 import {TeacherForm} from "./components/teacher/teacher-form/teacher-form";
+import {UserForm} from "./components/user/user-form/user-form";
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import {TeacherForm} from "./components/teacher/teacher-form/teacher-form";
     FileComponent,
     TeacherComponent,
     StudentForm,
-    TeacherForm
+    TeacherForm,
+    UserForm
   ],
   providers: [
     AdminService

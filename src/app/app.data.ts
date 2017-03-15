@@ -13,6 +13,7 @@ export class DataService {
   specialty: Array<any>;
   classInfo: Array<any>;
   professionalTitle: Array<any>;
+  role: Array<any>;
 
   constructor(
     private http: Http
@@ -22,6 +23,7 @@ export class DataService {
     this.getSpecialty();
     this.getClassInfo();
     this.getProfessionalTitle();
+    this.getRole();
   }
 
   getSex(): void {
@@ -56,6 +58,13 @@ export class DataService {
     this.http.get(Config.SERVER_BASE_URL + 'code/professionalTitle')
       .subscribe((result) => {
         this.professionalTitle = result.json();
+      })
+  }
+
+  getRole(): void {
+    this.http.get(Config.SERVER_BASE_URL + 'code/role')
+      .subscribe((result) => {
+        this.role = result.json();
       })
   }
 }
