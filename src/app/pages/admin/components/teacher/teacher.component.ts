@@ -64,13 +64,13 @@ export class TeacherComponent {
   }
 
   getStudentList(): void {
-    let params = this.searchParamsForm.value;
-    params.page = this.currentPage;
-    this.service.adminGetStudentListWithParams(params)
-      .then(result => {
-        this.students = result.data;
-        this.totalCount = result.total;
-      })
+    // let params = this.searchParamsForm.value;
+    // params.page = this.currentPage;
+    // this.service.adminGetStudentListWithParams(params)
+    //   .then(result => {
+    //     this.students = result.data;
+    //     this.totalCount = result.total;
+    //   })
   }
 
   pageChanged(data: any): void {
@@ -92,23 +92,23 @@ export class TeacherComponent {
   }
 
   adminImportStudentFromFile(fileId: number): void {
-    let params = {
-      fileId: fileId
-    };
-    this.service.adminImportStudentFromFile(params)
-      .then(result => {
-        this.notificationsService.success('成功', result.message);
-      })
+    // let params = {
+    //   fileId: fileId
+    // };
+    // this.service.adminImportStudentFromFile(params)
+    //   .then(result => {
+    //     this.notificationsService.success('成功', result.message);
+    //   })
   }
 
   adminCreateStudent(student: any): void {
-    this.service.adminCreateStudent(student)
-      .then(result => {
-        if (result.code == 200) {
-          this.notificationsService.success('成功', result.message);
-        } else {
-          this.notificationsService.alert('失败', result.message);
-        }
-      })
+    // this.service.adminCreateStudent(student)
+    //   .then(result => {
+    //     if (result.code == 200) {
+    //       this.notificationsService.success('成功', result.message);
+    //     } else {
+    //       this.notificationsService.alert('失败', result.message);
+    //     }
+    //   })
   }
 }

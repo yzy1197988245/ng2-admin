@@ -120,17 +120,17 @@
   </div>
 </div>
 
-<div class="modal fade" bsModal #studentForm="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade" bsModal #teacherForm="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
-        <button class="close" aria-label="Close" (click)="studentForm.hide()">
+        <button class="close" aria-label="Close" (click)="teacherForm.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title">学生</h4>
       </div>
       <div class="modal-body">
-        <student-form (commit)="adminCreateStudent($event); studentForm.hide()"></student-form>
+        <!--<teacher-form (commit)="adminCreateStudent($event); teacherForm.hide()"></teacher-form>-->
       </div>
     </div>
   </div>
