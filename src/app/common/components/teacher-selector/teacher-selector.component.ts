@@ -19,7 +19,7 @@ export class TeacherSelectorComponent implements OnInit{
   teachers: Array<any>;
   professionalTitles: Array<any>;
 
-  teacherTotalCount: number = 30;
+  teacherTotalCount: number = 0;
   currentPage: number = 1;
 
   paramsForm: FormGroup;

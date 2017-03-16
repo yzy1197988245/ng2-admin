@@ -145,8 +145,8 @@ export class AdminService {
   /**
    * File
    */
-  public getFileList(): Promise<any> {
-    return this.http.get(Config.SERVER_BASE_URL + 'file/list', this.requestOptions)
+  public adminGetFileList(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'file/adminGetFileList', params, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -154,13 +154,6 @@ export class AdminService {
 
   public uploadFile(data: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'file/upload', data, this.requestOptions)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
-  }
-
-  public adminGetFileList(params: any = {}): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'file/adminGetFileList', params, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

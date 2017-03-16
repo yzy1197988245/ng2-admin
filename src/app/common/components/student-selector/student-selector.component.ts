@@ -38,11 +38,8 @@ export class StudentSelectorComponent implements OnInit{
   }
 
   public getStudentList(): void {
-    let params = {
-      page: this.currentPage,
-      studentNumber: this.paramsForm.value.studentNumber,
-      name: this.paramsForm.value.name
-    };
+    let params = this.paramsForm.value;
+    params.page = this.currentPage;
     this.service.getStudentListWithParams(params)
       .then(result => {
         this.totalCount = result.total;
