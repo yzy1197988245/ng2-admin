@@ -17,12 +17,12 @@ export class StudentForm {
   @Input() studentId: number;
   @Output() commit = new EventEmitter<any>();
 
-  private studentForm: FormGroup;
+  studentForm: FormGroup;
 
-  private schoolId: AbstractControl;
-  private specialtyId: AbstractControl;
-  private grade: AbstractControl;
-  private classId: AbstractControl;
+  schoolId: AbstractControl;
+  specialtyId: AbstractControl;
+  grade: AbstractControl;
+  classId: AbstractControl;
 
   constructor(
     private dataService: DataService,

@@ -6,7 +6,34 @@
 
 <div class="row">
   <ba-card title="搜索">
-
+    <form [formGroup]="searchParams">
+      <table width="100%">
+        <tbody>
+        <tr>
+          <td><input formControlName="userNumber" class="form-control" type="number" required></td>
+          <td><input formControlName="name" class="form-control" type="text" required></td>
+          <td><select formControlName="roleId" class="form-control">
+            <option value="0">请选择角色</option>
+            <option *ngFor="let role of dataService.role" value="{{role.id}}">
+              {{role.name}}
+            </option>
+          </select></td>
+          <td><select formControlName="schoolId" class="form-control" title="学院" (change)="schoolChanged()">
+            <option value="0">请选择学院</option>
+            <option *ngFor="let school of dataService.school" value="{{school.id}}" >{{school.name}}</option>
+          </select></td>
+          <td><select [formControl]="specialtyId" class="form-control" title="专业">
+            <option value="0">请选择专业</option>
+            <option *ngFor="let specialty of searchParams.value.schoolId | schoolSpecialty:dataService.specialty"
+                    value="{{specialty.id}}">
+              {{specialty.name}}
+            </option>
+          </select></td>
+          <td><button class="btn btn-default" (click)="getUserList()">搜索</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </form>
   </ba-card>
 </div>
 
@@ -24,10 +51,27 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of users">
-
+        <td>{{user.user_number}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.role_id | codeName:dataService.role}}</td>
+        <td>{{user.school_id | codeName:dataService.school}}</td>
+        <td>{{user.specialty_id | codeName:dataService.specialty}}</td>
       </tr>
       </tbody>
     </table>
+    <div class="text-center">
+      <pagination [boundaryLinks]="true"
+                  [totalItems]="totalCount"
+                  [ngModel]="currentPage"
+                  class="pagination-sm"
+                  previousText="&lsaquo;"
+                  nextText="&rsaquo;"
+                  firstText="&laquo;"
+                  lastText="&raquo;"
+                  [maxSize]="maxSize"
+                  (pageChanged)="pageChanged($event)"
+      ></pagination>
+    </div>
   </ba-card>
 </div>
 
@@ -41,7 +85,7 @@
         <h4 class="modal-title">添加用户</h4>
       </div>
       <div class="modal-body">
-        <user-form></user-form>
+        <user-form (commit)="createUser($event); newUserModal.hide()"></user-form>
       </div>
     </div>
   </div>

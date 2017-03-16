@@ -16,7 +16,7 @@ export class UserForm {
   @Output() commit = new EventEmitter<any>();
 
   userForm: FormGroup;
-  private specialtyId: AbstractControl;
+  specialtyId: AbstractControl;
 
   constructor(
     private formBuilder: FormBuilder,

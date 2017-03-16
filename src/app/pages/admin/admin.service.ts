@@ -108,7 +108,7 @@ export class AdminService {
    * User
    */
   public adminGetUserListWithParams(params: any = {}): Promise<any> {
-    return this.http.get(Config.SERVER_BASE_URL + 'user/admin/adminGetUserListWithParams', this.requestOptions)
+    return this.http.post(Config.SERVER_BASE_URL + 'user/admin/adminGetUserListWithParams', params, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
