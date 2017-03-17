@@ -22,13 +22,13 @@ export class UserComponent implements OnInit{
   maxSize = 10;
 
   searchParams: FormGroup;
-  private specialtyId: AbstractControl;
+  specialtyId: AbstractControl;
 
   constructor(
     private service: AdminService,
     private formBuilder: FormBuilder,
-    private dataService: DataService,
-    private notificationsServic: NotificationsService
+    public dataService: DataService,
+    private notificationsService: NotificationsService
   ){
     this.searchParams = formBuilder.group({
       userNumber: [null, Validators.required],
@@ -67,7 +67,7 @@ export class UserComponent implements OnInit{
     this.service.adminCreateUser(user)
       .then(result => {
         if (result.code == 200) {
-          this.notificationsServic.success('成功', '创建成功');
+          this.notificationsService.success('成功', '创建成功');
           this.getUserList();
         }
       });

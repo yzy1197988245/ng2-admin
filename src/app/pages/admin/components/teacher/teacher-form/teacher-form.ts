@@ -16,12 +16,12 @@ export class TeacherForm {
   @Input() teacherId: number;
   @Output() commit = new EventEmitter<any>();
 
-  private teacherForm: FormGroup;
+  teacherForm: FormGroup;
 
-  private specialtyId: AbstractControl;
+  specialtyId: AbstractControl;
 
   constructor(
-    private dataService: DataService,
+    public dataService: DataService,
     private formBuilder: FormBuilder
   ) {
     this.teacherForm = formBuilder.group({

@@ -26,7 +26,7 @@ export class TeacherComponent {
   constructor(
     private service: AdminService,
     private notificationsService: NotificationsService,
-    private dataService: DataService,
+    public dataService: DataService,
     private formBuilder: FormBuilder
   ) {
     this.searchParamsForm = formBuilder.group({

@@ -20,7 +20,7 @@ export class UserForm {
 
   constructor(
     private formBuilder: FormBuilder,
-    private dataService: DataService
+    public dataService: DataService
   ) {
     this.userForm = formBuilder.group({
       userNumber: [null, Validators.required],

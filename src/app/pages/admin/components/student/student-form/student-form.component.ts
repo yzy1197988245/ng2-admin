@@ -25,7 +25,7 @@ export class StudentForm {
   classId: AbstractControl;
 
   constructor(
-    private dataService: DataService,
+    public dataService: DataService,
     private formBuilder: FormBuilder
   ) {
     this.studentForm = formBuilder.group({
