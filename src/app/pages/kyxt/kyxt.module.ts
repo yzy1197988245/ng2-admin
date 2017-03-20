@@ -17,9 +17,11 @@ import {XsxtComponent} from "./components/xsxt/xsxt.component";
 import {TxxxComponent} from "./components/txxx/txxx.component";
 import {XsxxComponent} from "./components/xsxx/xsxx.component";
 import {KyxtService} from "./kyxt.service";
-import {ModalModule} from "ng2-bootstrap";
+import {ModalModule, PaginationModule} from "ng2-bootstrap";
 import {SelectModule} from "ng2-select";
 import {TjxxComponent} from "./components/tjxx/tjxx.component";
+import {TxxxTeacherSelectorComponent} from "./components/txxx/txxx-teacher-selector/txxx-teacher-selector.component";
+import {TxxxInterestSelectorComponent} from "./components/txxx/txxx-interest-selector/txxx-interest-selector.component";
 
 @NgModule({
   imports: [
@@ -31,7 +33,8 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
     NgaModule,
     CKEditorModule,
     ModalModule.forRoot(),
-    SelectModule
+    SelectModule,
+    PaginationModule.forRoot()
   ],
   declarations: [
     KyxtComponent,
@@ -41,7 +44,9 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
     XsxtComponent,
     TxxxComponent,
     XsxxComponent,
-    TjxxComponent
+    TjxxComponent,
+    TxxxTeacherSelectorComponent,
+    TxxxInterestSelectorComponent
   ],
   providers: [
     KyxtService

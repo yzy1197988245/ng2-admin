@@ -1,0 +1,44 @@
+<ba-card>
+  <div class="row">
+    <table class="list">
+      <tbody>
+      <tr>
+        <td colspan="2" align="center">
+          <form [formGroup]="paramsForm">
+            <input formControlName="name" type="text" placeholder="请填写姓名">
+            <select>
+              <option *ngF
+            </select>
+            <select>
+              <option *ngFor="let professionalTitle of dataService.professionalTitle" value="{{professionalTitle.id}}">
+                {{professionalTitle.name}}
+              </option>
+            </select>
+            <button class="btn btn-info">搜索</button>
+          </form>
+        </td>
+      </tr>
+      <tr role="button" *ngFor="let teacher of teachers" class="list-item" (click)="teacherClicked(teacher)">
+        <td width="50%" align="center">
+          {{ teacher.name }}
+        </td>
+        <td width="50%" align="center">
+          {{ teacher.professional_title_id | codeName: dataService.professionalTitle }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row text-center">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="teacherTotalCount"
+                [ngModel]="currentPage"
+                class="pagination-sm"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+                (pageChanged)="pageChanged($event)"
+    ></pagination>
+  </div>
+</ba-card>

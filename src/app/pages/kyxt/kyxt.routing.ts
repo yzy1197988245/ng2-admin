@@ -14,44 +14,38 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {ModuleWithProviders} from "@angular/core";
 
 const routes:Routes = [{
-    path: '',
-    component: KyxtComponent,
-    children: [
-        {
-            path: 'wdtm',
-            component: WdtmComponent
-        },
-        {
-            path: 'zntm',
-            component: ZntmComponent
-        },
-        {
-            path: 'cjkt',
-            component: CjktComponent
-        },
-        {
-            path: 'xsxt',
-            component: XsxtComponent
-        },
-        {
-            path: 'txxx',
-            component: TxxxComponent
-        },
-        {
-            path: 'xsxx',
-            component: XsxxComponent
-        },
-        {
-            path: 'admin',
-            children: [
-                {path: '', loadChildren: './components/admin/admin.module#AdminModule'}
-            ]
-        },
-        {
-            path: 'tjxx',
-            component: TjxxComponent
-        }
-    ]
+  path: '',
+  component: KyxtComponent,
+  children: [
+    {
+      path: 'wdtm',
+      component: WdtmComponent
+    },
+    {
+      path: 'zntm',
+      component: ZntmComponent
+    },
+    {
+      path: 'cjkt',
+      component: CjktComponent
+    },
+    {
+      path: 'xsxt',
+      component: XsxtComponent
+    },
+    {
+      path: 'txxx',
+      component: TxxxComponent
+    },
+    {
+      path: 'xsxx',
+      component: XsxxComponent
+    },
+    {
+      path: 'tjxx',
+      component: TjxxComponent
+    }
+  ]
 }];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

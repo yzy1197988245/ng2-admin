@@ -18,8 +18,10 @@ export class StudentSelectorComponent implements OnInit{
   paramsForm: FormGroup;
 
   studentList: Array<any>;
+
   currentPage: number = 1;
   totalCount: number = 0;
+  maxSize = 8;
 
   selectedStudents: Array<any> = [];
 

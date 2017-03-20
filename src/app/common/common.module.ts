@@ -14,6 +14,9 @@ import {CodeNamePipe} from "./pipes/code-name.pipe";
 import {PaginationModule} from "ng2-bootstrap";
 import {SchoolSpecialtyPipe} from "./pipes/school-specialty.pipe";
 import {SpecialtyGradeClassPipe} from "./pipes/specialty-grade-class.pipe";
+import {StudentTableComponent} from "./components/student-table/student-table.component";
+import {InterestTableComponent} from "./components/interest-table/interest-table.component";
+import {TeacherTableComponent} from "./components/teacher-table/teacher-table.component";
 
 @NgModule({
   imports: [
@@ -24,20 +27,33 @@ import {SpecialtyGradeClassPipe} from "./pipes/specialty-grade-class.pipe";
     PaginationModule.forRoot()
   ],
   declarations: [
+
     ContentTopComponent,
     StudentSelectorComponent,
     TeacherSelectorComponent,
+
+    StudentTableComponent,
+    TeacherTableComponent,
+    InterestTableComponent,
+
     CodeNamePipe,
     SchoolSpecialtyPipe,
     SpecialtyGradeClassPipe
   ],
   exports: [
+
     ContentTopComponent,
     StudentSelectorComponent,
     TeacherSelectorComponent,
+
+    StudentTableComponent,
+    TeacherTableComponent,
+    InterestTableComponent,
+
     CodeNamePipe,
     SchoolSpecialtyPipe,
     SpecialtyGradeClassPipe
+
   ],
   providers: [
     CommonService
