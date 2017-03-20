@@ -3,9 +3,10 @@
  */
 
 import {Component, Output, EventEmitter} from "@angular/core";
-import {FormGroup, FormBuilder} from "@angular/forms";
+import {FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import {KyxtService} from "../../../kyxt.service";
 import {DataService} from "../../../../../app.data";
+
 @Component({
   selector: 'txxx-teacher-selector',
   templateUrl: './txxx-teacher-selector.html',
@@ -19,32 +20,32 @@ export class TxxxTeacherSelectorComponent {
 
   teacherTotalCount = 0;
   currentPage = 1;
-  maxSize = 0;
+  maxSize = 10;
 
   paramsForm: FormGroup;
+  specialtyId: AbstractControl;
 
   constructor(
     public dataService: DataService,
     public commonService: KyxtService,
     public formBuilder: FormBuilder
   ) {
-
   }
 
   public ngOnInit(): void {
     this.paramsForm = this.formBuilder.group({
-      name: [''],
-      professionalTitle: [0]
+      name: '',
+      schoolId: [0],
+      specialtyId: [0],
+      professionalTitleId: [0],
     });
+    this.specialtyId = this.paramsForm.controls['specialtyId'];
     this.getTeacherList();
   }
 
   getTeacherList(): void {
-    let data = {
-      page: this.currentPage,
-      name: this.paramsForm.value.name,
-      professionalTitle: this.paramsForm.value.professionalTitle
-    };
+    let data = this.paramsForm.value;
+    data.page = this.currentPage;
     this.commonService.getTxxxTeachersWithParams(data)
       .then(result => {
         this.teachers = result.data;
@@ -55,6 +56,10 @@ export class TxxxTeacherSelectorComponent {
   pageChanged(data): void {
     this.currentPage = data.page;
     this.getTeacherList()
+  }
+
+  schoolChanged(): void {
+    this.specialtyId.setValue(0);
   }
 
   teacherClicked(teacher: any): void {

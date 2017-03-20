@@ -1,29 +1,51 @@
 <ba-card>
+  <div class="row text-center">
+    <form [formGroup]="paramsForm">
+      <input formControlName="name" type="text" placeholder="请填写姓名">
+      <select formControlName="professionalTitleId">
+        <option value="0">请选择职称</option>
+        <option *ngFor="let professionalTitle of dataService.professionalTitle" value="{{professionalTitle.id}}">
+          {{professionalTitle.name}}
+        </option>
+      </select>
+      <select formControlName="schoolId" (change)="schoolChanged()">
+        <option value="0">请选择学院</option>
+        <option *ngFor="let school of dataService.school" value="{{school.id}}">
+          {{school.name}}
+        </option>
+      </select>
+      <select [formControl]="specialtyId">
+        <option value="0">请选择专业</option>
+        <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
+          {{specialty.name}}
+        </option>
+      </select>
+      <button class="btn btn-default" (click)="getTeacherList()">搜索</button>
+    </form>
+  </div>
   <div class="row">
     <table class="list">
+      <thead>
+        <tr>
+          <td>姓名</td>
+          <td>职称</td>
+          <td>学院</td>
+          <td>专业</td>
+        </tr>
+      </thead>
       <tbody>
-      <tr>
-        <td colspan="2" align="center">
-          <form [formGroup]="paramsForm">
-            <input formControlName="name" type="text" placeholder="请填写姓名">
-            <select>
-              <option *ngF
-            </select>
-            <select>
-              <option *ngFor="let professionalTitle of dataService.professionalTitle" value="{{professionalTitle.id}}">
-                {{professionalTitle.name}}
-              </option>
-            </select>
-            <button class="btn btn-info">搜索</button>
-          </form>
-        </td>
-      </tr>
       <tr role="button" *ngFor="let teacher of teachers" class="list-item" (click)="teacherClicked(teacher)">
-        <td width="50%" align="center">
+        <td>
           {{ teacher.name }}
         </td>
-        <td width="50%" align="center">
+        <td>
           {{ teacher.professional_title_id | codeName: dataService.professionalTitle }}
+        </td>
+        <td>
+          {{teacher.school_id | codeName: dataService.school}}
+        </td>
+        <td>
+          {{teacher.specialty_id | codeName: dataService.specialty}}
         </td>
       </tr>
       </tbody>
@@ -39,6 +61,7 @@
                 firstText="&laquo;"
                 lastText="&raquo;"
                 (pageChanged)="pageChanged($event)"
+                [maxSize]="maxSize"
     ></pagination>
   </div>
 </ba-card>

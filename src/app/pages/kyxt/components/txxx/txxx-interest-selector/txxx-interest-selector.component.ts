@@ -3,6 +3,7 @@
  */
 
 import {Component} from "@angular/core";
+
 @Component({
   selector: 'txxx-interect-selector',
   templateUrl: './txxx-interest-selector.html',

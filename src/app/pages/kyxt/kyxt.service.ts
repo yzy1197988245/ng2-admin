@@ -176,7 +176,7 @@ export class KyxtService {
    * Txxx Service
    */
   public getTxxxTeachersWithParams(params: any): Promise<any> {
-    return this.http.post(Config.SERVER_BASE_URL + 'teacher/simpleList', params, this.config.requestOptions)
+    return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminGetTeacherListWithParams', params, this.config.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
