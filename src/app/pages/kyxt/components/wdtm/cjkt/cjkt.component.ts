@@ -4,20 +4,20 @@
 
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {KyxtService} from "../../kyxt.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
+import {KyxtService} from "../../../kyxt.service";
 
-import '../../editor.loader'
+import '../../../editor.loader';
 import 'ckeditor'
 
 @Component({
+  selector: 'project-form',
   templateUrl: 'cjkt.html'
 })
 export class CjktComponent implements OnInit{
 
   interests: Array<any> = [];
-  interestNames: Array<any> = [];
   selectedInterests: Array<any> = [];
   formGroup: FormGroup;
 
@@ -38,21 +38,7 @@ export class CjktComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    this.service.getInterestList()
-      .then(result => {
-        this.interests = result;
-        this.interestNames = [];
-        for (let interest of result) {
-          this.interestNames.push({
-            id: interest.id,
-            text: interest.name
-          });
-        }
-      })
-  }
 
-  public interestChanged(interests: Array<any>): void {
-    this.selectedInterests = interests;
   }
 
   public commit(): void {

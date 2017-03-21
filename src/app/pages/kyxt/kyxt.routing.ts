@@ -6,7 +6,6 @@ import {Routes, RouterModule} from "@angular/router";
 import {KyxtComponent} from "./kyxt.component";
 import {WdtmComponent} from "./components/wdtm/wdtm.component";
 import {ZntmComponent} from "./components/zntm/zntm.component";
-import {CjktComponent} from "./components/cjkt/cjkt.component";
 import {XsxtComponent} from "./components/xsxt/xsxt.component";
 import {TxxxComponent} from "./components/txxx/txxx.component";
 import {XsxxComponent} from "./components/xsxx/xsxx.component";
@@ -24,10 +23,6 @@ const routes:Routes = [{
     {
       path: 'zntm',
       component: ZntmComponent
-    },
-    {
-      path: 'cjkt',
-      component: CjktComponent
     },
     {
       path: 'xsxt',

@@ -75,11 +75,27 @@
 
 <div class="col-sm-12 col-md-10 offset-md-1">
   <ba-card title="操作">
-    <button class="btn btn-default">创建项目</button>
+    <button class="btn btn-default" (click)="projectFormModal.show()">创建项目</button>
   </ba-card>
   <ba-card>
 
   </ba-card>
+</div>
+
+<div class="modal fade" bsModal #projectFormModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="projectFormModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">创建/修改课题</h4>
+      </div>
+      <div class="modal-body">
+        <project-form></project-form>
+      </div>
+    </div>
+  </div>
 </div>
 
 

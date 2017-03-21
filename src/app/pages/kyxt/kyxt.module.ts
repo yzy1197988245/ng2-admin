@@ -10,7 +10,7 @@ import {KyxtComponent} from "./kyxt.component";
 import {WdtmComponent} from "./components/wdtm/wdtm.component";
 import {ZntmComponent} from "./components/zntm/zntm.component";
 import {MyCommonModule} from "../../common/common.module";
-import {CjktComponent} from "./components/cjkt/cjkt.component";
+import {CjktComponent} from "./components/wdtm/cjkt/cjkt.component";
 import {NgaModule} from "../../theme/nga.module";
 import {CKEditorModule} from "ng2-ckeditor";
 import {XsxtComponent} from "./components/xsxt/xsxt.component";
