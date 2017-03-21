@@ -6,15 +6,15 @@
         <div class="form-group row">
           <label class="col-md-2 form-control-label">意向导师:</label>
           <div class="col-md-10">
-            <table>
+            <table width="100%">
               <tbody>
               <tr>
-                <td>
+                <td width="15%">
                   <button class="btn btn-default" (click)="teachersModal.show()">选择意向导师</button>
                 </td>
-                <td align="center" style="padding-left: 10px">
-                  <span *ngIf="selectedTeacher == null">未选择</span>
-                  <span *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                <td align="center">
+                  <span class="label col-sm-2" *ngIf="selectedTeacher == null">未选择</span>
+                  <span class="label col-sm-2" *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
                 </td>
               </tr>
               </tbody>
@@ -25,11 +25,19 @@
         <div class="form-group row">
           <label class="col-md-2 form-control-label">意向方向:</label>
           <div class="col-md-10">
-            <ng-select  [multiple]="true"
-                        [items]="interestNames"
-                        [active]="selectedInterests"
-                        (data)="interestChanged($event)"
-                        placeholder="选择意向方向"></ng-select>
+            <table width="100%">
+              <tbody>
+              <tr>
+                <td width="15%">
+                  <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
+                </td>
+                <td align="center">
+                  <span class="label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
+                  <span class="label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -61,6 +69,25 @@
       </div>
       <div class="modal-body">
           <txxx-teacher-selector (teacherSelected)="teachersModal.hide() ;teacherSelected($event)"></txxx-teacher-selector>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #interestsModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="interestsModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+        <txxx-interect-selector [(selectedInterests)]="selectedInterests"></txxx-interect-selector>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="interestsModal.hide()">确认</button>
       </div>
     </div>
   </div>

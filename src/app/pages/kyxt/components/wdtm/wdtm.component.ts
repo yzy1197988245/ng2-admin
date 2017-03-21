@@ -2,7 +2,7 @@
  * Created by yzy on 2017/1/1.
  */
 
-import {Component, AfterViewInit} from "@angular/core";
+import {Component, AfterViewInit, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NotificationsService} from "angular2-notifications";
@@ -11,14 +11,15 @@ import {isNullOrUndefined} from "util";
   templateUrl: 'wdtm.html',
   styleUrls: ['wdtm.scss'],
 })
-export class WdtmComponent implements AfterViewInit{
+export class WdtmComponent implements OnInit{
 
   projects: Array<any> = [];
   projectDetail: any;
   selectedProject: any;
+
   projectForm: FormGroup;
   editorConfig = {height:400};
-  interests: Array<any> = [];
+
   selectedInterests: Array<any> = [];
 
   constructor(
@@ -32,22 +33,8 @@ export class WdtmComponent implements AfterViewInit{
     });
   }
 
-  ngAfterViewInit(): void {
-    this.getInterests();
+  ngOnInit(): void {
     this.getTeacherProjectList();
-  }
-
-  getInterests(): void {
-    this.service.getInterestList()
-      .then(result => {
-        this.interests = [];
-        for (let interest of result) {
-          this.interests.push({
-            id: interest.id,
-            text: interest.name
-          });
-        }
-      })
   }
 
   getTeacherProjectList(): void {
@@ -86,10 +73,6 @@ export class WdtmComponent implements AfterViewInit{
     if (isNullOrUndefined(this.selectedProject))
       return false;
     return this.selectedProject.id == project.id;
-  }
-
-  interestChanged(interests: Array<any>): void {
-    this.selectedInterests = interests;
   }
 
   commit(): void {

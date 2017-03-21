@@ -54,13 +54,7 @@ export class KyxtService {
       .catch(this.handleError);
   }
 
-  public updateStudentDescription(data: any): Promise<any> {
-    data.userId = this.authService.userId;
-    return this.http.post(Config.SERVER_BASE_URL + 'student/updateDescription', data, this.requestOptions)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
-  }
+
 
   public studentCreateProject(data: any): Promise<any> {
     data.creatorId = this.authService.userId;
@@ -177,6 +171,20 @@ export class KyxtService {
    */
   public getTxxxTeachersWithParams(params: any): Promise<any> {
     return this.http.post(Config.SERVER_BASE_URL + 'teacher/admin/adminGetTeacherListWithParams', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public getTxxxInterestsWithParams(params: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'interest/getInterestListWithParams', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public updateStudentDescription(data: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/updateDescription', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

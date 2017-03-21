@@ -1,74 +1,86 @@
-<div class="border">
-  <div class="list">
-    <table width="100%">
-      <tbody>
-      <tr *ngFor="let project of projects"
-          class="list-item" role="button"
-          [ngClass]="{'list-item-selected': isSelected(project)}"
-          (click)="selectProject(project)">
-        <td class="text-center">{{project.title}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="info">
-    <span class="tips" *ngIf="projectDetail == null">请从左侧选择题目!</span>
-    <div *ngIf="projectDetail != null">
-      <div class="row">
-        <div class="col-sm-12">
-          <ba-card>
-            <form class="form-horizontal" [formGroup]="projectForm">
+<!--<div class="border">-->
+  <!--<div class="list">-->
+    <!--<table width="100%">-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let project of projects"-->
+          <!--class="list-item" role="button"-->
+          <!--[ngClass]="{'list-item-selected': isSelected(project)}"-->
+          <!--(click)="selectProject(project)">-->
+        <!--<td class="text-center">{{project.title}}</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
+  <!--<div class="info">-->
+    <!--<span class="tips" *ngIf="projectDetail == null">请从左侧选择题目!</span>-->
+    <!--<div *ngIf="projectDetail != null">-->
+      <!--<div class="row">-->
+        <!--<div class="col-sm-12">-->
+          <!--<ba-card>-->
+            <!--<form class="form-horizontal" [formGroup]="projectForm">-->
 
-              <div class="form-group row">
-                <label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>
-                <div class="col-md-10">
-                  <input formControlName="title" type="text" class="form-control" id="ktmc" required>
-                </div>
-              </div>
+              <!--<div class="form-group row">-->
+                <!--<label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>-->
+                <!--<div class="col-md-10">-->
+                  <!--<input formControlName="title" type="text" class="form-control" id="ktmc" required>-->
+                <!--</div>-->
+              <!--</div>-->
 
-              <div class="form-group row">
-                <label for="label" class="col-md-2 form-control-label">标签:</label>
-                <div class="col-md-10" id="label">
-                  <ng-select  [multiple]="true"
-                              [items]="interests"
-                              [active]="selectedInterests"
-                              (data)="interestChanged($event)"
-                              placeholder="选择标签"></ng-select>
-                </div>
-              </div>
+              <!--<div class="form-group row">-->
+                <!--<label for="label" class="col-md-2 form-control-label">标签:</label>-->
+                <!--<div class="col-md-10" id="label">-->
+                  <!--<ng-select  [multiple]="true"-->
+                              <!--[items]="interests"-->
+                              <!--[active]="selectedInterests"-->
+                              <!--(data)="interestChanged($event)"-->
+                              <!--placeholder="选择标签"></ng-select>-->
+                <!--</div>-->
+              <!--</div>-->
 
-              <div class="form-group row">
-                <label class="col-md-2 form-control-label">课题说明:</label>
-                <div class="col-md-10">
-                  <ckeditor class="form-control" formControlName="description" [config]="editorConfig" required></ckeditor>
-                </div>
-              </div>
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-2 form-control-label">课题说明:</label>-->
+                <!--<div class="col-md-10">-->
+                  <!--<ckeditor class="form-control" formControlName="description" [config]="editorConfig" required></ckeditor>-->
+                <!--</div>-->
+              <!--</div>-->
 
-              <div class="form-group row">
-                <label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>
-                <div class="col-md-10">
-                  <table width="100%">
-                    <tbody>
-                    <tr>
-                      <td><input type="file" class="form-control" id="ckzl"></td>
-                      <td>
-                        <button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>
-                        <span>未上传</span>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <!--<div class="form-group row">-->
+                <!--<label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>-->
+                <!--<div class="col-md-10">-->
+                  <!--<table width="100%">-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                      <!--<td><input type="file" class="form-control" id="ckzl"></td>-->
+                      <!--<td>-->
+                        <!--<button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>-->
+                        <!--<span>未上传</span>-->
+                      <!--</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                  <!--</table>-->
+                <!--</div>-->
+              <!--</div>-->
 
-            </form>
-          </ba-card>
-        </div>
-      </div>
-      <div class="text-center">
-        <button class="btn btn-info" [disabled]="!projectForm.valid" (click)="commit()">提交</button>
-        <button class="btn btn-danger" (click)="deleteProject()">删除</button>
-      </div>
-    </div>
-  </div>
+            <!--</form>-->
+          <!--</ba-card>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="text-center">-->
+        <!--<button class="btn btn-info" [disabled]="!projectForm.valid" (click)="commit()">提交</button>-->
+        <!--<button class="btn btn-danger" (click)="deleteProject()">删除</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="col-sm-12 col-md-10 offset-md-1">
+  <ba-card title="操作">
+    <button class="btn btn-default">创建项目</button>
+  </ba-card>
+  <ba-card>
+
+  </ba-card>
 </div>
+
+
+

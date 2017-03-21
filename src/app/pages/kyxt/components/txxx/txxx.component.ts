@@ -19,12 +19,11 @@ import 'ckeditor';
 export class TxxxComponent implements OnInit{
 
   selectedTeacher: any;
-  interests: Array<any> = [];
-  interestNames: Array<any> = [];
   selectedInterests: Array<any> = [];
+
   formGroup: FormGroup;
 
-  public editorConfig = {
+  editorConfig = {
     height: '400'
   };
 
@@ -37,18 +36,6 @@ export class TxxxComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    this.service.getInterestList()
-      .then(result => {
-        this.interests = result;
-        this.interestNames = [];
-        for (let interest of result) {
-          this.interestNames.push({
-            id: interest.id,
-            text: interest.name
-          });
-        }
-      });
-
     this.service.getStudentBaseInfo()
       .then(result => {
         this.selectedTeacher = result.data.interestTeacher;

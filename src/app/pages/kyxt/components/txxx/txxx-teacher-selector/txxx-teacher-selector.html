@@ -27,25 +27,25 @@
     <table class="list">
       <thead>
         <tr>
-          <td>姓名</td>
-          <td>职称</td>
           <td>学院</td>
           <td>专业</td>
+          <td>职称</td>
+          <td>姓名</td>
         </tr>
       </thead>
       <tbody>
       <tr role="button" *ngFor="let teacher of teachers" class="list-item" (click)="teacherClicked(teacher)">
         <td>
-          {{ teacher.name }}
+          {{teacher.school_id | codeName: dataService.school}}
+        </td>
+        <td>
+          {{teacher.specialty_id | codeName: dataService.specialty}}
         </td>
         <td>
           {{ teacher.professional_title_id | codeName: dataService.professionalTitle }}
         </td>
         <td>
-          {{teacher.school_id | codeName: dataService.school}}
-        </td>
-        <td>
-          {{teacher.specialty_id | codeName: dataService.specialty}}
+          {{ teacher.name }}
         </td>
       </tr>
       </tbody>
