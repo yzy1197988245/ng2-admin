@@ -1,70 +1,96 @@
-<div class="border">
-  <div class="list">
-    <table width="100%">
-      <tbody>
-      <tr *ngFor="let project of projectList"
-          class="list-item" role="button"
-          [ngClass]="{'list-item-selected': isSelected(project)}"
-          (click)="selectProject(project)">
-        <td class="text-center" width="80%">{{project.title}}</td>
-        <td width="5%"><i class="ion-checkmark" *ngIf="isSelected2(project)"></i></td>
-        <td width="5%"><i class="ion-ios-flame-outline" *ngIf="project.count > 5"></i></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="selected-list">
-    <h4 class="text-center">已选题目</h4>
-    <table width="100%">
-      <tbody>
-      <tr *ngFor="let project of selectedProjects"
-          class="list-item" role="button"
-          [ngClass]="{'list-item-selected': isSelected(project)}"
-          (click)="selectProject(project)">
+<div class="col-sm-12 col-md-10 offset-md-1">
+  <ba-card title="已选题目">
 
-        <td class="text-center">{{project.title}}</td>
-
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="info">
-    <span class="tips" *ngIf="selectedProject == null">请从左侧选择题目!</span>
-    <div *ngIf="selectedProject != null">
-      <ba-card [title]="selectedProject.title" >
-        <div class="row">
-          <div class="col-sm-12">
-            <table class="detail" *ngIf="projectDetail != null">
-              <tr>
-                <td class="center" width="20%">项目名称</td>
-                <td>{{projectDetail.title}}</td>
-              </tr>
-              <tr>
-                <td class="center">创建人</td>
-                <td>{{projectDetail.creator}}</td>
-              </tr>
-              <tr>
-                <td class="center">项目类型</td>
-                <td>{{projectDetail.type}}</td>
-              </tr>
-              <tr>
-                <td class="center">指导教师</td>
-                <td>{{projectDetail.instructor}}</td>
-              </tr>
-              <tr>
-                <td class="center">项目说明</td>
-                <td [innerHtml]="projectDetail.description"></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </ba-card>
+  </ba-card>
+  <ba-card title="题目库" *ngIf="!isShowProjectDetail">
+    <div class="row text-center">
+      <form [formGroup]="paramsForm">
+        <select formControlName="schoolId" (change)="schoolChanged()">
+          <option value="0">请选择学院</option>
+          <option *ngFor="let school of dataService.school" value="{{school.id}}">
+            {{school.name}}
+          </option>
+        </select>
+        <select [formControl]="specialtyId">
+          <option value="0">请选择专业</option>
+          <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
+            {{specialty.name}}
+          </option>
+        </select>
+        <button class="btn btn-default" (click)="getProjectList()">搜索</button>
+      </form>
+    </div>
+    <div class="row">
+      <table class="my-list">
+        <thead>
+        <tr>
+          <th>学院</th>
+          <th>专业</th>
+          <th>课题名称</th>
+          <th>指导老师</th>
+          <th>热度</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let project of projects" class="list-item" role="button" (click)="selectProject(project)">
+          <td>{{project.school_id|codeName:dataService.school}}</td>
+          <td>{{project.specialty_id|codeName:dataService.specialty}}</td>
+          <td>{{project.title}}</td>
+          <td>{{project.instructor}}</td>
+          <td>{{project.selected_count}}</td>
+        </tr>
+        </tbody>
+      </table>
       <div class="text-center">
-        <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
-        <button class="btn btn-danger" *ngIf="isSelected2(selectedProject)" (click)="studentDeselectProject()">退选</button>
+        <pagination [boundaryLinks]="true"
+                    [totalItems]="totalCount"
+                    [ngModel]="currentPage"
+                    class="pagination-sm"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;"
+                    firstText="&laquo;"
+                    lastText="&raquo;"
+                    (pageChanged)="pageChanged($event)"
+                    [maxSize]="maxSize"
+        ></pagination>
       </div>
     </div>
-  </div>
+  </ba-card>
+
+  <ba-card *ngIf="selectedProject != null && isShowProjectDetail">
+    <div class="row">
+      <button class="btn btn-success" (click)="hideProjectDetail()">返回</button>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="detail" *ngIf="projectDetail != null">
+          <tr>
+            <td class="center" width="20%">项目名称</td>
+            <td>{{projectDetail.title}}</td>
+          </tr>
+          <tr>
+            <td class="center">创建人</td>
+            <td>{{projectDetail.creator}}</td>
+          </tr>
+          <tr>
+            <td class="center">项目类型</td>
+            <td>{{projectDetail.type}}</td>
+          </tr>
+          <tr>
+            <td class="center">指导教师</td>
+            <td>{{projectDetail.instructor}}</td>
+          </tr>
+          <tr>
+            <td class="center">项目说明</td>
+            <td [innerHtml]="projectDetail.description"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row text-center">
+      <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
+    </div>
+  </ba-card>
 
 </div>
 
@@ -73,7 +99,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" aria-label="Close" (click)="staticModal.hide()">
-        <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title">请选择志愿级别</h4>
       </div>

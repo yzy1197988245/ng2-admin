@@ -13,8 +13,8 @@
                   <button class="btn btn-default" (click)="teachersModal.show()">选择意向导师</button>
                 </td>
                 <td align="center">
-                  <span class="label col-sm-2" *ngIf="selectedTeacher == null">未选择</span>
-                  <span class="label col-sm-2" *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                  <span class="my-label col-sm-2" *ngIf="selectedTeacher == null">未选择</span>
+                  <span class="my-label col-sm-2" *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
                 </td>
               </tr>
               </tbody>
@@ -32,8 +32,8 @@
                   <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
                 </td>
                 <td align="center">
-                  <span class="label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
-                  <span class="label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
+                  <span class="my-label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
+                  <span class="my-label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
                 </td>
               </tr>
               </tbody>

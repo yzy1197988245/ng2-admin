@@ -1,0 +1,22 @@
+<table *ngIf="project != null">
+  <tr>
+    <td class="center" width="20%">项目名称</td>
+    <td>{{project.title}}</td>
+  </tr>
+  <tr>
+    <td class="center">创建人</td>
+    <td>{{project.creator}}</td>
+  </tr>
+  <tr>
+    <td class="center">项目类型</td>
+    <td>{{project.type}}</td>
+  </tr>
+  <tr>
+    <td class="center">指导教师</td>
+    <td>{{project.instructor}}</td>
+  </tr>
+  <tr>
+    <td class="center">项目说明</td>
+    <td [innerHtml]="project.description"></td>
+  </tr>
+</table>

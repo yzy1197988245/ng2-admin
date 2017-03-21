@@ -6,24 +6,42 @@ import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
 import {NotificationsService} from "angular2-notifications";
 import {isNullOrUndefined} from "util";
+import {DataService} from "../../../../app.data";
+import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 @Component({
   templateUrl: 'xsxt.html',
   styleUrls: ['xsxt.scss']
 })
 export class XsxtComponent implements OnInit{
 
-  projectList: Array<any>;
+  projects: Array<any>;
   selectedProject: any;
   selectedProjects: Array<any> = [];
   projectDetail: any = {};
 
+  isShowProjectDetail = false;
+
+  totalCount = 0;
+  currentPage = 1;
+  maxSize = 10;
+
+  paramsForm: FormGroup;
+  specialtyId: AbstractControl;
+
   constructor(
     private service: KyxtService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    public dataService: DataService,
+    public formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
+    this.paramsForm = this.formBuilder.group({
+      schoolId: [0],
+      specialtyId: [0],
+    });
+    this.specialtyId = this.paramsForm.controls['specialtyId'];
     this.getProjectList();
     this.getSelectedProjects();
   }
@@ -31,8 +49,8 @@ export class XsxtComponent implements OnInit{
   getProjectList(): void {
     this.service.getStudentProjectList()
       .then(result => {
-        this.projectList = result;
-        this.projectList.sort((a, b) => {
+        this.projects = result;
+        this.projects.sort((a, b) => {
           return a.selected_count - b.selected_count;
         })
       });
@@ -44,6 +62,7 @@ export class XsxtComponent implements OnInit{
         projectId: this.selectedProject.id
       }).then(result => {
         this.projectDetail = result.data;
+        this.showProjectDetail();
       })
     }
   }
@@ -58,6 +77,23 @@ export class XsxtComponent implements OnInit{
       })
   }
 
+  pageChanged(data): void {
+    this.currentPage = data.page;
+    this.getProjectList();
+  }
+
+  schoolChanged(): void {
+    this.specialtyId.setValue(0);
+  }
+
+  showProjectDetail(): void {
+    this.isShowProjectDetail = true;
+  }
+
+  hideProjectDetail(): void {
+    this.isShowProjectDetail = false;
+  }
+
   selectProject(project: any): void {
     this.selectedProject = project;
     this.getProjectDetail();
@@ -68,14 +104,6 @@ export class XsxtComponent implements OnInit{
       return project.id == this.selectedProject.id;
     else
       return false;
-  }
-
-  isSelected2(project: any): boolean {
-    for (let project2 of this.selectedProjects) {
-      if (project.id == project2.id)
-        return true;
-    }
-    return false;
   }
 
   studentSelectProject(order: number): void {
@@ -111,6 +139,5 @@ export class XsxtComponent implements OnInit{
           }
         })
     }
-
   }
 }

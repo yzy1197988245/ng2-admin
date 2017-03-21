@@ -3,6 +3,7 @@
  */
 
 import {Component} from "@angular/core";
+import 'style-loader!./kyxt.scss';
 
 @Component({
   selector: 'kyxt',

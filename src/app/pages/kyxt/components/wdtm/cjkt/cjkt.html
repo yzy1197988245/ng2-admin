@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <ba-card>
+    <ba-card title="创建/修改题目">
       <form class="form-horizontal" [formGroup]="formGroup">
 
         <div class="form-group row">
@@ -13,10 +13,19 @@
         <div class="form-group row">
           <label for="label" class="col-md-2 form-control-label">标签:</label>
           <div class="col-md-10" id="label">
-            <ng-select  [multiple]="true"
-                        [items]="interestNames"
-                        (data)="interestChanged($event)"
-                        placeholder="选择标签"></ng-select>
+            <table width="100%">
+              <tbody>
+              <tr>
+                <td width="15%">
+                  <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
+                </td>
+                <td align="center">
+                  <span class="my-label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
+                  <span class="my-label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -27,22 +36,22 @@
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>
-          <div class="col-md-10">
-            <table width="100%">
-              <tbody>
-              <tr>
-                <td><input type="file" class="form-control" id="ckzl"></td>
-                <td>
-                  <button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>
-                  <span>未上传</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <!--<div class="form-group row">-->
+          <!--<label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>-->
+          <!--<div class="col-md-10">-->
+            <!--<table width="100%">-->
+              <!--<tbody>-->
+              <!--<tr>-->
+                <!--<td><input type="file" class="form-control" id="ckzl"></td>-->
+                <!--<td>-->
+                  <!--<button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>-->
+                  <!--<span>未上传</span>-->
+                <!--</td>-->
+              <!--</tr>-->
+              <!--</tbody>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
 
         <div class="text-center">
           <button class="btn btn-lg btn-info" [disabled]="!formGroup.valid" (click)="commit()">提交</button>
@@ -50,5 +59,24 @@
 
       </form>
     </ba-card>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #interestsModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="interestsModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+        <txxx-interect-selector [(selectedInterests)]="selectedInterests"></txxx-interect-selector>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="interestsModal.hide()">确认</button>
+      </div>
+    </div>
   </div>
 </div>

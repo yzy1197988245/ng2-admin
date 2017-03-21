@@ -22,6 +22,7 @@ import {SelectModule} from "ng2-select";
 import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {TxxxTeacherSelectorComponent} from "./components/txxx/txxx-teacher-selector/txxx-teacher-selector.component";
 import {TxxxInterestSelectorComponent} from "./components/txxx/txxx-interest-selector/txxx-interest-selector.component";
+import {ProjectDetailComponent} from "./components/project-detail/project-detail.component";
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import {TxxxInterestSelectorComponent} from "./components/txxx/txxx-interest-sel
     XsxxComponent,
     TjxxComponent,
     TxxxTeacherSelectorComponent,
-    TxxxInterestSelectorComponent
+    TxxxInterestSelectorComponent,
+    ProjectDetailComponent
   ],
   providers: [
     KyxtService
