@@ -1,0 +1,14 @@
+.my-table {
+  width: 100%;
+  td,th {
+    padding: 15px 10px 15px 10px;
+    border: 1px solid black;
+  }
+
+  .name {
+    width: 20%;
+  }
+  .description {
+    width: 80%;
+  }
+}

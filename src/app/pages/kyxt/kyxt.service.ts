@@ -189,4 +189,21 @@ export class KyxtService {
       .then(response => response.json())
       .catch(this.handleError);
   }
+
+  /**
+   * Tjxx Service
+   */
+  public getInterestDataForChart(): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'interest/getInterestDataForChart', this.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public getStudentDescriptionForTeacher(): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'student/getStudentDescriptionForTeacher', this.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 }

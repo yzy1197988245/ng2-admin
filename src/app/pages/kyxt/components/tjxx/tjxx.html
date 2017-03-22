@@ -1,1 +1,49 @@
+<div class="col-sm-12 col-md-10 offset-md-1">
+  <div class="row">
+    <ba-card title="兴趣统计">
+      <ba-chartist-chart
+        baChartistChartClass="ct-chart"
+        baChartistChartType="Bar"
+        [baChartistChartData]="chartData"
+        [baChartistChartOptions]="chartOptions">
+      </ba-chartist-chart>
+    </ba-card>
+  </div>
+
+  <div class="row">
+    <ba-card title="学生介绍">
+      <table class="my-table">
+        <thead>
+        <tr>
+          <th>
+            学生姓名
+          </th>
+          <th>
+            研究兴趣
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let studentDescription of studentDescriptions">
+          <td class="name">{{studentDescription.name}}</td>
+          <td [innerHtml]="studentDescription.description" class="description"></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="row text-center">
+        <pagination [boundaryLinks]="true"
+                    [totalItems]="totalCount"
+                    [ngModel]="currentPage"
+                    class="pagination-sm"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;"
+                    firstText="&laquo;"
+                    lastText="&raquo;"
+                    (pageChanged)="pageChanged($event)"
+                    [maxSize]="maxSize"
+        ></pagination>
+      </div>
+    </ba-card>
+  </div>
+</div>
 

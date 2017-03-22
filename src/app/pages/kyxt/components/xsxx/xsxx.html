@@ -10,7 +10,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let student of students" role="button">
+      <tr *ngFor="let student of students"  >
         <td>{{student.name}}</td>
         <td>{{student.school_id|codeName:dataService.school}}</td>
         <td>{{student.specialty_id|codeName:dataService.specialty}}</td>

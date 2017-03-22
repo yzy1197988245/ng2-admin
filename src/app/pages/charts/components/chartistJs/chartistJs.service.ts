@@ -62,7 +62,7 @@ export class ChartistJsService {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       series: [
         [15, 24, 43, 27, 5, 10, 23, 44, 68, 50, 26, 8],
-        [13, 22, 49, 22, 4, 6, 24, 46, 57, 48, 22, 4]
+        // [13, 22, 49, 22, 4, 6, 24, 46, 57, 48, 22, 4]
       ]
     },
     simpleBarOptions: {
