@@ -99,11 +99,12 @@ export class XsxtComponent implements OnInit{
     this.getProjectDetail();
   }
 
-  isSelected(project: any): boolean {
-    if (this.selectedProject != null)
-      return project.id == this.selectedProject.id;
-    else
-      return false;
+  isSelected(): boolean {
+    for (let projectTemp of this.selectedProjects) {
+      if (this.selectedProject.id == projectTemp.id)
+        return true;
+    }
+    return false;
   }
 
   studentSelectProject(order: number): void {
@@ -120,6 +121,7 @@ export class XsxtComponent implements OnInit{
           } else {
             this.notificationsService.error('失败', result.message);
           }
+          this.hideProjectDetail();
         })
     }
   }
@@ -137,6 +139,7 @@ export class XsxtComponent implements OnInit{
           } else {
             this.notificationsService.error('失败', result.message);
           }
+          this.hideProjectDetail();
         })
     }
   }

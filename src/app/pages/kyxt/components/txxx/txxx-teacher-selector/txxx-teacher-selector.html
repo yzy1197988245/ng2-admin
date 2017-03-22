@@ -31,6 +31,7 @@
           <td>专业</td>
           <td>职称</td>
           <td>姓名</td>
+          <td *ngIf="multiSelected">是否选择</td>
         </tr>
       </thead>
       <tbody>
@@ -46,6 +47,9 @@
         </td>
         <td>
           {{ teacher.name }}
+        </td>
+        <td>
+          <i class="ion-android-done" *ngIf="isSelected(teacher) != -1"></i>
         </td>
       </tr>
       </tbody>
@@ -64,4 +68,11 @@
                 [maxSize]="maxSize"
     ></pagination>
   </div>
+  <div *ngIf="multiSelected">
+    <p style="color: red">Tips:点击已选中的即可取消选择</p>
+    <div class="row">
+      <span class="my-label" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
+    </div>
+  </div>
+
 </ba-card>

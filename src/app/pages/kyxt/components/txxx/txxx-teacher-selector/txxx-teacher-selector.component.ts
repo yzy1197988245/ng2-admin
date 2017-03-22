@@ -2,10 +2,11 @@
  * Created by yzy on 2017/3/20.
  */
 
-import {Component, Output, EventEmitter} from "@angular/core";
+import {Component, Output, EventEmitter, Input} from "@angular/core";
 import {FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import {KyxtService} from "../../../kyxt.service";
 import {DataService} from "../../../../../app.data";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'txxx-teacher-selector',
@@ -13,7 +14,11 @@ import {DataService} from "../../../../../app.data";
   styleUrls: ['./txxx-teacher-selector.scss']
 })
 export class TxxxTeacherSelectorComponent {
+
   @Output() teacherSelected = new EventEmitter<any>();
+
+  @Input() multiSelected = false;
+  @Input() @Output() selectedTeachers: Array<any> = [];
 
   teachers: Array<any>;
   professionalTitles: Array<any>;
@@ -63,6 +68,26 @@ export class TxxxTeacherSelectorComponent {
   }
 
   teacherClicked(teacher: any): void {
-    this.teacherSelected.emit(teacher);
+    if (!this.multiSelected)
+      this.teacherSelected.emit(teacher);
+    else {
+      let index = this.isSelected(teacher);
+      if (index != -1) {
+        this.selectedTeachers.splice(index, 1);
+      } else {
+        this.selectedTeachers.push(teacher);
+      }
+    }
+  }
+
+  isSelected(teacher: any): number {
+    if (isNullOrUndefined(teacher))
+      return -1;
+    for (let i = 0; i < this.selectedTeachers.length; i++) {
+      if (teacher.id == this.selectedTeachers[i].id) {
+        return i;
+      }
+    }
+    return -1;
   }
 }

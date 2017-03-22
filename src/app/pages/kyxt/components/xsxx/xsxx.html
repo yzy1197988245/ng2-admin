@@ -1,153 +1,26 @@
-<div class="operation">
-  <table>
-    <tbody>
-    <tr>
-      <td class="text-center"><button class="btn btn-danger btn-lg" (click)="commitOrder()">提交序列</button></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<div class="border">
-  <div class="list">
-    <table width="100%">
+<div class="col-sm-12 col-md-10 offset-md-1">
+  <ba-card>
+    <table class="my-list">
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>学院</th>
+        <th>专业</th>
+        <th>操作</th>
+      </tr>
+      </thead>
       <tbody>
-      <tr *ngFor="let student of studentList"
-          class="list-item" role="button"
-          [ngClass]="{'list-item-selected': isSelected(student)}"
-          (click)="selectStudent(student)">
-        <td class="text-center" width="90%">{{student.name}}</td>
-        <td width="10%"><i class="ion-ios-star" *ngIf="student.interested"></i></td>
+      <tr *ngFor="let student of students" role="button">
+        <td>{{student.name}}</td>
+        <td>{{student.school_id|codeName:dataService.school}}</td>
+        <td>{{student.specialty_id|codeName:dataService.specialty}}</td>
+        <td>
+          <button class="btn btn-default">上移</button>
+          <button class="btn btn-default">下移</button>
+          <button class="btn btn-default">拒绝</button>
+        </td>
       </tr>
       </tbody>
     </table>
-  </div>
-  <div class="info">
-    <span class="tips" *ngIf="studentDetail == null">请从左侧选择学生!</span>
-    <div *ngIf="studentDetail != null"><div class="row">
-      <div class="col-sm-12">
-        <ba-card [title]="selectedStudent.name" >
-          <table class="detail">
-            <tbody>
-
-            <tr><td colspan="6" class="center">基本信息</td></tr>
-            <tr>
-              <td width="10%" class="center">姓名</td>
-              <td width="20%">{{studentDetail.name}}</td>
-              <td width="10%" class="center">性别</td>
-              <td width="20%">{{studentDetail.sex}}</td>
-              <td width="10%" class="center">学号</td>
-              <td width="30%">{{studentDetail.studentNumber}}</td>
-            </tr>
-            <tr>
-              <td class="center">学院</td>
-              <td>{{studentDetail.school}}</td>
-              <td class="center">专业</td>
-              <td>{{studentDetail.specialty}}</td>
-              <td class="center">班级</td>
-              <td>{{studentDetail.class}}</td>
-            </tr>
-
-            <tr><td colspan="6" class="center">兴趣信息</td></tr>
-            <tr>
-              <td class="center">意向导师</td>
-              <td colspan="5" *ngIf="studentDetail.interestTeacher">{{studentDetail.interestTeacher}}</td>
-            </tr>
-            <tr>
-              <td class="center">兴趣方向</td>
-              <td colspan="5">
-                <span *ngFor="let interest of studentDetail.interests" class="label">
-                  {{interest.name}}
-                </span>
-              </td>
-            </tr>
-
-            <tr><td colspan="6" class="center">自我说明</td></tr>
-            <tr><td colspan="6" [innerHtml]="studentDetail.description" class="info-cell"></td></tr>
-
-            <tr><td colspan="6" class="center">成绩信息</td></tr>
-
-            </tbody>
-            <tbody *ngFor="let score of studentDetail.generalScores">
-            <tr>
-              <td class="center">综合得分</td>
-              <td>{{score.total}}</td>
-              <td class="center">获奖</td>
-              <td>{{score.grade}}</td>
-              <td class="center">年份</td>
-              <td>{{score.year}}</td>
-            </tr>
-
-            <tr>
-              <td class="center">R1</td>
-              <td colspan="5">{{score.R1}}</td>
-            </tr>
-
-            <tr>
-              <td class="center">R2</td>
-              <td colspan="5">{{score.R2}}</td>
-            </tr>
-
-            <tr>
-              <td rowspan="4" class="center">R3</td>
-              <td class="center">综合得分</td>
-              <td colspan="4">{{score.R3}}</td>
-            </tr>
-
-            <tr>
-              <td class="center">R31</td>
-              <td colspan="4">{{score.R31}}</td>
-            </tr>
-
-            <tr>
-              <td class="center">R32</td>
-              <td colspan="4">{{score.R32}}</td>
-            </tr>
-
-            <tr>
-              <td class="center">R33</td>
-              <td colspan="4">{{score.R33}}</td>
-            </tr>
-            </tbody>
-
-          </table>
-        </ba-card>
-      </div>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-info" (click)="staticModal.show()">改变排序</button>
-    </div>
-    </div>
-  </div>
-
-</div>
-
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" aria-label="Close" (click)="staticModal.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">将该学生移动到以下学生之后</h4>
-      </div>
-      <div class="modal-body">
-        <div class="student-list">
-          <table width="100%">
-            <tbody>
-            <tr class="list-item" (click)="reorderStudentList(true); staticModal.hide()">
-              <td class="text-center">首位</td>
-            </tr>
-            <tr *ngFor="let student of studentList"
-                class="list-item"
-                role="button"
-                (click)="selectStudent2(student); reorderStudentList(); staticModal.hide()"
-                [ngClass]="{'list-item-selected':isSelected2(student)}">
-              <td class="text-center">{{student.name}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+  </ba-card>
 </div>

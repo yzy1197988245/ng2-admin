@@ -1,0 +1,94 @@
+<div>
+  <div *ngIf="studentDetail != null">
+    <div class="row">
+      <div class="col-sm-12">
+        <ba-card [title]="selectedStudent.name" >
+          <table class="detail">
+            <tbody>
+
+            <tr><td colspan="6" class="center">基本信息</td></tr>
+            <tr>
+              <td width="10%" class="center">姓名</td>
+              <td width="20%">{{studentDetail.name}}</td>
+              <td width="10%" class="center">性别</td>
+              <td width="20%">{{studentDetail.sex}}</td>
+              <td width="10%" class="center">学号</td>
+              <td width="30%">{{studentDetail.studentNumber}}</td>
+            </tr>
+            <tr>
+              <td class="center">学院</td>
+              <td>{{studentDetail.school}}</td>
+              <td class="center">专业</td>
+              <td>{{studentDetail.specialty}}</td>
+              <td class="center">班级</td>
+              <td>{{studentDetail.class}}</td>
+            </tr>
+
+            <tr><td colspan="6" class="center">兴趣信息</td></tr>
+            <tr>
+              <td class="center">意向导师</td>
+              <td colspan="5" *ngIf="studentDetail.interestTeacher">{{studentDetail.interestTeacher}}</td>
+            </tr>
+            <tr>
+              <td class="center">兴趣方向</td>
+              <td colspan="5">
+                <span *ngFor="let interest of studentDetail.interests" class="label">
+                  {{interest.name}}
+                </span>
+              </td>
+            </tr>
+
+            <tr><td colspan="6" class="center">自我说明</td></tr>
+            <tr><td colspan="6" [innerHtml]="studentDetail.description" class="info-cell"></td></tr>
+
+            <tr><td colspan="6" class="center">成绩信息</td></tr>
+
+            </tbody>
+            <tbody *ngFor="let score of studentDetail.generalScores">
+            <tr>
+              <td class="center">综合得分</td>
+              <td>{{score.total}}</td>
+              <td class="center">获奖</td>
+              <td>{{score.grade}}</td>
+              <td class="center">年份</td>
+              <td>{{score.year}}</td>
+            </tr>
+
+            <tr>
+              <td class="center">R1</td>
+              <td colspan="5">{{score.R1}}</td>
+            </tr>
+
+            <tr>
+              <td class="center">R2</td>
+              <td colspan="5">{{score.R2}}</td>
+            </tr>
+
+            <tr>
+              <td rowspan="4" class="center">R3</td>
+              <td class="center">综合得分</td>
+              <td colspan="4">{{score.R3}}</td>
+            </tr>
+
+            <tr>
+              <td class="center">R31</td>
+              <td colspan="4">{{score.R31}}</td>
+            </tr>
+
+            <tr>
+              <td class="center">R32</td>
+              <td colspan="4">{{score.R32}}</td>
+            </tr>
+
+            <tr>
+              <td class="center">R33</td>
+              <td colspan="4">{{score.R33}}</td>
+            </tr>
+            </tbody>
+
+          </table>
+        </ba-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,19 +6,21 @@ import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
 import {isNullOrUndefined} from "util";
 import {NotificationsService} from "angular2-notifications";
+import {DataService} from "../../../../app.data";
 @Component({
   templateUrl: 'xsxx.html',
   styleUrls: ['xsxx.scss']
 })
 export class XsxxComponent implements OnInit{
-  studentList: Array<any>;
+  students: Array<any>;
   selectedStudent: any;
   secondStudent: any;
   studentDetail: any;
 
   public constructor(
     private service: KyxtService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    public dataService: DataService
   ) {
 
   }
@@ -30,7 +32,7 @@ export class XsxxComponent implements OnInit{
   public getStudentList(): void {
     this.service.getStudentWithOrder()
       .then(result => {
-        this.studentList = result;
+        this.students = result.data;
       });
   }
 
@@ -68,26 +70,26 @@ export class XsxxComponent implements OnInit{
 
   public reorderStudentList(first: boolean = false): void {
     if (first) {
-      this.selectedStudent.order = this.studentList[0].order / 2;
-      this.studentList.sort(function (a, b) {
+      this.selectedStudent.order = this.students[0].order / 2;
+      this.students.sort(function (a, b) {
         return a.order - b.order;
       });
       return;
     }
     if (this.secondStudent != null) {
       let index = 0;
-      for (let i = 0; i < this.studentList.length; i++) {
-        if (this.studentList[i].order == this.secondStudent.order) {
+      for (let i = 0; i < this.students.length; i++) {
+        if (this.students[i].order == this.secondStudent.order) {
           index = i;
           break;
         }
       }
-      if (index == this.studentList.length - 1) {
+      if (index == this.students.length - 1) {
         this.selectedStudent.order = this.secondStudent.order + 1;
       } else {
-        this.selectedStudent.order = (this.secondStudent.order + this.studentList[index + 1].order) / 2
+        this.selectedStudent.order = (this.secondStudent.order + this.students[index + 1].order) / 2
       }
-      this.studentList.sort(function (a, b) {
+      this.students.sort(function (a, b) {
         return a.order - b.order;
       });
     }
@@ -96,8 +98,8 @@ export class XsxxComponent implements OnInit{
 
   public commitOrder() {
     let data = [];
-    for (let i = 0; i < this.studentList.length; i++) {
-      data[i] = this.studentList[i].id;
+    for (let i = 0; i < this.students.length; i++) {
+      data[i] = this.students[i].id;
     }
     this.service.updateStudentOrder(data)
       .then(result => {

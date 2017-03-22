@@ -54,10 +54,6 @@ export class TxxxComponent implements OnInit{
     this.selectedTeacher = teacher;
   }
 
-  public interestChanged(interests: Array<any>): void {
-    this.selectedInterests = interests;
-  }
-
   public canCommit(): boolean {
     return this.formGroup.valid && !isNullOrUndefined(this.selectedTeacher) && this.selectedInterests.length > 0;
   }

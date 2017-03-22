@@ -1,15 +1,15 @@
 <div class="auth-main">
   <div class="auth-block">
 
-    <h1>欢迎登陆ProjectA</h1>
+    <h1>欢迎登陆<span>科研选题系统</span></h1>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
 
       <div class="form-group row" [ngClass]="{'has-error': (!userNumber.valid && userNumber.touched), 'has-success': (userNumber.valid && userNumber.touched)}">
-        <label for="userNumber" class="col-sm-2 control-label">用户名:</label>
+        <label for="userNumber" class="col-sm-2 control-label">用户号:</label>
 
         <div class="col-sm-10">
-          <input formControlName="userNumber" type="text" class="form-control" id="userNumber" placeholder="请输入用户名">
+          <input formControlName="userNumber" type="text" class="form-control" id="userNumber" placeholder="请输入用户号">
         </div>
       </div>
 

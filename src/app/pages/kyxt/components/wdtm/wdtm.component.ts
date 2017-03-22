@@ -2,11 +2,9 @@
  * Created by yzy on 2017/1/1.
  */
 
-import {Component, AfterViewInit, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NotificationsService} from "angular2-notifications";
-import {isNullOrUndefined} from "util";
+
 @Component({
   templateUrl: 'wdtm.html',
   styleUrls: ['wdtm.scss'],
@@ -20,9 +18,7 @@ export class WdtmComponent implements OnInit{
 
   constructor(
     private service: KyxtService,
-
   ){
-
   }
 
   ngOnInit(): void {
@@ -38,8 +34,8 @@ export class WdtmComponent implements OnInit{
   }
 
   createProject(): void {
-    this.showProjectForm();
     this.selectedProjectId = null;
+    this.showProjectForm();
   }
 
   showProjectForm(): void {
@@ -55,4 +51,10 @@ export class WdtmComponent implements OnInit{
     this.showProjectForm();
   }
 
+  projectChanged(event): void {
+    this.getTeacherProjectList();
+    if (event == 'delete') {
+      this.hideProjectForm();
+    }
+  }
 }

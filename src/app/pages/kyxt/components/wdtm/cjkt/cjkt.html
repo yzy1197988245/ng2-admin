@@ -17,7 +17,7 @@
               <tbody>
               <tr>
                 <td width="15%">
-                  <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
+                  <button class="btn btn-default" (click)="interestsModal.show()">选择标签</button>
                 </td>
                 <td align="center">
                   <span class="my-label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
@@ -30,31 +30,42 @@
         </div>
 
         <div class="form-group row">
+          <label class="col-md-2 form-control-label">其他指导老师:</label>
+          <div class="col-md-10">
+            <table width="100%">
+              <tbody>
+              <tr>
+                <td width="15%">
+                  <button class="btn btn-default" (click)="teachersModal.show()">选择老师</button>
+                </td>
+                <td align="center">
+                  <span class="my-label col-sm-2" *ngIf="selectedTeachers.length == 0">未选择</span>
+                  <span class="my-label col-sm-2" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-2 form-control-label">最大成员数:</label>
+          <div class="col-md-10">
+            <input formControlName="memberCount" type="number" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-group row">
           <label for="ktnr" class="col-md-2 form-control-label">课题说明:</label>
           <div class="col-md-10">
             <ckeditor class="form-control" formControlName="description" id="ktnr" [config]="editorConfig" required></ckeditor>
           </div>
         </div>
 
-        <!--<div class="form-group row">-->
-          <!--<label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>-->
-          <!--<div class="col-md-10">-->
-            <!--<table width="100%">-->
-              <!--<tbody>-->
-              <!--<tr>-->
-                <!--<td><input type="file" class="form-control" id="ckzl"></td>-->
-                <!--<td>-->
-                  <!--<button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>-->
-                  <!--<span>未上传</span>-->
-                <!--</td>-->
-              <!--</tr>-->
-              <!--</tbody>-->
-            <!--</table>-->
-          <!--</div>-->
-        <!--</div>-->
-
         <div class="text-center">
+          <button class="btn btn-lg btn-success" (click)="resetForm()">重置</button>
           <button class="btn btn-lg btn-info" [disabled]="!formGroup.valid" (click)="commit()">提交</button>
+          <button class="btn btn-lg btn-danger" *ngIf="projectId != null" (click)="deleteProject()">删除</button>
         </div>
 
       </form>
@@ -76,6 +87,25 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-info" (click)="interestsModal.hide()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #teachersModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="teachersModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">请选择</h4>
+      </div>
+      <div class="modal-body">
+        <txxx-teacher-selector [(selectedTeachers)]="selectedTeachers" [multiSelected]="true"></txxx-teacher-selector>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="teachersModal.hide()">确认</button>
       </div>
     </div>
   </div>

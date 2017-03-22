@@ -1,6 +1,12 @@
 <div class="col-sm-12 col-md-10 offset-md-1">
   <ba-card title="已选题目">
-
+    <table class="my-list">
+      <tbody>
+      <tr *ngFor="let project of selectedProjects" class="list-item" role="button" (click)="selectProject(project)">
+        <td>{{project.title}}</td>
+      </tr>
+      </tbody>
+    </table>
   </ba-card>
   <ba-card title="题目库" *ngIf="!isShowProjectDetail">
     <div class="row text-center">
@@ -59,9 +65,9 @@
 
   <ba-card *ngIf="selectedProject != null && isShowProjectDetail">
     <div class="row">
-      <button class="btn btn-success" (click)="hideProjectDetail()">返回</button>
+      <button class="btn btn-success" (click)="hideProjectDetail()">返回列表</button>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 25px; margin-bottom: 25px">
       <div class="col-sm-12">
         <table class="detail" *ngIf="projectDetail != null">
           <tr>
@@ -89,6 +95,7 @@
     </div>
     <div class="row text-center">
       <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
+      <button class="btn btn-danger" (click)="studentDeselectProject()" *ngIf="isSelected()">退选</button>
     </div>
   </ba-card>
 
