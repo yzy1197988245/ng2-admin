@@ -90,4 +90,9 @@ export class TxxxTeacherSelectorComponent {
     }
     return -1;
   }
+
+  unSelectTeacher(teacher: any): void {
+    let index = this.isSelected(teacher);
+    this.selectedTeachers.splice(index, 1);
+  }
 }

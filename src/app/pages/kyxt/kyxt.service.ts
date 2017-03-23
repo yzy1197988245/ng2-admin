@@ -57,7 +57,6 @@ export class KyxtService {
 
 
   public studentCreateProject(data: any): Promise<any> {
-    data.creatorId = this.authService.userId;
     return this.http.post(Config.SERVER_BASE_URL + 'project/studentCreate', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())
@@ -212,6 +211,16 @@ export class KyxtService {
    */
   public getProjectListForJM(): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'project/getProjectListForJM', this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  /**
+   * Zntmgl Service
+   */
+  public getZNProjectList(): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'project/getZNProjectList', this.config.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

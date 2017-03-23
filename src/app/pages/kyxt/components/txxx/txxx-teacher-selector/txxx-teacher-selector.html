@@ -71,8 +71,7 @@
   <div *ngIf="multiSelected">
     <p style="color: red">Tips:点击已选中的即可取消选择</p>
     <div class="row">
-      <span class="my-label" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
+      <span class="my-label col-sm-1" *ngFor="let teacher of selectedTeachers" role="button" (click)="unSelectTeacher(teacher)">{{teacher.name}}</span>
     </div>
   </div>
-
 </ba-card>

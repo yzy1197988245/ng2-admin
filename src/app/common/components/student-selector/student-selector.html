@@ -1,37 +1,48 @@
 <ba-card>
-  <div class="row">
-    <table class="selected-items">
-      <tbody>
-      <tr>
-        <td *ngFor="let student of selectedStudents" class="item">
-          <h5>{{student.name}}<i class="ion-android-cancel del-button" role="button" (click)="unSelectStudent(student)"></i></h5>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="row text-center">
+    <form [formGroup]="paramsForm">
+      <input formControlName="name" type="text" placeholder="请输入姓名">
+      <input formControlName="studentNumber" type="text" placeholder="请输入学号">
+      <select formControlName="schoolId" (change)="schoolChanged()">
+        <option value="0">请选择学院</option>
+        <option *ngFor="let school of dataService.school" value="{{school.id}}">{{school.name}}</option>
+      </select>
+      <select [formControl]="specialtyId">
+        <option value="0">请选择专业</option>'
+        <option *ngFor="let specialty of paramsForm.value.schoolId|schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
+          {{specialty.name}}
+        </option>
+      </select>
+      <button class="btn btn-info" (click)="getStudentList()">搜索</button>
+    </form>
   </div>
-
   <div class="row">
-    <table class="list">
-      <tbody>
+    <table class="my-list">
+      <thead>
       <tr>
-        <td colspan="3" align="center">
-          <form [formGroup]="paramsForm">
-            <input formControlName="name" type="text" placeholder="请输入姓名">
-            <input formControlName="studentNumber" type="text" placeholder="请输入学号">
-            <button class="btn btn-info">搜索</button>
-          </form>
-        </td>
+        <th>学号</th>
+        <td>姓名</td>
+        <td>学院</td>
+        <td>专业</td>
+        <td>是否选择</td>
       </tr>
+      </thead>
+      <tbody>
       <tr role="button" *ngFor="let student of studentList" class="list-item" (click)="studentClicked(student)">
-        <td width="50%" align="center">
-          {{ student.student_number }}
+        <td>
+          {{ student['student_number'] }}
         </td>
-        <td width="40%" align="center">
-          {{ student.name }}
+        <td>
+          {{ student['name'] }}
         </td>
-        <td width="10%" align="center">
-          <i class="ion-android-done" *ngIf="isSelected(student)"></i>
+        <td>
+          {{student['school_id'] | codeName:dataService.school}}
+        </td>
+        <td>
+          {{student['specialty_id'] | codeName:dataService.specialty}}
+        </td>
+        <td>
+          <i class="ion-android-done" *ngIf="isSelected(student) != -1"></i>
         </td>
       </tr>
       </tbody>
@@ -51,7 +62,8 @@
                 [maxSize]="maxSize"
     ></pagination>
   </div>
+  <p style="color: red">Tips:点击已选中的即可取消选择</p>
+  <div class="row">
+    <span class="my-label col-sm-1" *ngFor="let student of selectedStudents" role="button" (click)="unSelectStudent(student)">{{student.name}}</span>
+  </div>
 </ba-card>
-<div class="row text-right">
-  <button class="btn btn-success" style="margin-right: 20px" (click)="commit()">确定</button>
-</div>

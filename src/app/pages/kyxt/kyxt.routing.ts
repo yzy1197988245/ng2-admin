@@ -13,6 +13,7 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {ModuleWithProviders} from "@angular/core";
 import {XtjcComponent} from "./components/xtjc/xtjc.component";
 import {XtfpComponent} from "./components/xtfp/xtfp.component";
+import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
 
 const routes:Routes = [{
   path: '',
@@ -49,6 +50,10 @@ const routes:Routes = [{
     {
       path: 'xtfp',
       component: XtfpComponent
+    },
+    {
+      path: 'zntmgl',
+      component: ZntmglComponent
     }
   ]
 }];

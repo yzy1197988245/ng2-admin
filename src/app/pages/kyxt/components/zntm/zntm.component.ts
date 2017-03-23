@@ -16,9 +16,8 @@ import 'ckeditor';
 })
 export class ZntmComponent implements OnInit{
 
-  selectedTeacher: any;
+  selectedTeachers: Array<any> = [];
   selectedStudents: Array<any> = [];
-  fileId: any;
 
   formGroup: FormGroup;
   editorConfig = {
@@ -35,16 +34,6 @@ export class ZntmComponent implements OnInit{
 
   public ngOnInit(): void {
     this.buildForm();
-    this.service.getStudentCreateProjectBaseInfo()
-      .then(result => {
-        let formValue = {
-          title: result.data.title,
-          description: result.data.description
-        };
-        this.formGroup.setValue(formValue);
-        this.selectedTeacher = result.data.instructor;
-        this.selectedStudents = result.data.members;
-      })
   }
 
   public buildForm(): void {
@@ -54,40 +43,46 @@ export class ZntmComponent implements OnInit{
     })
   }
 
-  canCommit(): boolean {
-      return this.formGroup.valid && !isNullOrUndefined(this.selectedTeacher) && this.selectedStudents.length == 4;
-  }
-
   public commit(): void {
-    if (this.canCommit()) {
-      let value = this.formGroup.value;
-      let members = [];
-      for (let student of this.selectedStudents) {
-        members.push(student.id);
-      }
-      let data = {
-        title: value.title,
-        instructor: this.selectedTeacher.id,
-        description: value.description.replace('\n', '<br>'),
-        members: members
-      };
-      this.service.studentCreateProject(data)
-        .then(result => {
-          console.log(result);
-          if (result.code == 100) {
-            this.notificationsService.error('错误', result.message);
-          } else {
-            this.notificationsService.success('成功', result.message);
-          }
-        })
+    let value = this.formGroup.value;
+    if (value.title == '') {
+      this.notificationsService.error('错误', '请输入标题');
+      return;
     }
-  }
+    if (this.selectedTeachers.length < 1) {
+      this.notificationsService.error('错误', '请选择指导老师');
+      return;
+    }
+    if (this.selectedStudents.length < 2) {
+      this.notificationsService.error('错误', '组员至少为两个人');
+      return;
+    }
+    let members = [];
+    for (let student of this.selectedStudents) {
+      members.push(student.id);
+    }
 
-  teacherSelected(teacher: any): void {
-    this.selectedTeacher = teacher;
-  }
-
-  studentsSelected(students: Array<any>): void {
-    this.selectedStudents = students;
+    let instructor = this.selectedTeachers[0];
+    let teachers = [];
+    for (let i = 1; i < this.selectedTeachers.length; i++) {
+      teachers.push(this.selectedTeachers[i].id);
+    }
+    this.notificationsService.info('第一指导老师为', instructor.name);
+    let data = {
+      title: value.title,
+      instructor: instructor.id,
+      description: value.description.replace('\n', ''),
+      members: members,
+      teachers: teachers
+    };
+    this.service.studentCreateProject(data)
+      .then(result => {
+        console.log(result);
+        if (result.code == 100) {
+          this.notificationsService.error('错误', result.message);
+        } else {
+          this.notificationsService.success('成功', result.message);
+        }
+      })
   }
 }

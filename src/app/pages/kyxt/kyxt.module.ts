@@ -25,6 +25,7 @@ import {TxxxInterestSelectorComponent} from "./components/txxx/txxx-interest-sel
 import {ProjectDetailComponent} from "./components/project-detail/project-detail.component";
 import {XtjcComponent} from "./components/xtjc/xtjc.component";
 import {XtfpComponent} from "./components/xtfp/xtfp.component";
+import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
 
 @NgModule({
   imports: [
@@ -52,7 +53,8 @@ import {XtfpComponent} from "./components/xtfp/xtfp.component";
     TxxxInterestSelectorComponent,
     ProjectDetailComponent,
     XtjcComponent,
-    XtfpComponent
+    XtfpComponent,
+    ZntmglComponent
   ],
   providers: [
     KyxtService

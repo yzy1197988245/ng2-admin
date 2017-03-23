@@ -13,13 +13,13 @@
         <div class="form-group row">
           <label for="instructor" class="col-md-2 form-control-label">指导老师:</label>
           <div class="col-md-10">
-            <table>
+            <table width="100%">
               <tbody>
               <tr>
-                <td><button class="btn btn-default" id="instructor" (click)="teachersModal.show()">选择指导老师</button></td>
-                <td style="padding-left: 10px">
-                  <span *ngIf="selectedTeacher == null">未选择</span>
-                  <span *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                <td width="10%"><button class="btn btn-default" id="instructor" (click)="teachersModal.show()">选择老师</button></td>
+                <td>
+                  <span class="my-label col-sm-1" *ngIf="selectedTeachers.length == 0">未选择</span>
+                  <span class="my-label col-sm-1" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
                 </td>
               </tr>
               </tbody>
@@ -30,14 +30,15 @@
         <div class="form-group row">
           <label class="col-md-2 form-control-label">组员:</label>
           <div class="col-md-10">
-            <table>
+            <table width="100%">
               <tbody>
               <tr>
-                <td>
+                <td width="10%">
                   <button class="btn btn-default" (click)="studentsModal.show()">编辑组员</button>
                 </td>
-                <td *ngFor="let student of selectedStudents" style="padding-left: 10px">
-                  {{student.name}}
+                <td>
+                  <span class="my-label col-sm-1" *ngIf="selectedStudents.length == 0">未选择</span>
+                  <span class="my-label col-sm-1" *ngFor="let student of selectedStudents">{{student.name}}</span>
                 </td>
               </tr>
               </tbody>
@@ -52,25 +53,8 @@
           </div>
         </div>
 
-        <!--<div class="form-group row">-->
-          <!--<label for="ckzl" class="col-md-2 form-control-label">参考资料:</label>-->
-          <!--<div class="col-md-10">-->
-            <!--<table width="100%">-->
-              <!--<tbody>-->
-              <!--<tr>-->
-                <!--<td><input type="file" class="form-control" id="ckzl"></td>-->
-                <!--<td>-->
-                  <!--<button class="btn btn-info" style="margin-left: 10px; margin-right: 10px">上传</button>-->
-                  <!--<span>未上传</span>-->
-                <!--</td>-->
-              <!--</tr>-->
-              <!--</tbody>-->
-            <!--</table>-->
-          <!--</div>-->
-        <!--</div>-->
-
         <div class="text-center">
-          <button class="btn btn-info btn-lg" [disabled]="!canCommit()" (click)="commit()">提交</button>
+          <button class="btn btn-info btn-lg" (click)="commit()">提交</button>
         </div>
 
       </form>
@@ -79,7 +63,7 @@
 </div>
 
 <div class="modal fade" bsModal #teachersModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" aria-label="Close" (click)="teachersModal.hide()">
@@ -88,20 +72,29 @@
         <h4 class="modal-title">请选择</h4>
       </div>
       <div class="modal-body">
-        <teacher-selector (teacherSelected)="teachersModal.hide() ;teacherSelected($event)"></teacher-selector>
+        <txxx-teacher-selector [multiSelected]="true" [(selectedTeachers)]="selectedTeachers"></txxx-teacher-selector>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="teachersModal.hide()">确认</button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="modal fade" bsModal #studentsModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="studentsModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title">请选择</h4>
       </div>
       <div class="modal-body">
-        <student-selector (studentsSelected)="studentsModal.hide(); studentsSelected($event)"></student-selector>
+        <student-selector [(selectedStudents)]="selectedStudents"></student-selector>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="studentsModal.hide()">确认</button>
       </div>
     </div>
   </div>
