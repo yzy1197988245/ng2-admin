@@ -11,6 +11,8 @@ import {TxxxComponent} from "./components/txxx/txxx.component";
 import {XsxxComponent} from "./components/xsxx/xsxx.component";
 import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {ModuleWithProviders} from "@angular/core";
+import {XtjcComponent} from "./components/xtjc/xtjc.component";
+import {XtfpComponent} from "./components/xtfp/xtfp.component";
 
 const routes:Routes = [{
   path: '',
@@ -39,6 +41,14 @@ const routes:Routes = [{
     {
       path: 'tjxx',
       component: TjxxComponent
+    },
+    {
+      path: 'xtjc',
+      component: XtjcComponent
+    },
+    {
+      path: 'xtfp',
+      component: XtfpComponent
     }
   ]
 }];

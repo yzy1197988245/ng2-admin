@@ -1,0 +1,24 @@
+<div class="col-sm-12 col-md-10 offset-md-1">
+  <ba-card>
+    <table class="my-list">
+      <thead>
+      <tr>
+        <th>系</th>
+        <th>题目</th>
+        <th>指导老师</th>
+        <th>计划配额</th>
+        <th>已分配</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let project of projects">
+        <td>{{project.specialty_id|codeName:dataService.specialty}}</td>
+        <td>{{project.title}}</td>
+        <td>{{project.instructor}}</td>
+        <td>{{project.member_count}}</td>
+        <td>{{project.current_count}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ba-card>
+</div>

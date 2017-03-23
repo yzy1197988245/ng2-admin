@@ -206,4 +206,14 @@ export class KyxtService {
       .then(response => response.json())
       .catch(this.handleError);
   }
+
+  /**
+   * Xtjc Service
+   */
+  public getProjectListForJM(): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'project/getProjectListForJM', this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 }

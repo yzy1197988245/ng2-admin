@@ -23,6 +23,8 @@ import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {TxxxTeacherSelectorComponent} from "./components/txxx/txxx-teacher-selector/txxx-teacher-selector.component";
 import {TxxxInterestSelectorComponent} from "./components/txxx/txxx-interest-selector/txxx-interest-selector.component";
 import {ProjectDetailComponent} from "./components/project-detail/project-detail.component";
+import {XtjcComponent} from "./components/xtjc/xtjc.component";
+import {XtfpComponent} from "./components/xtfp/xtfp.component";
 
 @NgModule({
   imports: [
@@ -48,7 +50,9 @@ import {ProjectDetailComponent} from "./components/project-detail/project-detail
     TjxxComponent,
     TxxxTeacherSelectorComponent,
     TxxxInterestSelectorComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    XtjcComponent,
+    XtfpComponent
   ],
   providers: [
     KyxtService
