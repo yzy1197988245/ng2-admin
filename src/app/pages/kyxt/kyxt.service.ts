@@ -128,7 +128,6 @@ export class KyxtService {
   }
 
   public getStudentCreateProjectBaseInfo(data: any = {}): Promise<any> {
-    data.studentId = this.authService.userId;
     return this.http.post(Config.SERVER_BASE_URL + 'project/getStudentCreateProjectBaseInfo', data, this.requestOptions)
       .toPromise()
       .then(response => response.json())

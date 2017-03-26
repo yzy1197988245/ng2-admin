@@ -2,7 +2,7 @@
  * Created by yzy on 2017/2/23.
  */
 
-import {Component, OnInit, Output, EventEmitter, Input} from "@angular/core";
+import {Component, OnInit, Output, Input} from "@angular/core";
 import {CommonService} from "../../common.service";
 import {FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import {isNullOrUndefined} from "util";
@@ -23,7 +23,7 @@ export class StudentSelectorComponent implements OnInit{
   totalCount: number = 0;
   maxSize = 8;
 
-  @Input() @Output() selectedStudents: Array<any> = [];
+  @Input() @Output() selectedStudents: any = [];
 
   constructor(
     private service: CommonService,

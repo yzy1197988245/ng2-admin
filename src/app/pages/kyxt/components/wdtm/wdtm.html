@@ -1,30 +1,31 @@
-<div class="col-sm-12 col-md-10 offset-md-1">
-  <div *ngIf="!isShowProjectForm">
-    <ba-card title="操作">
-      <button class="btn btn-default" (click)="createProject()">创建项目</button>
-    </ba-card>
-    <ba-card title="我的题目">
-      <table class="my-list">
-        <thead>
-        <tr>
-          <th>题目名称</th>
-          <td>配额</td>
-          <td>已选人数</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let project of projects" class="list-item" role="button" (click)="selectProject(project)">
-          <td>{{project.title}}</td>
-          <td>{{project.member_count}}</td>
-          <td>{{project.student_count}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </ba-card>
-  </div>
-  <div *ngIf="isShowProjectForm">
-    <button class="btn btn-success" style="margin-bottom: 25px" (click)="hideProjectForm()">返回</button>
-    <project-form  [projectId]="selectedProjectId" (projectChanged)="projectChanged($event)"></project-form>
-  </div>
+<div class="row">
+  <div class="col-sm-12 col-md-10 offset-md-1">
+    <div class="row" >
+      <ba-card>
+        <button *ngIf="!isShowProjectForm" class="btn btn-default" (click)="createProject()">创建项目</button>
+        <button *ngIf="isShowProjectForm" class="btn btn-success" (click)="hideProjectForm()">返回</button>
+      </ba-card>
+      <ba-card *ngIf="!isShowProjectForm">
+        <table class="my-list">
+          <thead>
+          <tr>
+            <th>题目名称</th>
+            <td>配额</td>
+            <td>已选人数</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of projects" class="list-item" role="button" (click)="selectProject(project)">
+            <td>{{project.title}}</td>
+            <td>{{project.member_count}}</td>
+            <td>{{project.student_count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </ba-card>
 
+      <project-form *ngIf="isShowProjectForm" [projectId]="selectedProjectId" (projectChanged)="projectChanged($event)"></project-form>
+    </div>
+  </div>
 </div>
+

@@ -18,7 +18,7 @@ export class TxxxTeacherSelectorComponent {
   @Output() teacherSelected = new EventEmitter<any>();
 
   @Input() multiSelected = false;
-  @Input() @Output() selectedTeachers: Array<any> = [];
+  @Input() @Output() selectedTeachers: any = [];
 
   teachers: Array<any>;
   professionalTitles: Array<any>;

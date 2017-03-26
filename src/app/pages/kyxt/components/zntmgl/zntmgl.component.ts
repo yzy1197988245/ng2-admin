@@ -4,6 +4,7 @@
 
 import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: './zntmgl.html',
@@ -14,7 +15,8 @@ export class ZntmglComponent implements OnInit{
   projects: Array<any>;
 
   constructor(
-    private service: KyxtService
+    private service: KyxtService,
+    private router: Router
   ) {
 
   }
@@ -28,5 +30,13 @@ export class ZntmglComponent implements OnInit{
       .then(result => {
         this.projects = result.data;
       });
+  }
+
+  projectClicked(project): void {
+    this.router.navigate(['pages', 'kyxt', 'zntm', {projectId: project.id}]);
+  }
+
+  createProject(): void {
+    this.router.navigate(['pages', 'kyxt', 'zntm']);
   }
 }

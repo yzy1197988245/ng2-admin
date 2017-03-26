@@ -15,7 +15,7 @@ import {isNullOrUndefined} from "util";
 })
 export class TxxxInterestSelectorComponent {
 
-  @Input() @Output() selectedInterests: Array<any> = [];
+  @Input() @Output() selectedInterests: any = [];
 
   interests: Array<any>;
 

@@ -1,26 +1,31 @@
-<div class="col-sm-12 col-md-10 offset-md-1">
-  <ba-card>
-    <table class="my-list">
-      <thead>
-      <tr>
-        <th>姓名</th>
-        <th>学院</th>
-        <th>专业</th>
-        <th>操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let student of students"  >
-        <td>{{student.name}}</td>
-        <td>{{student.school_id|codeName:dataService.school}}</td>
-        <td>{{student.specialty_id|codeName:dataService.specialty}}</td>
-        <td>
-          <button class="btn btn-default">上移</button>
-          <button class="btn btn-default">下移</button>
-          <button class="btn btn-default">拒绝</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </ba-card>
+<div class="row">
+  <div class="col-sm-12 col-md-10 offset-md-1">
+    <div class="row">
+      <ba-card>
+        <table class="my-list">
+          <thead>
+          <tr>
+            <th>姓名</th>
+            <th>学院</th>
+            <th>专业</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let student of students"  >
+            <td>{{student.name}}</td>
+            <td>{{student.school_id|codeName:dataService.school}}</td>
+            <td>{{student.specialty_id|codeName:dataService.specialty}}</td>
+            <td>
+              <button class="btn btn-default">上移</button>
+              <button class="btn btn-default">下移</button>
+              <button class="btn btn-default">拒绝</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ba-card>
+    </div>
+  </div>
 </div>
+

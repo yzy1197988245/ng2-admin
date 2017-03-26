@@ -10,6 +10,7 @@ import {NotificationsService} from "angular2-notifications";
 
 import '../../editor.loader';
 import 'ckeditor';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   templateUrl: 'zntm.html'
@@ -18,6 +19,7 @@ export class ZntmComponent implements OnInit{
 
   selectedTeachers: Array<any> = [];
   selectedStudents: Array<any> = [];
+  projectId;
 
   formGroup: FormGroup;
   editorConfig = {
@@ -27,13 +29,35 @@ export class ZntmComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private service: KyxtService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ){
-
+    this.projectId = activatedRoute.snapshot.params['projectId'];
   }
 
   public ngOnInit(): void {
     this.buildForm();
+    this.getProject();
+  }
+
+  public getProject(): void {
+    if (!isNullOrUndefined(this.projectId)) {
+      this.service.getStudentCreateProjectBaseInfo({projectId:this.projectId})
+      .then(result => {
+        if (result.code == 200) {
+          let data = result.data;
+          this.formGroup.reset({
+            title: data.title,
+            description: data.description
+          });
+          this.selectedTeachers = data.teachers;
+          this.selectedStudents = data.students;
+        } else {
+          this.notificationsService.error('错误', result.message);
+        }
+      })
+    }
   }
 
   public buildForm(): void {
@@ -69,6 +93,7 @@ export class ZntmComponent implements OnInit{
     }
     this.notificationsService.info('第一指导老师为', instructor.name);
     let data = {
+      projectId: this.projectId,
       title: value.title,
       instructor: instructor.id,
       description: value.description.replace('\n', ''),
@@ -84,5 +109,9 @@ export class ZntmComponent implements OnInit{
           this.notificationsService.success('成功', result.message);
         }
       })
+  }
+
+  back(): void {
+      this.router.navigate(['pages', 'kyxt', 'zntmgl']);
   }
 }

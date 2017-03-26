@@ -38,7 +38,7 @@ import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
     CKEditorModule,
     ModalModule.forRoot(),
     SelectModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
   ],
   declarations: [
     KyxtComponent,
@@ -57,7 +57,7 @@ import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
     ZntmglComponent
   ],
   providers: [
-    KyxtService
+    KyxtService,
   ]
 })
 export class KyxtModule{}

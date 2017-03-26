@@ -1,64 +1,72 @@
 <div class="row">
-  <div class="col-sm-12">
-    <ba-card>
-      <form class="form-horizontal" [formGroup]="formGroup">
+  <div class="col-sm-12 col-md-10 offset-md-1">
+    <div class="row">
+      <ba-card>
+        <button class="btn btn-success" (click)="back()">返回题目列表</button>
+      </ba-card>
+    </div>
+    <div class="row">
+      <ba-card>
+        <form class="form-horizontal" [formGroup]="formGroup">
 
-        <div class="form-group row">
-          <label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>
-          <div class="col-md-10">
-            <input formControlName="title" type="text" class="form-control" id="ktmc">
+          <div class="form-group row">
+            <label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>
+            <div class="col-md-10">
+              <input formControlName="title" type="text" class="form-control" id="ktmc">
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label for="instructor" class="col-md-2 form-control-label">指导老师:</label>
-          <div class="col-md-10">
-            <table width="100%">
-              <tbody>
-              <tr>
-                <td width="10%"><button class="btn btn-default" id="instructor" (click)="teachersModal.show()">选择老师</button></td>
-                <td>
-                  <span class="my-label col-sm-1" *ngIf="selectedTeachers.length == 0">未选择</span>
-                  <span class="my-label col-sm-1" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="form-group row">
+            <label for="instructor" class="col-md-2 form-control-label">指导老师:</label>
+            <div class="col-md-10">
+              <table width="100%">
+                <tbody>
+                <tr>
+                  <td width="10%"><button class="btn btn-default" id="instructor" (click)="teachersModal.show()">选择老师</button></td>
+                  <td>
+                    <span class="my-label col-sm-1" *ngIf="selectedTeachers.length == 0">未选择</span>
+                    <span class="my-label col-sm-1" *ngFor="let teacher of selectedTeachers">{{teacher.name}}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label">组员:</label>
-          <div class="col-md-10">
-            <table width="100%">
-              <tbody>
-              <tr>
-                <td width="10%">
-                  <button class="btn btn-default" (click)="studentsModal.show()">编辑组员</button>
-                </td>
-                <td>
-                  <span class="my-label col-sm-1" *ngIf="selectedStudents.length == 0">未选择</span>
-                  <span class="my-label col-sm-1" *ngFor="let student of selectedStudents">{{student.name}}</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label">组员:</label>
+            <div class="col-md-10">
+              <table width="100%">
+                <tbody>
+                <tr>
+                  <td width="10%">
+                    <button class="btn btn-default" (click)="studentsModal.show()">编辑组员</button>
+                  </td>
+                  <td>
+                    <span class="my-label col-sm-1" *ngIf="selectedStudents.length == 0">未选择</span>
+                    <span class="my-label col-sm-1" *ngFor="let student of selectedStudents">{{student.name}}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label for="ktnr" class="col-md-2 form-control-label">课题内容:</label>
-          <div class="col-md-10">
-            <ckeditor formControlName="description" id="ktnr" [config]="editorConfig"></ckeditor>
+          <div class="form-group row">
+            <label for="ktnr" class="col-md-2 form-control-label">课题内容:</label>
+            <div class="col-md-10">
+              <ckeditor formControlName="description" id="ktnr" [config]="editorConfig"></ckeditor>
+            </div>
           </div>
-        </div>
 
-        <div class="text-center">
-          <button class="btn btn-info btn-lg" (click)="commit()">提交</button>
-        </div>
+          <div class="text-center">
+            <button class="btn btn-info btn-lg" (click)="commit()">提交</button>
+          </div>
 
-      </form>
-    </ba-card>
+        </form>
+      </ba-card>
+    </div>
+
   </div>
 </div>
 

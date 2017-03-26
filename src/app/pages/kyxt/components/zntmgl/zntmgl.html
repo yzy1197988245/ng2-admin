@@ -1,18 +1,25 @@
-<div class="col-sm-12 col-md-10 offset-md-1">
-  <ba-card>
-    <table class="my-list">
-      <thead>
-      <tr>
-        <th>题目名称</th>
-        <th>指导老师</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let project of projects" class="list-item" role="button">
-        <th>{{project.title}}</th>
-        <th>{{project.instructor}}</th>
-      </tr>
-      </tbody>
-    </table>
-  </ba-card>
+<div class="row">
+  <div class="col-sm-12 col-md-10 offset-md-1">
+    <div class="row">
+      <ba-card>
+        <button class="btn btn-default" (click)="createProject()">添加自拟题目</button>
+      </ba-card>
+      <ba-card>
+        <table class="my-list">
+          <thead>
+          <tr>
+            <th>题目名称</th>
+            <th>指导老师</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of projects" class="list-item" role="button" (click)="projectClicked(project)">
+            <th>{{project.title}}</th>
+            <th>{{project.instructor}}</th>
+          </tr>
+          </tbody>
+        </table>
+      </ba-card>
+    </div>
+  </div>
 </div>
