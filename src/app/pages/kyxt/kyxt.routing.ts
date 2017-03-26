@@ -14,6 +14,7 @@ import {ModuleWithProviders} from "@angular/core";
 import {XtjcComponent} from "./components/xtjc/xtjc.component";
 import {XtfpComponent} from "./components/xtfp/xtfp.component";
 import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
+import {XtxsComponent} from "./components/xtxs/txts.component";
 
 const routes:Routes = [{
   path: '',
@@ -54,6 +55,10 @@ const routes:Routes = [{
     {
       path: 'zntmgl',
       component: ZntmglComponent
+    },
+    {
+      path: 'xtxs',
+      component: XtxsComponent
     }
   ]
 }];

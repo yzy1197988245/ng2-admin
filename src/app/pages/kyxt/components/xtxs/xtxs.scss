@@ -1,0 +1,25 @@
+.project-table {
+  width: 100%;
+
+  td,th {
+    padding: 15px 10px 15px 10px;
+    border: 1px solid black;
+  }
+
+  th {
+
+    text-align: center;
+    color: black;
+    font-size: 20px;
+  }
+
+  td {
+    .students {
+      margin-bottom: 10px;
+      border-bottom: 1px solid white;
+    }
+    .operations {
+      margin-top: 10px;
+    }
+  }
+}

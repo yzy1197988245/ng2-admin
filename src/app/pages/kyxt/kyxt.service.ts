@@ -224,4 +224,14 @@ export class KyxtService {
       .then(response => response.json())
       .catch(this.handleError);
   }
+
+  /**
+   * Xsxx Service
+   */
+  public getProjectListWithStudents(): Promise<any> {
+    return this.http.get(Config.SERVER_BASE_URL + 'project/getProjectListWithStudents', this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 }

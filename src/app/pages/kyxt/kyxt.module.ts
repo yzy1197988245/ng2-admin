@@ -26,6 +26,7 @@ import {ProjectDetailComponent} from "./components/project-detail/project-detail
 import {XtjcComponent} from "./components/xtjc/xtjc.component";
 import {XtfpComponent} from "./components/xtfp/xtfp.component";
 import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
+import {XtxsComponent} from "./components/xtxs/txts.component";
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
     ProjectDetailComponent,
     XtjcComponent,
     XtfpComponent,
-    ZntmglComponent
+    ZntmglComponent,
+    XtxsComponent
   ],
   providers: [
     KyxtService,

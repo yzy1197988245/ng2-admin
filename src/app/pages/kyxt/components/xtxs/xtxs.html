@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-sm-12 col-md-10 offset-md-1">
+    <div class="row">
+      <ba-card>
+        <table class="project-table">
+          <thead>
+          <tr>
+            <th colspan="4">
+              Tips: 第一志愿一定会分配到，其他志愿只有当上一志愿被拒绝后才被分配
+            </th>
+          </tr>
+          <tr>
+            <th width="10%">题目</th>
+            <th width="30%">第一志愿</th>
+            <th width="30%">第二志愿</th>
+            <th width="30%">第三志愿</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of projects">
+            <td>{{project.title}}</td>
+            <td>
+              <span
+                *ngFor="let student of project['students'][1]"
+                class="col-sm-3 my-label"
+                [ngClass]="{'my-label-error':student.refused}"
+                role="button"
+                (click)="operateProjectStudent(project, student)"
+              >
+                {{student.name}}
+              </span>
+            </td>
+            <td>
+              <span
+                *ngFor="let student of project['students'][2]"
+                class="col-sm-3 my-label"
+                [ngClass]="{'my-label-error':student.refused}"
+                role="button"
+                (click)="operateProjectStudent(project, student)"
+              >
+                {{student.name}}
+              </span>
+            </td>
+            <td>
+              <span
+                *ngFor="let student of project['students'][3]"
+                class="col-sm-3 my-label"
+                [ngClass]="{'my-label-error':student.refused}"
+                role="button"
+                (click)="operateProjectStudent(project, student)"
+              >
+                {{student.name}}
+              </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ba-card>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #studentDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" aria-label="Close" (click)="studentDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{currentStudent?.name}}</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-info" (click)="acceptStudent()">接收</button>
+        <button class="btn btn-danger" (click)="refuseStudent()">拒绝</button>
+      </div>
+    </div>
+  </div>
+</div>
