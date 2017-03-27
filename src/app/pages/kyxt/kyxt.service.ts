@@ -226,10 +226,17 @@ export class KyxtService {
   }
 
   /**
-   * Xsxx Service
+   * Xtxs Service
    */
   public getProjectListWithStudents(): Promise<any> {
     return this.http.get(Config.SERVER_BASE_URL + 'project/getProjectListWithStudents', this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  public teacherRefuseAcceptStudent(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'project/teacherRefuseAcceptStudent', params, this.config.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

@@ -61,7 +61,7 @@
 </div>
 
 <div class="modal fade" bsModal #studentDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button class="close" aria-label="Close" (click)="studentDetailModal.hide()">
@@ -73,8 +73,8 @@
 
       </div>
       <div class="modal-footer">
-        <button class="btn btn-info" (click)="acceptStudent()">接收</button>
-        <button class="btn btn-danger" (click)="refuseStudent()">拒绝</button>
+        <button class="btn btn-info" (click)="acceptStudent()" *ngIf="currentStudent?.refused">接收</button>
+        <button class="btn btn-danger" (click)="refuseStudent()" *ngIf="!currentStudent?.refused">拒绝</button>
       </div>
     </div>
   </div>

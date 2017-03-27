@@ -49,7 +49,12 @@ export class XtxsComponent implements OnInit{
       projectId: this.currentProject.id,
       studentId: this.currentStudent.id,
       refused: 0
-    }
+    };
+    this.service.teacherRefuseAcceptStudent(params)
+      .then(result => {
+        this.currentStudent.refused = 0;
+        this.studentDetailModal.hide();
+      })
   }
 
   refuseStudent(): void {
@@ -57,6 +62,11 @@ export class XtxsComponent implements OnInit{
       projectId: this.currentProject.id,
       studentId: this.currentStudent.id,
       refused: 1
-    }
+    };
+    this.service.teacherRefuseAcceptStudent(params)
+      .then(result => {
+        this.currentStudent.refused = 1;
+        this.studentDetailModal.hide();
+      })
   }
 }
