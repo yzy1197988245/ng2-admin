@@ -2,9 +2,9 @@
  * Created by yzy on 2017/3/26.
  */
 
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {KyxtService} from "../../kyxt.service";
-import {ModalDirective} from "ng2-bootstrap";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { KyxtService } from "../../kyxt.service";
+import { ModalDirective } from "ng2-bootstrap";
 
 @Component({
   templateUrl: './xtxs.html',
@@ -17,7 +17,7 @@ export class XtxsComponent implements OnInit{
   currentStudent: any;
   currentProject: any;
 
-  @ViewChild('studentDetailModal') studentDetailModal:ModalDirective;
+  @ViewChild('studentDetailModal') studentDetailModal: ModalDirective;
 
   constructor(
     private service: KyxtService
@@ -54,7 +54,7 @@ export class XtxsComponent implements OnInit{
       .then(result => {
         this.currentStudent.refused = 0;
         this.studentDetailModal.hide();
-      })
+      });
   }
 
   refuseStudent(): void {
@@ -67,6 +67,6 @@ export class XtxsComponent implements OnInit{
       .then(result => {
         this.currentStudent.refused = 1;
         this.studentDetailModal.hide();
-      })
+      });
   }
 }

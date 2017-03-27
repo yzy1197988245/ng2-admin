@@ -2,16 +2,16 @@
  * Created by yzy on 2017/1/22.
  */
 
-import {Injectable} from "@angular/core";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {Http, RequestOptions, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {AuthService} from "../../app.auth-service";
-import {Config} from "../../app.config";
+import {AuthService} from '../../app.auth-service';
+import {Config} from '../../app.config';
 
 @Injectable()
 export class AdminService {
 
-  private requestOptions:RequestOptions;
+  private requestOptions: RequestOptions;
 
   constructor(
     private http: Http,

@@ -55,7 +55,7 @@ export class TeacherComponent {
       .then(result => {
         this.teachers = result.data;
         this.totalCount = result.total;
-      })
+      });
   }
 
   pageChanged(data: any): void {
@@ -73,7 +73,7 @@ export class TeacherComponent {
         if (result.code == 200) {
           this.adminImportTeacherFromFile(result.data[0]);
         }
-      })
+      });
   }
 
   adminImportTeacherFromFile(fileId: number): void {
@@ -83,7 +83,7 @@ export class TeacherComponent {
     this.service.adminImportTeacherFromFile(params)
       .then(result => {
         this.notificationsService.success('成功', result.message);
-      })
+      });
   }
 
   adminCreateTeacher(teacher: any): void {
@@ -94,6 +94,6 @@ export class TeacherComponent {
         } else {
           this.notificationsService.alert('失败', result.message);
         }
-      })
+      });
   }
 }
