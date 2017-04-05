@@ -241,4 +241,11 @@ export class KyxtService {
       .then(response => response.json())
       .catch(this.handleError);
   }
+
+  public teacherGetStudentData(params: any = {}): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/teacherGetStudentData', params, this.config.requestOptions)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 }

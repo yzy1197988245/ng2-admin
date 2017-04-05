@@ -70,7 +70,36 @@
         <h4 class="modal-title">{{currentStudent?.name}}</h4>
       </div>
       <div class="modal-body">
-
+        <table *ngIf="currentStudentDetail != null" class="student-table">
+          <tbody>
+          <tr>
+            <td width="10%">姓名</td>
+            <td>{{currentStudentDetail['name']}}</td>
+          </tr>
+          <tr>
+            <td>学号</td>
+            <td>{{currentStudentDetail['student_number']}}</td>
+          </tr>
+          <tr>
+            <td>学院</td>
+            <td>{{currentStudentDetail['school_id']|codeName:dataService.school}}</td>
+          </tr>
+          <tr>
+            <td>专业</td>
+            <td>{{currentStudentDetail['specialty_id']|codeName:dataService.specialty}}</td>
+          </tr>
+          <tr>
+            <td>兴趣</td>
+            <td>
+              <span class="my-label" *ngFor="let interest of currentStudentDetail['interests']">{{interest}}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>其他</td>
+            <td [innerHtml]="currentStudentDetail['description']"></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
       <div class="modal-footer">
         <button class="btn btn-info" (click)="acceptStudent()" *ngIf="currentStudent?.refused">接收</button>

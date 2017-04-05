@@ -18,8 +18,8 @@ export class Login {
 
   constructor(fb:FormBuilder, private authService: AuthService) {
     this.form = fb.group({
-      'userNumber': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      'userNumber': ['', Validators.compose([Validators.required])],
+      'password': ['', Validators.compose([Validators.required])],
       'userType': [1, Validators.compose([Validators.required])]
     });
 
@@ -27,6 +27,8 @@ export class Login {
     this.password = this.form.controls['password'];
     this.userType = this.form.controls['userType'];
   }
+
+
 
   public onSubmit(values:Object):void {
     this.submitted = true;

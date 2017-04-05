@@ -25,8 +25,8 @@ const ngcWebpack = require('ngc-webpack');
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
 const METADATA = {
-  title: 'ng2-admin - Angular 2 Admin Template',
-  description: 'Free Angular 2 and Bootstrap 4 Admin Template',
+  title: '科研选题系统',
+  description: '科研选题系统 机电与信息工程学院 计算机科学与技术系 计算机系 机电学院 机电 选题系统 科研选题',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };

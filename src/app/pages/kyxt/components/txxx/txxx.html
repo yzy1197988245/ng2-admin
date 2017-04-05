@@ -1,60 +1,61 @@
 <div class="row">
   <div class="col-sm-12 col-md-10 offset-md-1">
-    <ba-card>
-      <form class="form-horizontal" [formGroup]="formGroup">
+    <div class="row">
+      <ba-card>
+        <form class="form-horizontal" [formGroup]="formGroup">
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label">意向导师:</label>
-          <div class="col-md-10">
-            <table width="100%">
-              <tbody>
-              <tr>
-                <td width="15%">
-                  <button class="btn btn-default" (click)="teachersModal.show()">选择意向导师</button>
-                </td>
-                <td align="center">
-                  <span class="my-label col-sm-2" *ngIf="selectedTeacher == null">未选择</span>
-                  <span class="my-label col-sm-2" *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label">意向导师:</label>
+            <div class="col-md-10">
+              <table width="100%">
+                <tbody>
+                <tr>
+                  <td width="15%">
+                    <button class="btn btn-default" (click)="teachersModal.show()">选择意向导师</button>
+                  </td>
+                  <td align="center">
+                    <span class="my-label col-sm-2" *ngIf="selectedTeacher == null">未选择</span>
+                    <span class="my-label col-sm-2" *ngIf="selectedTeacher != null">{{selectedTeacher.name}}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label">意向方向:</label>
-          <div class="col-md-10">
-            <table width="100%">
-              <tbody>
-              <tr>
-                <td width="15%">
-                  <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
-                </td>
-                <td align="center">
-                  <span class="my-label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
-                  <span class="my-label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
-                </td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label">意向方向:</label>
+            <div class="col-md-10">
+              <table width="100%">
+                <tbody>
+                <tr>
+                  <td width="15%">
+                    <button class="btn btn-default" (click)="interestsModal.show()">编辑意向方向</button>
+                  </td>
+                  <td align="center">
+                    <span class="my-label col-sm-2" *ngIf="selectedInterests.length == 0">未选择</span>
+                    <span class="my-label col-sm-2" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-md-2 form-control-label">感兴趣的研究:</label>
-          <div class="col-md-10">
-            <ckeditor formControlName="description" id="description" [config]="editorConfig" class="form-control"></ckeditor>
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label">感兴趣的研究:</label>
+            <div class="col-md-10">
+              <ckeditor formControlName="description" id="description" [config]="editorConfig" class="form-control"></ckeditor>
+            </div>
           </div>
-        </div>
 
-        <div class="text-center">
-          <button class="btn btn-lg btn-info" [disabled]="!canCommit()" (click)="commit()">提交</button>
-        </div>
+          <div class="text-center">
+            <button class="btn btn-lg btn-info" [disabled]="!canCommit()" (click)="commit()">提交</button>
+          </div>
 
-      </form>
-
-    </ba-card>
+        </form>
+      </ba-card>
+    </div>
   </div>
 </div>
 

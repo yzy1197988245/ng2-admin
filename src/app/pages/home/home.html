@@ -1,7 +1,7 @@
-<div class="col-sm-9 offset-sm-1">
-    <div class="col-sm-4" *ngFor="let task of tasks" (click)="navigateTo(task)">
-        <ba-card [title]="task.title" role="button">
-            <p>{{task.description}}</p>
-        </ba-card>
-    </div>
+<div class="row" *ngFor="let task of tasks" (click)="navigateTo(task)">
+  <div class="col-sm-10 col-md-8 offset-sm-1 offset-md-2">
+    <ba-card [title]="task.title" role="button">
+      <p>{{task.description}}</p>
+    </ba-card>
+  </div>
 </div>

@@ -5,6 +5,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { KyxtService } from "../../kyxt.service";
 import { ModalDirective } from "ng2-bootstrap";
+import {DataService} from "../../../../app.data";
 
 @Component({
   templateUrl: './xtxs.html',
@@ -16,11 +17,13 @@ export class XtxsComponent implements OnInit{
 
   currentStudent: any;
   currentProject: any;
+  currentStudentDetail: any;
 
   @ViewChild('studentDetailModal') studentDetailModal: ModalDirective;
 
   constructor(
-    private service: KyxtService
+    private service: KyxtService,
+    public dataService: DataService
   ) {
 
   }
@@ -42,6 +45,7 @@ export class XtxsComponent implements OnInit{
     this.currentProject = project;
     this.currentStudent = student;
     this.studentDetailModal.show();
+    this.getStudentData();
   }
 
   acceptStudent(): void {
@@ -68,5 +72,17 @@ export class XtxsComponent implements OnInit{
         this.currentStudent.refused = 1;
         this.studentDetailModal.hide();
       });
+  }
+
+  getStudentData(): void {
+    let params = {
+      studentId: this.currentStudent.id,
+    };
+    this.service.teacherGetStudentData(params)
+      .then(result => {
+        if (result.code == 200) {
+          this.currentStudentDetail = result.data;
+        }
+      })
   }
 }

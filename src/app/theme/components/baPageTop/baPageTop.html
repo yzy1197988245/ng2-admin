@@ -11,15 +11,16 @@
   <div class="user-profile clearfix">
     <div class="dropdown al-user-profile">
       <a class="profile-toggle-link dropdown-toggle" id="user-profile-dd" data-toggle="dropdown" aria-expanded="false">
-        <img src="{{ ( 'Nasta' | baProfilePicture ) }}">
+        <img src="{{ ( 'theme/no-photo.png' | baAppPicture ) }}">
       </a>
       <ul class="dropdown-menu top-dropdown-menu profile-dropdown" aria-labelledby="user-profile-dd">
         <li class="dropdown-item"><i class="dropdown-arr"></i></li>
         <!--<li class="dropdown-item"><a href><i class="fa fa-user"></i>Profile</a></li>-->
         <!--<li class="dropdown-item"><a href><i class="fa fa-cog"></i>Settings</a></li>-->
+        <li class="dropdown-item"><a routerLink="/pages/modify-password">修改密码</a></li>
         <li class="dropdown-item"><a role="button" (click)="logout()"><i class="fa fa-power-off"></i>退出</a></li>
       </ul>
     </div>
-    <ba-msg-center></ba-msg-center>
+    <!--<ba-msg-center></ba-msg-center>-->
   </div>
 </div>
