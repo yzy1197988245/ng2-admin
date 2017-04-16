@@ -43,7 +43,10 @@ export class TjxxComponent implements OnInit{
   }
 
   getStudentDescriptionForTeacher(): void {
-    this.service.getStudentDescriptionForTeacher()
+
+    this.service.getStudentDescriptionForTeacher({
+      page: this.currentPage
+    })
       .then(result => {
         this.totalCount = result.total;
         this.studentDescriptions = result.data;

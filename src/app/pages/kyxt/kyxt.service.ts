@@ -198,8 +198,8 @@ export class KyxtService {
       .catch(this.handleError);
   }
 
-  public getStudentDescriptionForTeacher(): Promise<any> {
-    return this.http.get(Config.SERVER_BASE_URL + 'student/getStudentDescriptionForTeacher', this.requestOptions)
+  public getStudentDescriptionForTeacher(params: any): Promise<any> {
+    return this.http.post(Config.SERVER_BASE_URL + 'student/getStudentDescriptionForTeacher', params, this.requestOptions)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

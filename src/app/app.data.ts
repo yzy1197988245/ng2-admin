@@ -14,57 +14,27 @@ export class DataService {
   classInfo: Array<any>;
   professionalTitle: Array<any>;
   role: Array<any>;
+  projectSource: Array<any>;
+  projectProperty: Array<any>;
 
   constructor(
     private http: Http
   ) {
-    this.getSex();
-    this.getSchool();
-    this.getSpecialty();
-    this.getClassInfo();
-    this.getProfessionalTitle();
-    this.getRole();
+    this.getCode();
   }
 
-  getSex(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/sex')
-      .subscribe((result) => {
-        this.sex = result.json();
-      })
-  }
-
-  getSchool(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/school')
-      .subscribe((result) => {
-        this.school = result.json();
-      })
-  }
-
-  getSpecialty(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/specialty')
-      .subscribe((result) => {
-        this.specialty = result.json();
-      })
-  }
-
-  getClassInfo(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/classInfo')
-      .subscribe((result) => {
-        this.classInfo = result.json();
-      })
-  }
-
-  getProfessionalTitle(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/professionalTitle')
-      .subscribe((result) => {
-        this.professionalTitle = result.json();
-      })
-  }
-
-  getRole(): void {
-    this.http.get(Config.SERVER_BASE_URL + 'code/role')
-      .subscribe((result) => {
-        this.role = result.json();
+  getCode(): void {
+    this.http.get(Config.SERVER_BASE_URL + 'code/getCode')
+      .subscribe(result => {
+        result = result.json();
+        this.sex = result['sex'];
+        this.school = result['school'];
+        this.specialty = result['specialty'];
+        this.classInfo = result['classInfo'];
+        this.professionalTitle = result['professionalTitle'];
+        this.role = result['role'];
+        this.projectSource = result['projectSource'];
+        this.projectProperty = result['projectProperty'];
       })
   }
 }

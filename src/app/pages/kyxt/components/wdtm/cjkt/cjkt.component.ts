@@ -10,6 +10,7 @@ import {KyxtService} from "../../../kyxt.service";
 import '../../../editor.loader';
 import 'ckeditor'
 import {isNullOrUndefined} from "util";
+import {DataService} from "../../../../../app.data";
 
 @Component({
   selector: 'project-form',
@@ -35,11 +36,14 @@ export class CjktComponent implements OnInit{
     private fb: FormBuilder,
     private service: KyxtService,
     private notificationsService: NotificationsService,
+    public dataService: DataService
   ) {
     this.formGroup = fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      memberCount: [2, Validators.required]
+      memberCount: [2, Validators.required],
+      projectSource: [0, Validators.required],
+      projectProperty: [0, Validators.required]
     });
   }
 
@@ -69,7 +73,9 @@ export class CjktComponent implements OnInit{
       this.formGroup.reset({
         title: '',
         description: '',
-        memberCount: 2
+        memberCount: 2,
+        projectSource: 0,
+        projectProperty: 0
       })
     } else {
       this.selectedTeachers = this.projectDetail.teachers;
@@ -77,7 +83,9 @@ export class CjktComponent implements OnInit{
       this.formGroup.reset({
         title: this.projectDetail.title,
         description: this.projectDetail.description,
-        memberCount: this.projectDetail.memberCount
+        memberCount: this.projectDetail.memberCount,
+        projectSource: this.projectDetail.projectSource,
+        projectProperty: this.projectDetail.projectProperty
       })
     }
   }
@@ -86,6 +94,14 @@ export class CjktComponent implements OnInit{
     let value = this.formGroup.value;
     if (value.memberCount < 2) {
       this.notificationsService.error('错误', '每组最少两人');
+      return;
+    }
+    if (value.projectSource == 0) {
+      this.notificationsService.error('错误', '请选择项目来源');
+      return;
+    }
+    if (value.projectProperty == 0) {
+      this.notificationsService.error('错误', '请选择项目性质');
       return;
     }
     let interests = [];
@@ -102,7 +118,9 @@ export class CjktComponent implements OnInit{
       description: value.description.replace('\n', ''),
       interests: interests,
       teachers: teachers,
-      memberCount: value.memberCount
+      memberCount: value.memberCount,
+      projectSource: value.projectSource,
+      projectProperty: value.projectProperty
     };
     if (this.formGroup.valid) {
       this.service.createOrUpdateProject(params)
