@@ -9,13 +9,21 @@
           <thead>
           <tr>
             <th>题目名称</th>
+            <th>创建者</th>
             <th>指导老师</th>
+            <th>组长</th>
+            <th>课题来源</th>
+            <th>课题性质</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let project of projects" class="list-item" role="button" (click)="projectClicked(project)">
             <th>{{project.title}}</th>
-            <th>{{project.instructor}}</th>
+            <th>{{project['creator']}}</th>
+            <th>{{project['instructor']}}</th>
+            <th>{{project['captain']}}</th>
+            <th>{{project['projectSource']}}</th>
+            <th>{{project['projectProperty']}}</th>
           </tr>
           </tbody>
         </table>

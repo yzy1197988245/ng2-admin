@@ -53,8 +53,8 @@ export class WdtmComponent implements OnInit{
 
   projectChanged(event): void {
     this.getTeacherProjectList();
-    if (event == 'delete') {
+    // if (event == 'delete') {
       this.hideProjectForm();
-    }
+    // }
   }
 }

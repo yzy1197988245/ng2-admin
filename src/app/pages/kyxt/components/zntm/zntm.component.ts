@@ -11,6 +11,7 @@ import {NotificationsService} from "angular2-notifications";
 import '../../editor.loader';
 import 'ckeditor';
 import {ActivatedRoute, Router} from "@angular/router";
+import {DataService} from "../../../../app.data";
 
 @Component({
   templateUrl: 'zntm.html'
@@ -31,7 +32,8 @@ export class ZntmComponent implements OnInit{
     private service: KyxtService,
     private notificationsService: NotificationsService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public dataService: DataService
   ){
     this.projectId = activatedRoute.snapshot.params['projectId'];
   }
@@ -49,7 +51,9 @@ export class ZntmComponent implements OnInit{
           let data = result.data;
           this.formGroup.reset({
             title: data.title,
-            description: data.description
+            description: data.description,
+            projectSource: data.projectSource,
+            projectProperty: data.projectProperty
           });
           this.selectedTeachers = data.teachers;
           this.selectedStudents = data.students;
@@ -63,7 +67,9 @@ export class ZntmComponent implements OnInit{
   public buildForm(): void {
     this.formGroup = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      projectSource: [0, Validators.required],
+      projectProperty: [0, Validators.required]
     })
   }
 
@@ -71,6 +77,14 @@ export class ZntmComponent implements OnInit{
     let value = this.formGroup.value;
     if (value.title == '') {
       this.notificationsService.error('错误', '请输入标题');
+      return;
+    }
+    if (value.projectSource == 0) {
+      this.notificationsService.error('错误', '请选择课题来源');
+      return;
+    }
+    if (value.projectProperty == 0) {
+      this.notificationsService.error('错误', '请选择课题性质');
       return;
     }
     if (this.selectedTeachers.length < 1) {
@@ -98,7 +112,9 @@ export class ZntmComponent implements OnInit{
       instructor: instructor.id,
       description: value.description.replace('\n', ''),
       members: members,
-      teachers: teachers
+      teachers: teachers,
+      projectSource: value.projectSource,
+      projectProperty: value.projectProperty
     };
     this.service.studentCreateProject(data)
       .then(result => {

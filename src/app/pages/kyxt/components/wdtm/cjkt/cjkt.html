@@ -1,14 +1,14 @@
 <ba-card>
   <form class="form-horizontal" [formGroup]="formGroup">
     <div class="form-group row">
-      <label for="ktmc" class="col-md-2 form-control-label">课题名称:</label>
+      <label for="ktmc" class="col-md-2 form-control-label">课题名称(必填):</label>
       <div class="col-md-10">
         <input formControlName="title" type="text" class="form-control" id="ktmc" required>
       </div>
     </div>
 
     <div class="form-group row">
-      <label class="col-md-2 form-control-label">课题来源:</label>
+      <label class="col-md-2 form-control-label">课题来源(必填):</label>
       <div class="col-md-10">
         <select formControlName="projectSource" class="form-control">
           <option value="0">请选择课题来源</option>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-md-2 form-control-label">课题性质:</label>
+      <label class="col-md-2 form-control-label">课题性质(必填):</label>
       <div class="col-md-10">
         <select formControlName="projectProperty" class="form-control">
           <option value="0">请选择课题性质</option>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="label" class="col-md-2 form-control-label">标签:</label>
+      <label for="label" class="col-md-2 form-control-label">标签(选填):</label>
       <div class="col-md-10" id="label">
         <table width="100%">
           <tbody>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-md-2 form-control-label">其他指导老师:</label>
+      <label class="col-md-2 form-control-label">其他指导老师(选填):</label>
       <div class="col-md-10">
         <table width="100%">
           <tbody>
@@ -66,14 +66,14 @@
     </div>
 
     <div class="form-group row">
-      <label class="col-md-2 form-control-label">最大成员数:</label>
+      <label class="col-md-2 form-control-label">最大成员数(必填):</label>
       <div class="col-md-10">
         <input formControlName="memberCount" type="number" class="form-control" required>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="ktnr" class="col-md-2 form-control-label">课题说明:</label>
+      <label for="ktnr" class="col-md-2 form-control-label">课题说明(必填):</label>
       <div class="col-md-10">
         <ckeditor class="form-control" formControlName="description" id="ktnr" [config]="editorConfig" required></ckeditor>
       </div>

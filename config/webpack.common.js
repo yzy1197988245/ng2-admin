@@ -25,7 +25,7 @@ const ngcWebpack = require('ngc-webpack');
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = helpers.hasNpmFlag('aot');
 const METADATA = {
-  title: '科研选题系统',
+  title: '科研之家',
   description: '科研选题系统 机电与信息工程学院 计算机科学与技术系 计算机系 机电学院 机电 选题系统 科研选题',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
