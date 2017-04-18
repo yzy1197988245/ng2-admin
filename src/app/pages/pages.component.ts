@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
-import {PagesService} from "./pages.service";
+import { PAGES_MENU } from './pages.menu';
 
 @Component({
   selector: 'pages',

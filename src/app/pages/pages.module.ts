@@ -3,6 +3,7 @@ import { CommonModule }  from '@angular/common';
 
 import { routing }       from './pages.routing';
 import { NgaModule } from '../theme/nga.module';
+import { AppTranslationModule } from '../app.translation.module';
 
 import { Pages } from './pages.component';
 import {PagesService} from "./pages.service";
@@ -12,7 +13,7 @@ import {ModifyPasswordComponent} from "./modify-password/modify-password";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, NgaModule, routing, MyCommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, AppTranslationModule, NgaModule, routing, MyCommonModule, ReactiveFormsModule, FormsModule],
   declarations: [Pages, HomeComponent, ModifyPasswordComponent],
   providers: [
     PagesService
