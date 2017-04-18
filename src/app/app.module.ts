@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -25,6 +27,7 @@ import {SimpleNotificationsModule} from "angular2-notifications";
 import {Config} from "./app.config";
 import {Ng2Webstorage} from "ng2-webstorage";
 import {DataService} from "./app.data";
+
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -57,6 +60,7 @@ export type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     NgaModule.forRoot(),
+    NgbModule.forRoot(),
     PagesModule,
     routing,
     SimpleNotificationsModule.forRoot(),
@@ -70,7 +74,8 @@ export type StoreType = {
 
 export class AppModule {
 
-  constructor(public appRef: ApplicationRef, public appState: AppState) {
+  constructor(public appRef: ApplicationRef,
+              public appState: AppState) {
   }
 
   hmrOnInit(store: StoreType) {
