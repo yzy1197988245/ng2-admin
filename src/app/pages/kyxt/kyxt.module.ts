@@ -28,6 +28,7 @@ import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
 import {XtxsComponent} from "./components/xtxs/txts.component";
 import {AppTranslationModule} from "../../app.translation.module";
 import {ModalModule, PaginationModule} from "ngx-bootstrap";
+import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import {ModalModule, PaginationModule} from "ngx-bootstrap";
     ModalModule.forRoot(),
     SelectModule,
     PaginationModule.forRoot(),
-    AppTranslationModule
+    AppTranslationModule,
+    NgbModalModule
   ],
   declarations: [
     KyxtComponent,
@@ -59,6 +61,10 @@ import {ModalModule, PaginationModule} from "ngx-bootstrap";
     XtfpComponent,
     ZntmglComponent,
     XtxsComponent
+  ],
+  entryComponents: [
+    TxxxInterestSelectorComponent,
+    TxxxTeacherSelectorComponent
   ],
   providers: [
     KyxtService,

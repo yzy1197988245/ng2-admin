@@ -27,19 +27,22 @@
           </tr>
           </tbody>
         </table>
-        <div class="text-center" style="width: 100%">
-          <pagination [boundaryLinks]="true"
-                      [totalItems]="totalCount"
-                      [ngModel]="currentPage"
-                      class="pagination-sm"
-                      previousText="&lsaquo;"
-                      nextText="&rsaquo;"
-                      firstText="&laquo;"
-                      lastText="&raquo;"
-                      (pageChanged)="pageChanged($event)"
-                      [maxSize]="maxSize"
-          ></pagination>
+        <div class="text-center">
+
         </div>
       </ba-card>
   </div>
+</div>
+<div class="row text-center">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="totalCount"
+                [ngModel]="currentPage"
+                class="pagination-sm"
+                previousText="&lsaquo;"
+                nextText="&rsaquo;"
+                firstText="&laquo;"
+                lastText="&raquo;"
+                (pageChanged)="pageChanged($event)"
+                [maxSize]="maxSize"
+    ></pagination>
 </div>

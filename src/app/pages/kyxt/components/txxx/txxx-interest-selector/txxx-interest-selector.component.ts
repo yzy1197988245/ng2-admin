@@ -7,6 +7,7 @@ import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 import {DataService} from "../../../../../app.data";
 import {KyxtService} from "../../../kyxt.service";
 import {isNullOrUndefined} from "util";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'txxx-interect-selector',
@@ -15,7 +16,7 @@ import {isNullOrUndefined} from "util";
 })
 export class TxxxInterestSelectorComponent {
 
-  @Input() @Output() selectedInterests: any = [];
+  selectedInterests: any = [];
 
   interests: Array<any>;
 
@@ -29,8 +30,13 @@ export class TxxxInterestSelectorComponent {
   constructor(
     public dataService: DataService,
     public commonService: KyxtService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private activeModal: NgbActiveModal
   ) {
+  }
+
+  closeModal(): void {
+    this.activeModal.close();
   }
 
   public ngOnInit(): void {

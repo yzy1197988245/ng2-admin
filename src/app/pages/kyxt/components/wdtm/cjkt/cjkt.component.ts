@@ -11,6 +11,8 @@ import 'ckeditor'
 import {isNullOrUndefined} from "util";
 import {DataService} from "../../../../../app.data";
 import {NotificationsService} from "angular2-notifications/dist";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TxxxInterestSelectorComponent} from "../../txxx/txxx-interest-selector/txxx-interest-selector.component";
 
 @Component({
   selector: 'project-form',
@@ -36,7 +38,8 @@ export class CjktComponent implements OnInit{
     private fb: FormBuilder,
     private service: KyxtService,
     private notificationsService: NotificationsService,
-    public dataService: DataService
+    public dataService: DataService,
+    private modalService: NgbModal
   ) {
     this.formGroup = fb.group({
       title: ['', Validators.required],
@@ -45,6 +48,14 @@ export class CjktComponent implements OnInit{
       projectSource: [0, Validators.required],
       projectProperty: [0, Validators.required]
     });
+  }
+
+  selectInterest(): void {
+    this.modalService.open(TxxxInterestSelectorComponent);
+  }
+
+  selectTeacher(): void {
+
   }
 
   ngOnInit(): void {

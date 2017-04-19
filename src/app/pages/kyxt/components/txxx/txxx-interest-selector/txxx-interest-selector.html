@@ -1,65 +1,78 @@
-<ba-card>
-  <div class="text-center">
-    <form [formGroup]="paramsForm">
-      <input formControlName="name" type="text" placeholder="请填写名称">
-      <select formControlName="schoolId" (change)="schoolChanged()">
-        <option value="0">请选择学院</option>
-        <option *ngFor="let school of dataService.school" value="{{school.id}}">
-          {{school.name}}
-        </option>
-      </select>
-      <select [formControl]="specialtyId">
-        <option value="0">请选择专业</option>
-        <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
-          {{specialty.name}}
-        </option>
-      </select>
-      <button class="btn btn-default" (click)="getInterestList()">搜索</button>
-    </form>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">选择老师</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  <div>
-    <table class="my-list">
-      <thead>
-      <tr>
-        <td>学院</td>
-        <td>专业</td>
-        <td>名称</td>
-        <td>是否选择</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr role="button" *ngFor="let interest of interests" class="list-item" (click)="interestClicked(interest)">
-        <td>
-          {{interest.school_id | codeName: dataService.school}}
-        </td>
-        <td>
-          {{interest.specialty_id | codeName: dataService.specialty}}
-        </td>
-        <td>
-          {{ interest.name }}
-        </td>
-        <td>
-          <i class="ion-android-done" *ngIf="isSelected(interest) != -1"></i>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="modal-body">
+    <ba-card>
+      <div class="text-center">
+        <form [formGroup]="paramsForm">
+          <input formControlName="name" type="text" placeholder="请填写名称">
+          <select formControlName="schoolId" (change)="schoolChanged()">
+            <option value="0">请选择学院</option>
+            <option *ngFor="let school of dataService.school" value="{{school.id}}">
+              {{school.name}}
+            </option>
+          </select>
+          <select [formControl]="specialtyId">
+            <option value="0">请选择专业</option>
+            <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
+              {{specialty.name}}
+            </option>
+          </select>
+          <button class="btn btn-default" (click)="getInterestList()">搜索</button>
+        </form>
+      </div>
+      <div>
+        <table class="my-list">
+          <thead>
+          <tr>
+            <td>学院</td>
+            <td>专业</td>
+            <td>名称</td>
+            <td>是否选择</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr role="button" *ngFor="let interest of interests" class="list-item" (click)="interestClicked(interest)">
+            <td>
+              {{interest.school_id | codeName: dataService.school}}
+            </td>
+            <td>
+              {{interest.specialty_id | codeName: dataService.specialty}}
+            </td>
+            <td>
+              {{ interest.name }}
+            </td>
+            <td>
+              <i class="ion-android-done" *ngIf="isSelected(interest) != -1"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center">
+        <pagination [boundaryLinks]="true"
+                    [totalItems]="totalCount"
+                    [ngModel]="currentPage"
+                    class="pagination-sm"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;"
+                    firstText="&laquo;"
+                    lastText="&raquo;"
+                    (pageChanged)="pageChanged($event)"
+                    [maxSize]="maxSize"
+        ></pagination>
+      </div>
+      <p style="color: red">Tips:点击已选中的即可取消选择</p>
+      <div>
+        <span class="my-label" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
+      </div>
+    </ba-card>
   </div>
-  <div class="text-center">
-    <pagination [boundaryLinks]="true"
-                [totalItems]="totalCount"
-                [ngModel]="currentPage"
-                class="pagination-sm"
-                previousText="&lsaquo;"
-                nextText="&rsaquo;"
-                firstText="&laquo;"
-                lastText="&raquo;"
-                (pageChanged)="pageChanged($event)"
-                [maxSize]="maxSize"
-    ></pagination>
+  <div class="modal-footer">
+    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Save changes</button>
   </div>
-  <p style="color: red">Tips:点击已选中的即可取消选择</p>
-  <div>
-    <span class="my-label" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
-  </div>
-</ba-card>
+</div>

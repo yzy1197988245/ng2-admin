@@ -15,10 +15,10 @@ import {isNullOrUndefined} from "util";
 })
 export class TxxxTeacherSelectorComponent {
 
-  @Output() teacherSelected = new EventEmitter<any>();
+  teacherSelected = new EventEmitter<any>();
 
-  @Input() multiSelected = false;
-  @Input() @Output() selectedTeachers: any = [];
+  multiSelected = false;
+  selectedTeachers: any = [];
 
   teachers: Array<any>;
   professionalTitles: Array<any>;
