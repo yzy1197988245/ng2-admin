@@ -6,8 +6,8 @@
 import {Component} from "@angular/core";
 import {FormGroup, AbstractControl, FormBuilder} from "@angular/forms";
 import {AdminService} from "../../admin.service";
-import {NotificationsService} from "angular2-notifications";
 import {DataService} from "../../../../app.data";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
   templateUrl: './teacher.html',

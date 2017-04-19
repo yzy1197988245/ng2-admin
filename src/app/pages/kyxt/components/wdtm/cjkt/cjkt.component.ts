@@ -4,13 +4,13 @@
 
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NotificationsService} from "angular2-notifications";
 import {KyxtService} from "../../../kyxt.service";
 
 import '../../../editor.loader';
 import 'ckeditor'
 import {isNullOrUndefined} from "util";
 import {DataService} from "../../../../../app.data";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
   selector: 'project-form',

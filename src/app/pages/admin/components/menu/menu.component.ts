@@ -5,7 +5,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {AdminService} from "../../admin.service";
-import {ModalDirective} from "ng2-bootstrap";
+import {ModalDirective} from "ngx-bootstrap";
 
 @Component({
   templateUrl: './menu.html',

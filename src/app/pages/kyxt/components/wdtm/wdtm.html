@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col-sm-12 col-md-10 offset-md-1">
-    <div class="row" >
       <ba-card>
         <button *ngIf="!isShowProjectForm" class="btn btn-default" (click)="createProject()">创建项目</button>
         <button *ngIf="isShowProjectForm" class="btn btn-success" (click)="hideProjectForm()">返回</button>
@@ -25,7 +24,6 @@
       </ba-card>
 
       <project-form *ngIf="isShowProjectForm" [projectId]="selectedProjectId" (projectChanged)="projectChanged($event)"></project-form>
-    </div>
   </div>
 </div>
 

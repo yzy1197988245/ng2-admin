@@ -1,106 +1,104 @@
 <div class="row">
   <div class="col-sm-12 col-md-10 offset-md-1">
-    <div class="row">
-      <ba-card title="已选题目">
+    <ba-card title="已选题目">
+      <table class="my-list">
+        <tbody>
+        <tr *ngFor="let project of selectedProjects" class="list-item" role="button" (click)="selectProject(project)">
+          <td>{{project.title}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ba-card>
+    <ba-card title="题目库" *ngIf="!isShowProjectDetail" class="col-sm-12 col-md-10 offset-md-1">
+      <div class="text-center">
+        <form [formGroup]="paramsForm">
+          <select formControlName="schoolId" (change)="schoolChanged()">
+            <option value="0">请选择学院</option>
+            <option *ngFor="let school of dataService.school" value="{{school.id}}">
+              {{school.name}}
+            </option>
+          </select>
+          <select [formControl]="specialtyId">
+            <option value="0">请选择专业</option>
+            <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
+              {{specialty.name}}
+            </option>
+          </select>
+          <button class="btn btn-default" (click)="getProjectList()">搜索</button>
+        </form>
+      </div>
+      <div class="row">
         <table class="my-list">
+          <thead>
+          <tr>
+            <th>学院</th>
+            <th>专业</th>
+            <th>课题名称</th>
+            <th>指导老师</th>
+            <th>热度</th>
+          </tr>
+          </thead>
           <tbody>
-          <tr *ngFor="let project of selectedProjects" class="list-item" role="button" (click)="selectProject(project)">
+          <tr *ngFor="let project of projects" class="list-item" role="button" (click)="selectProject(project)">
+            <td>{{project.school_id|codeName:dataService.school}}</td>
+            <td>{{project.specialty_id|codeName:dataService.specialty}}</td>
             <td>{{project.title}}</td>
+            <td>{{project.instructor}}</td>
+            <td>{{project.selected_count}}</td>
           </tr>
           </tbody>
         </table>
-      </ba-card>
-      <ba-card title="题目库" *ngIf="!isShowProjectDetail">
-        <div class="row text-center">
-          <form [formGroup]="paramsForm">
-            <select formControlName="schoolId" (change)="schoolChanged()">
-              <option value="0">请选择学院</option>
-              <option *ngFor="let school of dataService.school" value="{{school.id}}">
-                {{school.name}}
-              </option>
-            </select>
-            <select [formControl]="specialtyId">
-              <option value="0">请选择专业</option>
-              <option *ngFor="let specialty of paramsForm.value.schoolId | schoolSpecialty:dataService.specialty" value="{{specialty.id}}">
-                {{specialty.name}}
-              </option>
-            </select>
-            <button class="btn btn-default" (click)="getProjectList()">搜索</button>
-          </form>
+        <div class="text-center">
+          <pagination [boundaryLinks]="true"
+                      [totalItems]="totalCount"
+                      [ngModel]="currentPage"
+                      class="pagination-sm"
+                      previousText="&lsaquo;"
+                      nextText="&rsaquo;"
+                      firstText="&laquo;"
+                      lastText="&raquo;"
+                      (pageChanged)="pageChanged($event)"
+                      [maxSize]="maxSize"
+          ></pagination>
         </div>
-        <div class="row">
-          <table class="my-list">
-            <thead>
-            <tr>
-              <th>学院</th>
-              <th>专业</th>
-              <th>课题名称</th>
-              <th>指导老师</th>
-              <th>热度</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let project of projects" class="list-item" role="button" (click)="selectProject(project)">
-              <td>{{project.school_id|codeName:dataService.school}}</td>
-              <td>{{project.specialty_id|codeName:dataService.specialty}}</td>
-              <td>{{project.title}}</td>
-              <td>{{project.instructor}}</td>
-              <td>{{project.selected_count}}</td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="text-center">
-            <pagination [boundaryLinks]="true"
-                        [totalItems]="totalCount"
-                        [ngModel]="currentPage"
-                        class="pagination-sm"
-                        previousText="&lsaquo;"
-                        nextText="&rsaquo;"
-                        firstText="&laquo;"
-                        lastText="&raquo;"
-                        (pageChanged)="pageChanged($event)"
-                        [maxSize]="maxSize"
-            ></pagination>
-          </div>
-        </div>
-      </ba-card>
+      </div>
+    </ba-card>
 
-      <ba-card *ngIf="selectedProject != null && isShowProjectDetail">
-        <div class="row">
-          <button class="btn btn-success" (click)="hideProjectDetail()">返回列表</button>
+    <ba-card *ngIf="selectedProject != null && isShowProjectDetail" class="col-sm-12 col-md-10 offset-md-1">
+      <div class="row">
+        <button class="btn btn-success" (click)="hideProjectDetail()">返回列表</button>
+      </div>
+      <div class="row" style="margin-top: 25px; margin-bottom: 25px">
+        <div class="col-sm-12">
+          <table class="detail" *ngIf="projectDetail != null">
+            <tr>
+              <td class="center" width="20%">项目名称</td>
+              <td>{{projectDetail.title}}</td>
+            </tr>
+            <tr>
+              <td class="center">创建人</td>
+              <td>{{projectDetail.creator}}</td>
+            </tr>
+            <tr>
+              <td class="center">项目类型</td>
+              <td>{{projectDetail.type}}</td>
+            </tr>
+            <tr>
+              <td class="center">指导教师</td>
+              <td>{{projectDetail.instructor}}</td>
+            </tr>
+            <tr>
+              <td class="center">项目说明</td>
+              <td [innerHtml]="projectDetail.description"></td>
+            </tr>
+          </table>
         </div>
-        <div class="row" style="margin-top: 25px; margin-bottom: 25px">
-          <div class="col-sm-12">
-            <table class="detail" *ngIf="projectDetail != null">
-              <tr>
-                <td class="center" width="20%">项目名称</td>
-                <td>{{projectDetail.title}}</td>
-              </tr>
-              <tr>
-                <td class="center">创建人</td>
-                <td>{{projectDetail.creator}}</td>
-              </tr>
-              <tr>
-                <td class="center">项目类型</td>
-                <td>{{projectDetail.type}}</td>
-              </tr>
-              <tr>
-                <td class="center">指导教师</td>
-                <td>{{projectDetail.instructor}}</td>
-              </tr>
-              <tr>
-                <td class="center">项目说明</td>
-                <td [innerHtml]="projectDetail.description"></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="row text-center">
-          <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
-          <button class="btn btn-danger" (click)="studentDeselectProject()" *ngIf="isSelected()">退选</button>
-        </div>
-      </ba-card>
-    </div>
+      </div>
+      <div class="row text-center">
+        <button class="btn btn-info" (click)="staticModal.show()">选择题目/变更顺序</button>
+        <button class="btn btn-danger" (click)="studentDeselectProject()" *ngIf="isSelected()">退选</button>
+      </div>
+    </ba-card>
   </div>
 </div>
 

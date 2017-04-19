@@ -6,10 +6,10 @@ import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {KyxtService} from "../../kyxt.service";
 import {isNullOrUndefined} from "util";
-import {NotificationsService} from "angular2-notifications";
 
 import '../../editor.loader';
 import 'ckeditor';
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
   selector: 'txxx',

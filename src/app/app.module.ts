@@ -23,10 +23,10 @@ import {AuthGuard} from "./app.auth-guard";
 import {AuthService} from "./app.auth-service";
 
 import {ConfigProvider} from "./app.config-provider";
-import {SimpleNotificationsModule} from "angular2-notifications";
 import {Config} from "./app.config";
 import {Ng2Webstorage} from "ng2-webstorage";
 import {DataService} from "./app.data";
+import {SimpleNotificationsModule} from "angular2-notifications/dist";
 
 
 // Application wide providers

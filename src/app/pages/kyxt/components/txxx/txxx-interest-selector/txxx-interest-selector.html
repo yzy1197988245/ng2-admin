@@ -1,5 +1,5 @@
 <ba-card>
-  <div class="row text-center">
+  <div class="text-center">
     <form [formGroup]="paramsForm">
       <input formControlName="name" type="text" placeholder="请填写名称">
       <select formControlName="schoolId" (change)="schoolChanged()">
@@ -17,7 +17,7 @@
       <button class="btn btn-default" (click)="getInterestList()">搜索</button>
     </form>
   </div>
-  <div class="row">
+  <div>
     <table class="my-list">
       <thead>
       <tr>
@@ -45,7 +45,7 @@
       </tbody>
     </table>
   </div>
-  <div class="row text-center">
+  <div class="text-center">
     <pagination [boundaryLinks]="true"
                 [totalItems]="totalCount"
                 [ngModel]="currentPage"
@@ -59,7 +59,7 @@
     ></pagination>
   </div>
   <p style="color: red">Tips:点击已选中的即可取消选择</p>
-  <div class="row">
+  <div>
     <span class="my-label" *ngFor="let interest of selectedInterests">{{interest.name}}</span>
   </div>
 </ba-card>

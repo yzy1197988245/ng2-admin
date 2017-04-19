@@ -4,9 +4,9 @@
 
 import {Component, OnInit} from "@angular/core";
 import {PagesService} from "../pages.service";
-import {NotificationsService} from "angular2-notifications";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../app.auth-service";
+import {NotificationsService} from "angular2-notifications/dist";
 @Component({
   templateUrl: './modify-password.html'
 })

@@ -4,8 +4,8 @@
 
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { KyxtService } from "../../kyxt.service";
-import { ModalDirective } from "ng2-bootstrap";
 import {DataService} from "../../../../app.data";
+import {ModalDirective} from "ngx-bootstrap";
 
 @Component({
   templateUrl: './xtxs.html',

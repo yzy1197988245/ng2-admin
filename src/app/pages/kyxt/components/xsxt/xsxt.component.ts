@@ -4,10 +4,10 @@
 
 import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
-import {NotificationsService} from "angular2-notifications";
 import {isNullOrUndefined} from "util";
 import {DataService} from "../../../../app.data";
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
+import {NotificationsService} from "angular2-notifications/dist";
 @Component({
   templateUrl: 'xsxt.html',
   styleUrls: ['xsxt.scss']

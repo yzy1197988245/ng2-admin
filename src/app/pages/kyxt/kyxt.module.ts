@@ -17,7 +17,6 @@ import {XsxtComponent} from "./components/xsxt/xsxt.component";
 import {TxxxComponent} from "./components/txxx/txxx.component";
 import {XsxxComponent} from "./components/xsxx/xsxx.component";
 import {KyxtService} from "./kyxt.service";
-import {ModalModule, PaginationModule} from "ng2-bootstrap";
 import {SelectModule} from "ng2-select";
 import {TjxxComponent} from "./components/tjxx/tjxx.component";
 import {TxxxTeacherSelectorComponent} from "./components/txxx/txxx-teacher-selector/txxx-teacher-selector.component";
@@ -27,6 +26,8 @@ import {XtjcComponent} from "./components/xtjc/xtjc.component";
 import {XtfpComponent} from "./components/xtfp/xtfp.component";
 import {ZntmglComponent} from "./components/zntmgl/zntmgl.component";
 import {XtxsComponent} from "./components/xtxs/txts.component";
+import {AppTranslationModule} from "../../app.translation.module";
+import {ModalModule, PaginationModule} from "ngx-bootstrap";
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {XtxsComponent} from "./components/xtxs/txts.component";
     ModalModule.forRoot(),
     SelectModule,
     PaginationModule.forRoot(),
+    AppTranslationModule
   ],
   declarations: [
     KyxtComponent,

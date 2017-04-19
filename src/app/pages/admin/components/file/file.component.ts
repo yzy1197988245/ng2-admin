@@ -5,7 +5,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
 import {Config} from "../../../../app.config";
-import {NotificationsService} from "angular2-notifications";
+import {NotificationsService} from "angular2-notifications/dist";
 @Component({
   templateUrl: './file.component.html',
   styleUrls: ['./file.component.scss']

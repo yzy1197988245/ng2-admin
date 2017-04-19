@@ -7,7 +7,7 @@ import {Component, OnInit} from "@angular/core";
 import {AdminService} from "../../admin.service";
 import {FormBuilder, FormGroup, Validators, AbstractControl} from "@angular/forms";
 import {DataService} from "../../../../app.data";
-import {NotificationsService} from "angular2-notifications";
+import {NotificationsService} from "angular2-notifications/dist";
 
 @Component({
   templateUrl: './user.html',

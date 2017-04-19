@@ -5,8 +5,9 @@
 import {Component, OnInit} from "@angular/core";
 import {KyxtService} from "../../kyxt.service";
 import {isNullOrUndefined} from "util";
-import {NotificationsService} from "angular2-notifications";
+
 import {DataService} from "../../../../app.data";
+import {NotificationsService} from "angular2-notifications/dist";
 @Component({
   templateUrl: 'xsxx.html',
   styleUrls: ['xsxx.scss']

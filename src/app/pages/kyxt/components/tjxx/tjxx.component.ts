@@ -12,9 +12,7 @@ export class TjxxComponent implements OnInit{
 
   chartData: any;
   chartOptions = {
-    fullWidth: true,
     height: '300px',
-    showLabel: false,
     axisY: {
       onlyInteger: true
     }

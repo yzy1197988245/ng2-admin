@@ -11,12 +11,12 @@ import {CommonModule} from "@angular/common";
 import {NgaModule} from "../theme/nga.module";
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {CodeNamePipe} from "./pipes/code-name.pipe";
-import {PaginationModule} from "ng2-bootstrap";
 import {SchoolSpecialtyPipe} from "./pipes/school-specialty.pipe";
 import {SpecialtyGradeClassPipe} from "./pipes/specialty-grade-class.pipe";
 import {StudentTableComponent} from "./components/student-table/student-table.component";
 import {InterestTableComponent} from "./components/interest-table/interest-table.component";
 import {TeacherTableComponent} from "./components/teacher-table/teacher-table.component";
+import {PaginationModule} from "ngx-bootstrap";
 
 @NgModule({
   imports: [
